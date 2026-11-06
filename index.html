@@ -14,6 +14,8 @@
     --edge:rgba(255,255,255,.75); --shadow:0 8px 32px rgba(31,45,75,.12);
     --design:#f2734a; --sales:#e0a92e; --production:#2f9bd6;
     --logistics:#36a37a; --finance:#9466d6; --hr:#d6608f; --accentink:#1b6fae;
+    --design-deep:#c24e28; --sales-deep:#96690c; --production-deep:#1b76ac;
+    --logistics-deep:#1f7d5a; --finance-deep:#7a4cc0; --hr-deep:#b8447a;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -58,20 +60,78 @@
     border-radius:8px; background:rgba(47,155,214,.14); color:var(--accentink); margin-left:7px}
   .signout{font-size:11.5px; color:var(--muted); text-decoration:underline; cursor:pointer; background:none; border:none; font-family:inherit}
 
-  .layout{display:grid; grid-template-columns:210px 1fr; gap:22px; align-items:start}
-  @media(max-width:760px){.layout{grid-template-columns:1fr}}
-  .side{padding:16px 12px; position:sticky; top:20px}
-  .side h2{font-size:10.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin:2px 10px 10px}
-  .nav-item{display:flex; align-items:center; gap:10px; padding:10px 12px; border-radius:13px; cursor:pointer;
-    font-size:14px; font-weight:500; margin-bottom:3px; transition:.13s; border:1px solid transparent}
+  .toolbar{display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:10px 14px; margin-bottom:16px}
+  #nav{display:flex; gap:5px; flex-wrap:wrap}
+  .nav-item{display:flex; align-items:center; gap:8px; padding:8px 13px; border-radius:12px; cursor:pointer; font-family:inherit; color:var(--ink);
+    font-size:13.5px; font-weight:500; transition:.13s; border:1px solid transparent; background:none}
   .nav-item:hover{background:var(--glass2); border-color:var(--edge)}
-  .nav-item.active{background:rgba(255,255,255,.85); border-color:var(--edge); box-shadow:0 4px 14px rgba(31,45,75,.10)}
+  .nav-item.active{background:rgba(255,255,255,.85); border-color:var(--edge); box-shadow:0 4px 14px rgba(31,45,75,.10); font-weight:600}
   .dot{width:9px;height:9px;border-radius:50%; flex:0 0 auto}
-  .nav-count{margin-left:auto; font-size:11px; color:var(--muted)}
+  .nav-count{font-size:11px; color:var(--muted)}
+  .tools{margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap}
+  .tools .qbtn{padding:7px 13px}
+  .own{display:flex; gap:6px; align-items:center; font-size:13px; color:var(--muted); cursor:pointer; margin-right:4px}
 
-  .content{padding:26px 30px; min-height:60vh}
+  .content{padding:22px 24px; min-height:60vh}
+  .dept-head{display:flex; align-items:flex-start; gap:14px; flex-wrap:wrap; margin-bottom:14px}
   .dept-title{font-size:24px; font-weight:700; letter-spacing:-.4px; margin-bottom:4px}
   .dept-sub{font-size:13px; color:var(--muted); margin-bottom:20px}
+  .dept-head .dept-sub{margin-bottom:0}
+  .head-edit{margin-left:auto; display:flex; gap:10px; align-items:center}
+
+  /* ---------- Workflow board ---------- */
+  .lane-title{display:flex; align-items:center; gap:8px; font-size:14px; font-weight:700; margin:20px 0 8px}
+  .canvas{border-radius:16px; padding:18px; overflow-x:auto; border:1px solid var(--edge); background-color:rgba(255,255,255,.28);
+    background-image:radial-gradient(rgba(95,108,125,.24) 1px,transparent 1.3px); background-size:18px 18px}
+  .board{display:flex; align-items:flex-start; min-width:max-content}
+  .stage{width:205px; flex:0 0 auto; padding:12px 10px 10px; border-radius:16px; background:rgba(255,255,255,.72); border:1px solid var(--edge);
+    border-top:4px solid var(--c); box-shadow:0 6px 20px rgba(31,45,75,.10); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px)}
+  .stage-title{display:flex; gap:7px; align-items:baseline; font-size:13.5px; font-weight:700; padding:0 3px 2px; line-height:1.25}
+  .stage-title .dot{width:8px; height:8px; position:relative; top:-1px}
+  .arrow{flex:0 0 34px; height:2px; margin-top:42px; background:#8aa0b8; position:relative}
+  .arrow::after{content:""; position:absolute; right:0; top:-4px; border-left:7px solid #8aa0b8; border-top:5px solid transparent; border-bottom:5px solid transparent}
+  .step,.decision{display:block; width:100%; text-align:left; font-family:inherit; border:none; cursor:pointer; color:#fff; margin-top:8px; transition:.13s}
+  .step{background:var(--fill); border-radius:11px; padding:9px 11px; box-shadow:0 3px 10px rgba(31,45,75,.16)}
+  .step:hover,.step.sel{transform:translateY(-1px); box-shadow:0 7px 18px rgba(31,45,75,.28)}
+  .step.sel{outline:2px solid var(--ink); outline-offset:2px}
+  .step b,.decision b{display:block; font-size:13.5px; font-weight:600; line-height:1.3}
+  .step-owner{display:block; font-size:12.5px; margin-top:2px; color:rgba(255,255,255,.9)}
+  .step-owner.none{font-style:italic; color:rgba(255,255,255,.78)}
+  .no-owners .step-owner{display:none}
+  .step-tag{display:inline-block; font-size:10.5px; font-weight:600; margin-top:6px; padding:2px 7px; border-radius:6px; background:rgba(255,255,255,.2)}
+  .decision{background:var(--ink); padding:11px 22px 10px; position:relative;
+    clip-path:polygon(13px 0,calc(100% - 13px) 0,100% 50%,calc(100% - 13px) 100%,13px 100%,0 50%)}
+  .decision:hover,.decision:focus-visible{background:#2d3d52}
+  .decision i{display:block; width:8px; height:8px; background:#e0a92e; transform:rotate(45deg); margin:0 0 5px 1px}
+  .decision span{display:block; font-size:12px; margin-top:3px; color:rgba(255,255,255,.8)}
+  .board-note{font-size:12.5px; color:var(--muted); margin-top:14px}
+  @media(max-width:760px){
+    .content{padding:18px 14px}
+    .canvas{padding:12px}
+    .board{flex-direction:column; align-items:stretch; min-width:0}
+    .stage{width:100%}
+    .arrow{flex:0 0 22px; width:2px; height:22px; margin:0 auto}
+    .arrow::after{right:-4px; top:auto; bottom:0; border-top:7px solid #8aa0b8; border-left:5px solid transparent; border-right:5px solid transparent; border-bottom:0}
+    .tools{margin-left:0}
+  }
+
+  /* ---------- Side panel ---------- */
+  #scrim{position:fixed; inset:0; z-index:64; background:rgba(22,32,44,.18); display:none}
+  #scrim.open{display:block}
+  #panel{position:fixed; top:0; right:0; bottom:0; z-index:65; width:min(400px,100vw); padding:24px 22px; overflow-y:auto; display:none;
+    background:rgba(255,255,255,.94); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); box-shadow:-10px 0 34px rgba(31,45,75,.18)}
+  #panel.open{display:block}
+  #pClose{position:absolute; top:14px; right:14px; width:32px; height:32px; border-radius:50%; border:1px solid #dfe5ec; background:#fff; cursor:pointer; font-size:13px; color:var(--ink); font-family:inherit}
+  .p-kick{font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--muted); margin:0 36px 8px 0; display:flex; gap:7px; align-items:center}
+  .p-title{font-size:20px; font-weight:700; letter-spacing:-.3px; line-height:1.25; margin:0 30px 8px 0}
+  .p-desc{font-size:13.5px; color:#3c4858; line-height:1.55}
+  .p-h{font-size:11px; font-weight:700; letter-spacing:.08em; color:var(--muted); margin:20px 0 7px}
+  .p-val{font-size:14px}
+  .p-none{font-size:13px; color:var(--muted); font-style:italic}
+  .p-link{display:flex; gap:9px; align-items:center; width:100%; text-align:left; font:inherit; font-size:13.5px; font-weight:500; color:var(--ink); padding:10px 12px; margin-bottom:7px;
+    border-radius:11px; border:1px solid #dfe5ec; background:#fff; cursor:pointer; transition:.13s}
+  .p-link:hover{box-shadow:0 4px 12px rgba(31,45,75,.12); transform:translateY(-1px)}
+  .p-group{margin-bottom:6px}
 
   .sop{width:100%; text-align:left; font-family:inherit; background:rgba(255,255,255,.7); border:1px solid var(--edge);
     border-left:4px solid var(--accent,#2f9bd6); border-radius:15px; padding:15px 17px; cursor:pointer;
@@ -82,6 +142,10 @@
   .badge.view{background:rgba(54,163,122,.15); color:#1d7a55}
   .badge.todo{background:rgba(224,169,46,.16); color:#9a6e0d}
   .sop-desc{font-size:12.5px; color:var(--muted); margin-top:6px; line-height:1.5}
+  .ed-in{width:100%; font:inherit; font-size:12.5px; border:1px solid var(--edge); border-radius:8px; padding:6px 8px; margin-bottom:6px}
+  .ed-guides{font-size:12px; color:var(--muted); margin-top:2px}
+  .ed-guides summary{cursor:pointer}
+  .ed-guides label{display:flex; gap:6px; align-items:center; margin-top:4px; color:var(--ink)}
 
   /* ---------- Decision flow ---------- */
   .flowwrap{margin-top:28px; padding-top:20px; border-top:1px dashed rgba(95,108,125,.35)}
@@ -151,11 +215,22 @@
       <button class="signout hidden" id="signOut">Sign out</button>
     </div>
   </header>
-  <div class="layout">
-    <aside class="side glass"><h2>Departments</h2><div id="nav"></div></aside>
-    <main class="content glass" id="content"></main>
+  <div class="toolbar glass">
+    <div id="nav"></div>
+    <div class="tools">
+      <label class="own"><input type="checkbox" id="ownerToggle" checked> Owners</label>
+      <button class="qbtn" id="guidesBtn">All guides</button>
+      <button class="qbtn" id="glossaryBtn">Glossary</button>
+    </div>
   </div>
+  <main class="content glass" id="content"></main>
 </div>
+
+<div id="scrim"></div>
+<aside id="panel" role="dialog" aria-modal="true" aria-label="Details">
+  <button id="pClose" title="Close" aria-label="Close">&#10005;</button>
+  <div id="pBody"></div>
+</aside>
 
 <div id="viewer"><div class="v-card glass">
   <button id="vClose" title="Close">&#10005;</button>
@@ -287,6 +362,20 @@ const DECISIONS = {
 };
 
 
+/* Guide pages in this repo. A step lists a guide when its SOP name is in sops,
+   unless an admin has picked its guides by hand (saved on the step as guides). */
+const GUIDES = [
+  {file:"Guide_1_Quoting_Tracker.html",     title:"Item Intake & Quoting",            dept:"Production", sops:["Quoting"]},
+  {file:"Guide_2_Quote_Sheets.html",        title:"Quoting Out to Factories",         dept:"Production", sops:["Quoting"]},
+  {file:"Guide_3_Order_Placement.html",     title:"Order Placement",                  dept:"Sales",      sops:["Order Processing"]},
+  {file:"Guide_4_Development_Tracker.html", title:"Development & Sample Tracking",    dept:"Production", sops:["Development"]},
+  {file:"Guide_5_Production_PO.html",       title:"Production & PO Tracking",         dept:"Production", sops:["Production & PO Tracking"]},
+  {file:"Guide_6_Inspection.html",          title:"Inspection",                       dept:"Production", sops:["Inspection"]},
+  {file:"Guide_7_Container_Logistics.html", title:"Container Planning & Logistics",   dept:"Logistics",  sops:["Container Planning","Container Clearance"]},
+  {file:"Guide_8_Glossary.html",            title:"Glossary of Key Terms",            dept:null,         sops:[]},
+];
+const GLOSSARY = "Guide_8_Glossary.html";
+
 /* ───────── remote config (sop-config.json in the SOP Library) ───────── */
 let CONFIG_ITEM_PATH=null;
 function applyConfig(cfg){
@@ -320,20 +409,29 @@ async function saveRemoteConfig(cfg){
 
 /* ───────── admin edit mode ───────── */
 let editMode=false;
-function toggleEdit(){ editMode=!editMode; renderContent(); }
+function toggleEdit(){
+  editMode=!editMode;
+  if(activeDept===ALL) activeDept=visibleDepts()[0];
+  renderNav(); renderContent();
+}
 async function persist(){
   const st=document.getElementById('saveState');
   if(!CONFIG_ITEM_PATH){ st.textContent='No config file linked: set CONFIG_URL in the page first.'; return; }
   st.textContent='Saving…';
   try{
     await saveRemoteConfig({depts:DEPTS, flow:FLOW, decisions:DECISIONS});
-    editMode=false; renderContent();
+    editMode=false; renderNav(); renderContent();
     const st2=document.getElementById('saveState'); if(st2){ st2.textContent='Saved ✓'; setTimeout(()=>st2.textContent='',2500); }
   }
   catch(e){ st.textContent=e.message; }
 }
 function editField(si,pi,field,val){ FLOW[si].sops[pi][field]=val; }
-function addSopCard(si){ FLOW[si].sops.push({name:"New SOP",desc:"Description",url:""}); renderContent(); }
+function editGuide(si,pi,file,on){
+  const sp=FLOW[si].sops[pi];
+  const cur=guidesFor(sp).map(g=>g.file).filter(f=>f!==file);
+  sp.guides=on?cur.concat(file):cur;
+}
+function addSopCard(si){ FLOW[si].sops.push({name:"New SOP",desc:"Description",owner:"",url:""}); renderContent(); }
 function removeSopCard(si,pi){
   if(!confirm('Remove this SOP card? (The SharePoint document itself is untouched.)')) return;
   FLOW[si].sops.splice(pi,1); renderContent();
@@ -385,7 +483,8 @@ const PEOPLE = [
 })();
 
 /* ───────────────────── auth ───────────────────── */
-let msalApp=null, account=null, current=null, activeDept=null;
+const ALL="__all";
+let msalApp=null, account=null, current=null, activeDept=null, showOwners=true;
 const gate=document.getElementById('gate'), app=document.getElementById('app');
 const navEl=document.getElementById('nav'), contentEl=document.getElementById('content');
 const pick=document.getElementById('userPick');
@@ -453,102 +552,196 @@ function applyTestUser(i){ current=PEOPLE[i]; paintUser(); }
 function paintUser(){
   document.getElementById('whoName').textContent=current.name;
   document.getElementById('whoRole').textContent=current.role.toUpperCase();
-  const vis=visibleDepts(); activeDept=vis.includes(activeDept)?activeDept:vis[0];
+  const vis=visibleDepts();
+  if(!(vis.includes(activeDept)||(activeDept===ALL&&vis.length>1))) activeDept=vis.length>1?ALL:vis[0];
   renderNav(); renderContent();
 }
 
 /* ───────────────────── rendering ───────────────────── */
 function canSee(d){return current.departments.includes('*')||current.departments.includes(d);}
 function visibleDepts(){return Object.keys(DEPTS).filter(canSee);}
+function esc(v){return String(v==null?"":v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function stepFill(d){return 'var(--'+d.toLowerCase()+'-deep,'+DEPTS[d].color+')';}
+function stageName(s){return String(s).replace(/^\d+\s*[—-]\s*/,'');}
+function stepCount(d){return FLOW.filter(f=>f.dept===d).reduce((n,f)=>n+f.sops.length,0);}
+function guidesFor(sp){
+  if(Array.isArray(sp.guides)) return GUIDES.filter(g=>sp.guides.includes(g.file));
+  return GUIDES.filter(g=>g.sops.includes(sp.name));
+}
+function hasOwnDoc(sp){
+  const u=(sp.url||'').trim();
+  return !!u&&!GUIDES.some(g=>g.file===u);
+}
 function renderNav(){
   navEl.innerHTML='';
-  visibleDepts().forEach(d=>{
-    const count=FLOW.filter(f=>f.dept===d).reduce((n,f)=>n+f.sops.length,0);
-    const it=document.createElement('div');
-    it.className='nav-item'+(d===activeDept?' active':'');
-    it.innerHTML='<span class="dot" style="background:'+DEPTS[d].color+'"></span>'+d+'<span class="nav-count">'+count+'</span>';
-    it.onclick=()=>{activeDept=d;renderNav();renderContent();};
+  const vis=visibleDepts();
+  const add=(key,label,color,count)=>{
+    const it=document.createElement('button');
+    it.className='nav-item'+(key===activeDept?' active':'');
+    it.innerHTML=(color?'<span class="dot" style="background:'+color+'"></span>':'')+esc(label)+'<span class="nav-count">'+count+'</span>';
+    it.onclick=()=>{activeDept=key;renderNav();renderContent();};
     navEl.appendChild(it);
-  });
+  };
+  if(vis.length>1&&!editMode) add(ALL,'All',null,vis.reduce((n,d)=>n+stepCount(d),0));
+  vis.forEach(d=>add(d,d,DEPTS[d].color,stepCount(d)));
 }
-function renderContent(){
-  const d=activeDept, color=DEPTS[d].color;
-  const isAdmin=current&&current.role==='admin'&&!TEST_MODE;
-  let html='<h2 class="dept-title">'+d+'</h2><div class="dept-sub">Standard operating procedures '+"\u2014"+' click a card to view the document here.</div>';
-  if(isAdmin){
-    html+='<div style="margin:-6px 0 16px;display:flex;gap:10px;align-items:center">'+
-      (editMode
-        ?'<button class="qbtn" style="font-weight:700" onclick="persist()">Save</button>'
-        :'<button class="qbtn" onclick="toggleEdit()">Edit</button>')+
-      '<span id="saveState" style="font-size:12px;color:var(--muted)"></span></div>';
+/* question order for the black cards: start first, then follow the answers */
+function questionOrder(d){
+  const D=DECISIONS[d]; if(!D||!D.nodes[D.start]) return [];
+  const out=[], queue=[D.start];
+  while(queue.length){
+    const id=queue.shift();
+    if(out.includes(id)||!D.nodes[id]) continue;
+    out.push(id);
+    D.nodes[id].opts.forEach(o=>{ if(typeof o.goto==='string') queue.push(o.goto); });
+  }
+  return out;
+}
+function stepTag(sp){
+  const n=guidesFor(sp).length;
+  if(n) return n===1?'Guide':n+' guides';
+  return hasOwnDoc(sp)?'Document':'No guide yet';
+}
+function boardHtml(d){
+  const color=DEPTS[d].color, cols=[];
+  const qs=questionOrder(d);
+  if(qs.length){
+    cols.push('<div class="stage" style="--c:var(--ink)"><div class="stage-title"><span class="dot" style="background:var(--ink)"></span>Where to start</div>'+
+      qs.map(id=>'<button class="decision" data-q="'+esc(d)+'" data-node="'+esc(id)+'"><i></i><b>'+esc(DECISIONS[d].nodes[id].q)+'</b><span>Decision</span></button>').join('')+'</div>');
   }
   FLOW.forEach((st,si)=>{
     if(st.dept!==d) return;
-    if(editMode&&isAdmin){
-      html+='<div style="display:flex;gap:10px;align-items:center;margin:14px 0 8px">'+
-        '<span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted)">'+st.stage+'</span>'+
-        '<button class="qrestart" onclick="moveStage('+si+',-1)" title="Move stage up">\u25B2</button>'+
-        '<button class="qrestart" onclick="moveStage('+si+',1)" title="Move stage down">\u25BC</button></div>';
-    }
-    st.sops.forEach((sp,pi)=>{
-      const has=sp.url&&sp.url.trim()!=="";
-      if(editMode&&isAdmin){
-        html+='<div class="sop" style="--accent:'+color+';cursor:default">'+
-          '<input style="width:100%;font:inherit;font-weight:600;border:1px solid var(--edge);border-radius:8px;padding:6px 8px;margin-bottom:6px" value="'+sp.name.replace(/"/g,'&quot;')+'" onchange="editField('+si+','+pi+',&quot;name&quot;,this.value)">'+
-          '<input style="width:100%;font:inherit;font-size:12.5px;border:1px solid var(--edge);border-radius:8px;padding:6px 8px;margin-bottom:6px" value="'+(sp.desc||'').replace(/"/g,'&quot;')+'" onchange="editField('+si+','+pi+',&quot;desc&quot;,this.value)">'+
-          '<input style="width:100%;font:inherit;font-size:12px;border:1px solid var(--edge);border-radius:8px;padding:6px 8px" placeholder="SharePoint document URL" value="'+(sp.url||'').replace(/"/g,'&quot;')+'" onchange="editField('+si+','+pi+',&quot;url&quot;,this.value)">'+
-          '<div style="margin-top:7px;display:flex;gap:14px;align-items:center">'+
-          '<button class="qrestart" onclick="moveSop('+si+','+pi+',-1)" title="Move up">\u25B2</button>'+
-          '<button class="qrestart" onclick="moveSop('+si+','+pi+',1)" title="Move down">\u25BC</button>'+
-          '<button class="qrestart" style="color:#b4452f;margin-left:auto" onclick="removeSopCard('+si+','+pi+')">Remove card</button></div></div>';
-      } else {
-        html+='<button class="sop" style="--accent:'+color+'" data-sop="'+sp.name.replace(/"/g,'&quot;')+'">'+
-          '<div class="sop-name"><span>'+sp.name+'</span><span class="badge '+(has?'view':'todo')+'">'+(has?'VIEW':'LINK PENDING')+'</span></div>'+
-          '<div class="sop-desc">'+st.stage+' '+"\u2014"+' '+sp.desc+'</div></button>';
-      }
-    });
-    if(editMode&&isAdmin){
-      html+='<div style="margin:-2px 0 12px"><button class="qrestart" onclick="addSopCard('+si+')">+ Add SOP under '+st.stage+'</button></div>';
-    }
+    cols.push('<div class="stage" style="--c:'+color+'"><div class="stage-title"><span class="dot" style="background:'+color+'"></span>'+esc(stageName(st.stage))+'</div>'+
+      st.sops.map((sp,pi)=>{
+        const owner=(sp.owner||'').trim();
+        return '<button class="step" style="--fill:'+stepFill(d)+'" data-si="'+si+'" data-pi="'+pi+'"><b>'+esc(sp.name)+'</b>'+
+          '<span class="step-owner'+(owner?'':' none')+'">'+(owner?esc(owner):'Owner needed')+'</span>'+
+          '<span class="step-tag">'+stepTag(sp)+'</span></button>';
+      }).join('')+'</div>');
   });
-  if(editMode&&isAdmin){ html+=renderFlowEditor(); }
-  else if(DECISIONS[d]) html+='<div class="flowwrap"><h3>Decision guide</h3><div class="fsub">Answer the prompts to reach the right SOP.</div><div id="qhost"></div></div>';
+  return '<div class="canvas"><div class="board">'+cols.join('<div class="arrow"></div>')+'</div></div>';
+}
+function renderContent(){
+  closePanel();
+  const isAdmin=current&&current.role==='admin'&&!TEST_MODE;
+  if(editMode&&isAdmin){ renderEditor(); return; }
+  const all=activeDept===ALL, depts=all?visibleDepts():[activeDept];
+  let html='<div class="dept-head"><div><h2 class="dept-title">'+(all?'How work moves through Metro1':esc(activeDept))+'</h2>'+
+    '<div class="dept-sub">Tap a step to see who does it, its guide and its SOP document.</div></div>'+
+    (isAdmin?'<div class="head-edit"><span id="saveState" style="font-size:12px;color:var(--muted)"></span><button class="qbtn" onclick="toggleEdit()">Edit</button></div>':'')+'</div>';
+  html+='<div class="'+(showOwners?'':'no-owners')+'">';
+  depts.forEach(d=>{
+    if(all) html+='<div class="lane-title"><span class="dot" style="background:'+DEPTS[d].color+'"></span>'+esc(d)+'</div>';
+    html+=boardHtml(d);
+  });
+  html+='</div><div class="board-note">Each box is a stage. The steps inside go top to bottom; black cards are decisions.</div>';
   contentEl.innerHTML=html;
-  contentEl.querySelectorAll('.sop[data-sop]').forEach(b=>{ b.onclick=()=>openSop(b.dataset.sop); });
-  if(DECISIONS[d]&&!editMode) renderQ(d,DECISIONS[d].start);
+  contentEl.querySelectorAll('.step').forEach(b=>{ b.onclick=()=>openStep(+b.dataset.si,+b.dataset.pi); });
+  contentEl.querySelectorAll('.decision').forEach(b=>{ b.onclick=()=>openQuestion(b.dataset.q,b.dataset.node); });
+}
+function renderEditor(){
+  const d=activeDept, color=DEPTS[d].color;
+  let html='<h2 class="dept-title">'+esc(d)+'</h2><div class="dept-sub">Editing steps, owners, guides and decisions.</div>';
+  html+='<div style="margin:-6px 0 16px;display:flex;gap:10px;align-items:center">'+
+    '<button class="qbtn" style="font-weight:700" onclick="persist()">Save</button>'+
+    '<span id="saveState" style="font-size:12px;color:var(--muted)"></span></div>';
+  FLOW.forEach((st,si)=>{
+    if(st.dept!==d) return;
+    html+='<div style="display:flex;gap:10px;align-items:center;margin:14px 0 8px">'+
+      '<span style="font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted)">'+esc(st.stage)+'</span>'+
+      '<button class="qrestart" onclick="moveStage('+si+',-1)" title="Move stage up">▲</button>'+
+      '<button class="qrestart" onclick="moveStage('+si+',1)" title="Move stage down">▼</button></div>';
+    st.sops.forEach((sp,pi)=>{
+      const mine=guidesFor(sp).map(g=>g.file);
+      html+='<div class="sop" style="--accent:'+color+';cursor:default">'+
+        '<input class="ed-in" style="font-weight:600;font-size:14px" placeholder="Step name" value="'+esc(sp.name)+'" onchange="editField('+si+','+pi+',&quot;name&quot;,this.value)">'+
+        '<input class="ed-in" placeholder="Owner" value="'+esc(sp.owner)+'" onchange="editField('+si+','+pi+',&quot;owner&quot;,this.value)">'+
+        '<input class="ed-in" placeholder="Description" value="'+esc(sp.desc)+'" onchange="editField('+si+','+pi+',&quot;desc&quot;,this.value)">'+
+        '<input class="ed-in" placeholder="SharePoint document URL" value="'+esc(sp.url)+'" onchange="editField('+si+','+pi+',&quot;url&quot;,this.value)">'+
+        '<details class="ed-guides"><summary>Guides ('+mine.length+')</summary>'+
+        GUIDES.map(g=>'<label><input type="checkbox"'+(mine.includes(g.file)?' checked':'')+' onchange="editGuide('+si+','+pi+',&quot;'+g.file+'&quot;,this.checked)">'+esc(g.title)+'</label>').join('')+'</details>'+
+        '<div style="margin-top:7px;display:flex;gap:14px;align-items:center">'+
+        '<button class="qrestart" onclick="moveSop('+si+','+pi+',-1)" title="Move up">▲</button>'+
+        '<button class="qrestart" onclick="moveSop('+si+','+pi+',1)" title="Move down">▼</button>'+
+        '<button class="qrestart" style="color:#b4452f;margin-left:auto" onclick="removeSopCard('+si+','+pi+')">Remove card</button></div></div>';
+    });
+    html+='<div style="margin:-2px 0 12px"><button class="qrestart" onclick="addSopCard('+si+')">+ Add SOP under '+esc(st.stage)+'</button></div>';
+  });
+  html+=renderFlowEditor();
+  contentEl.innerHTML=html;
 }
 function findSop(name){for(const f of FLOW){for(const s of f.sops){if(s.name===name)return s;}}return null;}
 
-function renderQ(dept,nodeId){
-  const host=document.getElementById('qhost'); if(!host)return;
-  const node=DECISIONS[dept].nodes[nodeId];
-  let h='<div class="qcard glass"><div class="qstep">QUESTION</div><div class="qtext">'+node.q+'</div><div class="qbtns">';
-  node.opts.forEach((o,i)=>{h+='<button class="qbtn" data-i="'+i+'">'+o.label+'</button>';});
-  h+='</div><button class="qrestart">Start over</button></div>';
-  host.innerHTML=h;
-  host.querySelectorAll('.qbtn').forEach(b=>{b.onclick=()=>{
-    const o=node.opts[+b.dataset.i];
-    if(typeof o.goto==='string') renderQ(dept,o.goto);
-    else if(o.goto.sop){
-      host.innerHTML='<div class="qcard glass"><div class="qstep" style="color:#1d7a55">RESULT</div>'+
-        '<div class="rlabel">Open this SOP:</div>'+
-        '<button class="sop" style="--accent:'+DEPTS[dept].color+'" data-sop="'+o.goto.sop+'"><div class="sop-name"><span>'+o.goto.sop+'</span><span class="badge view">VIEW</span></div></button>'+
-        '<button class="qrestart">Start over</button></div>';
-      host.querySelector('.sop').onclick=()=>openSop(o.goto.sop);
-      host.querySelector('.qrestart').onclick=()=>renderQ(dept,DECISIONS[dept].start);
-    }
-    else if(o.goto.done){
-      host.innerHTML='<div class="qcard glass"><div class="qstep" style="color:#9466d6">RESULT</div><div class="qtext" style="font-weight:400;font-size:14.5px">'+o.goto.done+'</div><button class="qrestart">Start over</button></div>';
-      host.querySelector('.qrestart').onclick=()=>renderQ(dept,DECISIONS[dept].start);
+/* ───────────────────── side panel ───────────────────── */
+const panel=document.getElementById('panel'), scrim=document.getElementById('scrim'), pBody=document.getElementById('pBody');
+function openPanel(html){
+  pBody.innerHTML=html;
+  panel.classList.add('open'); scrim.classList.add('open'); panel.scrollTop=0;
+  pBody.querySelectorAll('[data-guide]').forEach(b=>{ b.onclick=()=>openGuide(b.dataset.guide); });
+}
+function closePanel(){
+  panel.classList.remove('open'); scrim.classList.remove('open');
+  contentEl.querySelectorAll('.step.sel').forEach(b=>b.classList.remove('sel'));
+}
+function guideLink(g){
+  return '<button class="p-link" data-guide="'+esc(g.file)+'"><span class="dot" style="background:'+(g.dept&&DEPTS[g.dept]?DEPTS[g.dept].color:'var(--ink)')+'"></span>'+esc(g.title)+'</button>';
+}
+function openStep(si,pi){
+  const st=FLOW[si], sp=st.sops[pi], d=st.dept, guides=guidesFor(sp), owner=(sp.owner||'').trim();
+  let h='<div class="p-kick"><span class="dot" style="background:'+DEPTS[d].color+'"></span>'+esc(d)+' · '+esc(stageName(st.stage))+'</div>'+
+    '<h3 class="p-title">'+esc(sp.name)+'</h3><div class="p-desc">'+esc(sp.desc)+'</div>'+
+    '<div class="p-h">OWNER</div>'+(owner?'<div class="p-val">'+esc(owner)+'</div>':'<div class="p-none">Owner needed</div>')+
+    '<div class="p-h">GUIDES</div>'+(guides.length?guides.map(guideLink).join(''):'<div class="p-none">No guide yet</div>')+
+    '<div class="p-h">SOP DOCUMENT</div>'+(hasOwnDoc(sp)?'<button class="p-link" id="pDoc">Open document</button>':'<div class="p-none">No document linked yet</div>');
+  openPanel(h);
+  const b=document.getElementById('pDoc'); if(b) b.onclick=()=>openSop(sp.name);
+  contentEl.querySelectorAll('.step.sel').forEach(x=>x.classList.remove('sel'));
+  const card=contentEl.querySelector('.step[data-si="'+si+'"][data-pi="'+pi+'"]'); if(card) card.classList.add('sel');
+}
+function openStepByName(name){
+  for(let si=0;si<FLOW.length;si++){ const pi=FLOW[si].sops.findIndex(s=>s.name===name); if(pi>=0){ openStep(si,pi); return true; } }
+  return false;
+}
+function openQuestion(dept,id){
+  const D=DECISIONS[dept], node=D.nodes[id];
+  const kick='<div class="p-kick"><span class="dot" style="background:var(--ink)"></span>'+esc(dept)+' · Decision</div>';
+  const again='<button class="qrestart" id="pAgain">Start over</button>';
+  openPanel(kick+'<h3 class="p-title">'+esc(node.q)+'</h3><div style="margin-top:14px">'+
+    node.opts.map((o,i)=>'<button class="p-link" data-i="'+i+'">'+esc(o.label)+'</button>').join('')+'</div>'+again);
+  document.getElementById('pAgain').onclick=()=>openQuestion(dept,D.start);
+  pBody.querySelectorAll('.p-link[data-i]').forEach(b=>{ b.onclick=()=>{
+    const g=node.opts[+b.dataset.i].goto;
+    if(typeof g==='string') openQuestion(dept,g);
+    else if(g&&g.sop&&openStepByName(g.sop)) return;
+    else {
+      openPanel(kick+'<div class="p-desc" style="margin-bottom:14px">'+esc(g&&(g.done||g.sop))+'</div>'+again);
+      document.getElementById('pAgain').onclick=()=>openQuestion(dept,D.start);
     }
   };});
-  host.querySelector('.qrestart').onclick=()=>renderQ(dept,DECISIONS[dept].start);
 }
+function openGuideList(){
+  const list=GUIDES.filter(g=>!g.dept||canSee(g.dept));
+  openPanel('<h3 class="p-title">All guides</h3><div class="p-group" style="margin-top:14px">'+list.map(guideLink).join('')+'</div>');
+}
+document.getElementById('pClose').onclick=closePanel;
+scrim.onclick=closePanel;
+document.getElementById('guidesBtn').onclick=openGuideList;
+document.getElementById('glossaryBtn').onclick=()=>openGuide(GLOSSARY);
+document.getElementById('ownerToggle').onchange=e=>{ showOwners=e.target.checked; renderContent(); };
+addEventListener('keydown',e=>{
+  if(e.key!=='Escape') return;
+  if(viewer.classList.contains('open')) closeViewer(); else closePanel();
+});
 
 /* ───────────────────── in-page document viewer (Graph preview) ───────────────────── */
 const viewer=document.getElementById('viewer');
-document.getElementById('vClose').onclick=()=>{viewer.classList.remove('open');document.getElementById('vBody').innerHTML='';};
-viewer.onclick=e=>{if(e.target===viewer){viewer.classList.remove('open');document.getElementById('vBody').innerHTML='';}};
+function closeViewer(){viewer.classList.remove('open');document.getElementById('vBody').innerHTML='';}
+document.getElementById('vClose').onclick=closeViewer;
+viewer.onclick=e=>{if(e.target===viewer)closeViewer();};
+function openGuide(file){
+  viewer.classList.add('open');
+  document.getElementById('vBody').innerHTML='<iframe src="'+esc(file)+'" style="background:#fff"></iframe>';
+}
 
 async function graphToken(){
   try{ return (await msalApp.acquireTokenSilent({scopes:GRAPH_SCOPES,account})).accessToken; }
@@ -561,10 +754,7 @@ function encodeShareUrl(u){
 }
 async function openSop(name){
   const _sp0=findSop(name);
-  if(_sp0&&_sp0.url&&!/^https?:/i.test(_sp0.url)){ // repo-relative guide -> open directly
-    const b=document.getElementById('vBody'); viewer.classList.add('open');
-    b.innerHTML='<iframe src="'+_sp0.url+'" style="background:#fff"></iframe>'; return;
-  }
+  if(_sp0&&_sp0.url&&!/^https?:/i.test(_sp0.url)){ openGuide(_sp0.url); return; } // repo-relative guide
   const sp=findSop(name); if(!sp) return;
   const body=document.getElementById('vBody');
   viewer.classList.add('open');
