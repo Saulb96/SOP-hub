@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventory Report</title><style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
+.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
+.hero{background:linear-gradient(135deg,#96690c,#e0a92e);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
+.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
+.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
+.hero p{font-size:13.5px;margin-top:6px}
+.body{padding:32px 44px}
+.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
+h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
+ol,ul{margin:0 0 4px 4px;padding-left:20px}
+li{margin-bottom:7px;font-size:14px}
+ol li::marker{color:#96690c;font-weight:700}
+ul li::marker{color:#96690c}
+table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
+th{background:#96690c;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
+tr:nth-child(even) td{background:#fdf6e6}
+td.k{font-weight:600;white-space:nowrap}
+.glance td{background:#fff !important}
+.glance td.k{width:110px;color:#6b7686;font-weight:600}
+.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
+.note{background:#fdf6e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
+.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
+@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · SALES</div><h1>Inventory Report</h1><p>What we can sell, and when it can be pulled</p></div><div class="body"><p class="lead">The Shalam Tool reads the weekly inventory report and shows what is available to sell, where it is, and what can be pulled from China. Sales uses the files it produces to offer goods to buyers.</p><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Tool</td><td>Shalam Tool. Salespeople use the Shalam Sales page.</td></tr><tr><td class="k">When</td><td>Weekly, when the new report comes out</td></tr><tr><td class="k">You end with</td><td>On hand ATS and Pull from China files</td></tr></table><h2>Steps</h2><ol><li>Save the weekly ERP inventory report to the ATS reports folder on SharePoint. The tool always reads the newest file.</li><li>Sign in to the Shalam Tool and check the source chips and banners at the top. Anything red needs fixing first.</li><li>Review the tabs (below). Click any number to open <b>Behind this number</b> and see what makes it up.</li><li>Download <b>On hand ATS</b> (blue button) or <b>Pull from China</b> (orange button).</li><li>Salespeople open Shalam Sales and read the same two files.</li></ol><h2>The tabs</h2><table><tr><th>Tab</th><th>What it shows</th></tr><tr><td class="k">Available to sell</td><td>Stock that can be offered now</td></tr><tr><td class="k">Where it is</td><td>Goods by stage: No CRD, In production, Ready, Booked, Loaded, On the water, At port, Landed</td></tr><tr><td class="k">Pull from China</td><td>Goods that can be pulled, with pull dates</td></tr><tr><td class="k">Problems</td><td>Items that need a person to look at them</td></tr></table><h2>Rules</h2><ul><li>In-transit goods count as available at ETA + 7 days.</li><li>Pull date: 10 days before ETD. With no ETD, 5 days before CRD. With no CRD, 75 days after the order date. Past dates stay off the file.</li><li>Oversold items show 0 on hand on the sheet.</li><li>Styles written differently stay separate items, so a typo can split one style in two.</li><li>POs ending in -BCF show as <b>Reserved -BCF</b>.</li><li>Sales files only save on a clean load: no red source, report 8 days old or less, balances OK. Otherwise the last good file stays in place.</li></ul></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>

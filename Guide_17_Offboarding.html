@@ -1,0 +1,26 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offboarding</title><style>*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
+.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
+.hero{background:linear-gradient(135deg,#b8447a,#d6608f);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
+.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
+.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
+.hero p{font-size:13.5px;margin-top:6px}
+.body{padding:32px 44px}
+.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
+h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
+ol,ul{margin:0 0 4px 4px;padding-left:20px}
+li{margin-bottom:7px;font-size:14px}
+ol li::marker{color:#b8447a;font-weight:700}
+ul li::marker{color:#b8447a}
+table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
+th{background:#b8447a;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
+td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
+tr:nth-child(even) td{background:#fcf0f5}
+td.k{font-weight:600;white-space:nowrap}
+.glance td{background:#fff !important}
+.glance td.k{width:110px;color:#6b7686;font-weight:600}
+.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
+.note{background:#fcf0f5;border-left:3px solid #b8447a;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
+.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
+@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · HR</div><h1>Offboarding</h1><p>Closing access and handing over work</p></div><div class="body"><p class="lead">When someone leaves, hand over their work, remove their access from each tool, and recover the equipment.</p><div class="draft"><b>Draft, not yet confirmed.</b> The Dev PLM removal steps come from our tools. The rest is general practice. Saul to confirm it, including how the Microsoft account, mailbox and files are handled.</div><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Who removes access</td><td>An admin of each tool</td></tr><tr><td class="k">When</td><td>By the person’s last day</td></tr><tr><td class="k">You end with</td><td>Work handed over, access removed, equipment back</td></tr></table><h2>Steps</h2><ol><li>List the person’s open work and name who takes over each part (draft).</li><li>If they are an admin of a tool, give admin rights to someone else first.</li><li>Remove their access, tool by tool (below).</li><li>Disable the Microsoft account and decide who gets the mailbox and files (draft).</li><li>Recover the equipment (draft).</li></ol><h2>Remove access, one tool at a time</h2><table><tr><th>Tool</th><th>What to do</th></tr><tr><td class="k">Dev PLM</td><td>In Users &amp; permissions, People, remove them and retype their email to confirm. Then remove them in Entra too, because removing them in Dev PLM doesn’t do that.</td></tr><tr><td class="k">SOP Hub</td><td>Remove their role in Entra.</td></tr><tr><td class="k">Tools Hub</td><td>In Admin, Manage access, untick their tools.</td></tr></table><h2>Good to know</h2><ul><li>Removing someone from Dev PLM keeps their history and can be undone from Recently deleted.</li><li>You can’t remove yourself or the last admin.</li></ul></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>

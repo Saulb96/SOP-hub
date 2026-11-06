@@ -96,7 +96,6 @@
   .step.sel{outline:2px solid var(--ink); outline-offset:2px}
   .step b,.decision b{display:block; font-size:13.5px; font-weight:600; line-height:1.3}
   .step-owner{display:block; font-size:12.5px; margin-top:2px; color:rgba(255,255,255,.9)}
-  .step-owner.none{font-style:italic; color:rgba(255,255,255,.78)}
   .no-owners .step-owner{display:none}
   .step-tag{display:inline-block; font-size:10.5px; font-weight:600; margin-top:6px; padding:2px 7px; border-radius:6px; background:rgba(255,255,255,.2)}
   .decision{background:var(--ink); padding:11px 22px 10px; position:relative;
@@ -372,9 +371,19 @@ const GUIDES = [
   {file:"Guide_5_Production_PO.html",       title:"Production & PO Tracking",         dept:"Production", sops:["Production & PO Tracking"]},
   {file:"Guide_6_Inspection.html",          title:"Inspection",                       dept:"Production", sops:["Inspection"]},
   {file:"Guide_7_Container_Logistics.html", title:"Container Planning & Logistics",   dept:"Logistics",  sops:["Container Planning","Container Clearance"]},
+  {file:"Guide_9_Inventory_Report.html", title:"Inventory Report", dept:"Sales", sops:["Inventory Report"]},
+  {file:"Guide_10_Compliance_Routing.html", title:"Compliance & Routing", dept:"Sales", sops:["Compliance & Routing"]},
+  {file:"Guide_11_Order_Tracking.html", title:"Order Tracking", dept:"Sales", sops:["Order Tracking"]},
+  {file:"Guide_12_Artwork.html", title:"Artwork", dept:"Design", sops:["Artwork"]},
+  {file:"Guide_13_Warehouse_Receiving.html", title:"Warehouse Receiving", dept:"Logistics", sops:["Warehouse Receiving"]},
+  {file:"Guide_14_Factory_Invoice.html", title:"Factory Invoice", dept:"Finance", sops:["Factory Invoice"]},
+  {file:"Guide_15_Customer_Invoice.html", title:"Customer Invoice", dept:"Finance", sops:["Customer Invoice"]},
+  {file:"Guide_16_New_Hire.html", title:"New Hire Onboarding", dept:"HR", sops:["New Hire Onboarding"]},
+  {file:"Guide_17_Offboarding.html", title:"Offboarding", dept:"HR", sops:["Offboarding"]},
   {file:"Guide_8_Glossary.html",            title:"Glossary of Key Terms",            dept:null,         sops:[]},
 ];
 const GLOSSARY = "Guide_8_Glossary.html";
+const MAIN_OWNER = "Saul Braha";
 
 /* ───────── remote config (sop-config.json in the SOP Library) ───────── */
 let CONFIG_ITEM_PATH=null;
@@ -563,6 +572,7 @@ function visibleDepts(){return Object.keys(DEPTS).filter(canSee);}
 function esc(v){return String(v==null?"":v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function stepFill(d){return 'var(--'+d.toLowerCase()+'-deep,'+DEPTS[d].color+')';}
 function stageName(s){return String(s).replace(/^\d+\s*[—-]\s*/,'');}
+function stepOwner(sp){return (sp.owner||'').trim()||MAIN_OWNER;}
 function stepCount(d){return FLOW.filter(f=>f.dept===d).reduce((n,f)=>n+f.sops.length,0);}
 function guidesFor(sp){
   if(Array.isArray(sp.guides)) return GUIDES.filter(g=>sp.guides.includes(g.file));
@@ -613,9 +623,9 @@ function boardHtml(d){
     if(st.dept!==d) return;
     cols.push('<div class="stage" style="--c:'+color+'"><div class="stage-title"><span class="dot" style="background:'+color+'"></span>'+esc(stageName(st.stage))+'</div>'+
       st.sops.map((sp,pi)=>{
-        const owner=(sp.owner||'').trim();
+        const owner=stepOwner(sp);
         return '<button class="step" style="--fill:'+stepFill(d)+'" data-si="'+si+'" data-pi="'+pi+'"><b>'+esc(sp.name)+'</b>'+
-          '<span class="step-owner'+(owner?'':' none')+'">'+(owner?esc(owner):'Owner needed')+'</span>'+
+          '<span class="step-owner">'+esc(owner)+'</span>'+
           '<span class="step-tag">'+stepTag(sp)+'</span></button>';
       }).join('')+'</div>');
   });
@@ -655,7 +665,7 @@ function renderEditor(){
       const mine=guidesFor(sp).map(g=>g.file);
       html+='<div class="sop" style="--accent:'+color+';cursor:default">'+
         '<input class="ed-in" style="font-weight:600;font-size:14px" placeholder="Step name" value="'+esc(sp.name)+'" onchange="editField('+si+','+pi+',&quot;name&quot;,this.value)">'+
-        '<input class="ed-in" placeholder="Owner" value="'+esc(sp.owner)+'" onchange="editField('+si+','+pi+',&quot;owner&quot;,this.value)">'+
+        '<input class="ed-in" placeholder="Owner (blank = '+MAIN_OWNER+')" value="'+esc(sp.owner)+'" onchange="editField('+si+','+pi+',&quot;owner&quot;,this.value)">'+
         '<input class="ed-in" placeholder="Description" value="'+esc(sp.desc)+'" onchange="editField('+si+','+pi+',&quot;desc&quot;,this.value)">'+
         '<input class="ed-in" placeholder="SharePoint document URL" value="'+esc(sp.url)+'" onchange="editField('+si+','+pi+',&quot;url&quot;,this.value)">'+
         '<details class="ed-guides"><summary>Guides ('+mine.length+')</summary>'+
@@ -687,10 +697,10 @@ function guideLink(g){
   return '<button class="p-link" data-guide="'+esc(g.file)+'"><span class="dot" style="background:'+(g.dept&&DEPTS[g.dept]?DEPTS[g.dept].color:'var(--ink)')+'"></span>'+esc(g.title)+'</button>';
 }
 function openStep(si,pi){
-  const st=FLOW[si], sp=st.sops[pi], d=st.dept, guides=guidesFor(sp), owner=(sp.owner||'').trim();
+  const st=FLOW[si], sp=st.sops[pi], d=st.dept, guides=guidesFor(sp), owner=stepOwner(sp);
   let h='<div class="p-kick"><span class="dot" style="background:'+DEPTS[d].color+'"></span>'+esc(d)+' · '+esc(stageName(st.stage))+'</div>'+
     '<h3 class="p-title">'+esc(sp.name)+'</h3><div class="p-desc">'+esc(sp.desc)+'</div>'+
-    '<div class="p-h">OWNER</div>'+(owner?'<div class="p-val">'+esc(owner)+'</div>':'<div class="p-none">Owner needed</div>')+
+    '<div class="p-h">OWNER</div>'+'<div class="p-val">'+esc(owner)+'</div>'+
     '<div class="p-h">GUIDES</div>'+(guides.length?guides.map(guideLink).join(''):'<div class="p-none">No guide yet</div>')+
     '<div class="p-h">SOP DOCUMENT</div>'+(hasOwnDoc(sp)?'<button class="p-link" id="pDoc">Open document</button>':'<div class="p-none">No document linked yet</div>');
   openPanel(h);
