@@ -1,26 +1,234 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Offboarding</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#b8447a,#d6608f);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
-.hero p{font-size:13.5px;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#b8447a;font-weight:700}
-ul li::marker{color:#b8447a}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#b8447a;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fcf0f5}
-td.k{font-weight:600;white-space:nowrap}
-.glance td{background:#fff !important}
-.glance td.k{width:110px;color:#6b7686;font-weight:600}
-.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fcf0f5;border-left:3px solid #b8447a;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
-.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
-@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · HR</div><h1>Offboarding</h1><p>Closing access and handing over work</p></div><div class="body"><p class="lead">When someone leaves, hand over their work, remove their access from each tool, and recover the equipment.</p><div class="draft"><b>Draft, not yet confirmed.</b> The Dev PLM removal steps come from our tools. The rest is general practice. Saul to confirm it, including how the Microsoft account, mailbox and files are handled.</div><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Who removes access</td><td>An admin of each tool</td></tr><tr><td class="k">When</td><td>By the person’s last day</td></tr><tr><td class="k">You end with</td><td>Work handed over, access removed, equipment back</td></tr></table><h2>Steps</h2><ol><li>List the person’s open work and name who takes over each part (draft).</li><li>If they are an admin of a tool, give admin rights to someone else first.</li><li>Remove their access, tool by tool (below).</li><li>Disable the Microsoft account and decide who gets the mailbox and files (draft).</li><li>Recover the equipment (draft).</li></ol><h2>Remove access, one tool at a time</h2><table><tr><th>Tool</th><th>What to do</th></tr><tr><td class="k">Dev PLM</td><td>In Users &amp; permissions, People, remove them and retype their email to confirm. Then remove them in Entra too, because removing them in Dev PLM doesn’t do that.</td></tr><tr><td class="k">SOP Hub</td><td>Remove their role in Entra.</td></tr><tr><td class="k">Tools Hub</td><td>In Admin, Manage access, untick their tools.</td></tr></table><h2>Good to know</h2><ul><li>Removing someone from Dev PLM keeps their history and can be undone from Recently deleted.</li><li>You can’t remove yourself or the last admin.</li></ul></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offboarding</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#d6608f;--deep:#b8447a;--tint:#fcf0f5">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · HR</div>
+  <h1>Offboarding</h1>
+  <p>When someone leaves, hand over their work, remove their access from each tool, and recover the equipment.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Who does it</b><span>An admin of each tool</span></div>
+    <div><b>When</b><span>By the person's last day</span></div>
+    <div><b>You end with</b><span>Work handed over, access removed, equipment back</span></div>
+  </div>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/perms" target="_blank" rel="noopener">Open Users &amp; permissions</a>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/recycle" target="_blank" rel="noopener">Open Recently deleted</a>
+  <a class="open-tool" href="https://saulb96.github.io/M1S_Tool-Hub/" target="_blank" rel="noopener">Open Tools Hub</a>
+
+  <div class="draft">
+    <p><b>Draft.</b> The Dev PLM removal steps come from our tools. The steps in this box are general practice, not from a tool. Saul to confirm them, including how the Microsoft account, mailbox and files are handled.</p>
+    <ul class="plain">
+      <li><b>Before you remove access:</b> List the person's open work and name who takes over each part.</li>
+      <li><b>After you remove access:</b> Disable the Microsoft account and decide who gets the mailbox and files. Recover the equipment.</li>
+    </ul>
+    <details><summary>Saul also to confirm 4 things</summary>
+    <ul class="plain">
+      <li>That after removing someone, you check the <b>Factories</b> tab for a red 0.</li>
+      <li>The name of the SOP Hub's app in Entra.</li>
+      <li>Which other tools have their own access list, and who removes people from them.</li>
+      <li>The Entra steps and their button names. Entra can't be opened for these guides, so those steps have no pictures.</li>
+    </ul>
+    </details>
+  </div>
+
+  <h2>What do you need to do?</h2>
+  <p>Start with <b>Before you remove access</b> in the yellow Draft note at the top. Then do these in order, by the person's last day. Finish with <b>After you remove access</b> in the same note.</p>
+  <ol class="plain">
+    <li><a href="#admin">Hand over admin rights</a>, if they're an admin of a tool</li>
+    <li><a href="#devplm">Remove them from Dev PLM</a></li>
+    <li><a href="#sop">Remove them from the SOP Hub</a></li>
+    <li><a href="#hub">Remove them from the Tools Hub</a></li>
+    <li><a href="#other">Remove them from other tools</a></li>
+  </ol>
+  <p>Removed someone by mistake? See <a href="#back">Bring someone back</a>.</p>
+
+  <h2 id="admin">Hand over admin rights first</h2>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger.</p>
+  <p>Do this only if they're an admin of a tool. If they aren't, go to <a href="#devplm">Remove them from Dev PLM</a>.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Give someone else Admin features</h3>
+      <p>Click <b>Open Users &amp; permissions</b> at the top of this guide, then the <b>Permissions</b> tab. If you can't open it, ask Saul. Look at the <b>Admin features</b> column. If the row of the person leaving shows <b>yes</b>, pick <b>yes</b> for the person taking over <span class="m">1</span>. It saves on its own.</p>
+      <figure>
+        <a href="guide-img/17-admin-features.webp" target="_blank" rel="noopener"><img src="guide-img/17-admin-features.webp" width="1025" height="412" loading="lazy" alt="The Permissions tab with the Admin features column. Pat Sample's no box is marked 1 and Sample Admin's grey yes box is marked 2."></a>
+      </figure>
+      <p>The box is grey <span class="m">2</span> for the last admin and for yourself.</p>
+    </li>
+    <li class="step">
+      <h3>Give them edit on Users &amp; permissions</h3>
+      <p>Stay on the new admin's row. Scroll right to the last column, <b>Users &amp; permissions</b>, and pick <b>edit</b> <span class="m">1</span>. Without it they can't open this page.</p>
+      <figure>
+        <a href="guide-img/17-perms-column.webp" target="_blank" rel="noopener"><img src="guide-img/17-perms-column.webp" width="849" height="412" loading="lazy" alt="The Permissions tab scrolled to the right, with Users and permissions as the last column. Pat Sample's value in that column, edit, is marked 1."></a>
+      </figure>
+      <p>Or set their <b>Role</b> to <b>Admin</b> on the <b>People</b> tab. That does both steps, but it also gives them edit on every page.</p>
+    </li>
+    <li class="step">
+      <h3>Ask the new admin to remove you, if you're the one leaving</h3>
+      <p>You can't remove yourself, so Dev PLM always keeps one admin. You'd see this popup:</p>
+      <figure style="max-width:480px">
+        <a href="guide-img/17-cant-remove.webp" target="_blank" rel="noopener"><img src="guide-img/17-cant-remove.webp" width="540" height="192" loading="lazy" alt="A popup titled Can't remove, for Sample Admin. It says You can't remove yourself. Another admin has to do it."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Hand over the SOP Hub role</h3>
+      <p>If they hold the SOP Hub's admin role, give that role to someone else in Microsoft Entra, Microsoft's admin site for accounts and app access. In the SOP Hub's app there, <b>Users and groups</b> shows each person's role. The steps are in <a href="Guide_16_New_Hire.html#sop">New Hire Onboarding</a>.</p>
+    </li>
+  </ol>
+
+  <h2 id="devplm">Remove them from Dev PLM</h2>
+  <p><a href="Guide_8_Glossary.html#Dev%20PLM" target="_blank" rel="noopener">Dev PLM</a> is our web tool for samples and orders.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click the ✕ on their row</h3>
+      <p>Click <b>Open Users &amp; permissions</b> at the top of this guide. If you can't open it, ask Saul. On the <b>People</b> tab, find their row. The <b>✕</b> is at the far right <span class="m">1</span>.</p>
+      <figure>
+        <a href="guide-img/17-people-x.webp" target="_blank" rel="noopener"><img src="guide-img/17-people-x.webp" width="1109" height="413" loading="lazy" alt="The People tab, listing seven sample people, with the X at the end of Kim Sample's row marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Read what they lose</h3>
+      <p>The popup lists their pages. Once removed, they lose access to all of it straight away. Their change-log history stays, under their name. Click <b>Continue…</b> <span class="m">1</span>.</p>
+      <figure style="max-width:480px">
+        <a href="guide-img/17-remove-1.webp" target="_blank" rel="noopener"><img src="guide-img/17-remove-1.webp" width="540" height="402" loading="lazy" alt="A popup titled Remove Kim Sample, listing the pages she loses, with the Continue button marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Type their email</h3>
+      <p>Type their full email in the box <span class="m">1</span>. The red button works only once the email matches. Click the red button with their name, such as <b>Remove Kim Sample</b> <span class="m">2</span>.</p>
+      <figure style="max-width:480px">
+        <a href="guide-img/17-remove-2.webp" target="_blank" rel="noopener"><img src="guide-img/17-remove-2.webp" width="540" height="242" loading="lazy" alt="A popup titled Last check, with the email typed in the box marked 1 and the Remove Kim Sample button marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check they're gone</h3>
+      <p>Their row goes. A message at the bottom says <b>Removed</b> and their name, with <b>Undo</b> beside it <span class="m">1</span>. It goes after a few seconds.</p>
+      <figure>
+        <a href="guide-img/17-removed.webp" target="_blank" rel="noopener"><img src="guide-img/17-removed.webp" width="1109" height="440" loading="lazy" alt="The People tab without Kim Sample, and the message Removed Kim Sample with an Undo button, marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check the Factories tab</h3>
+      <p>Click the <b>Factories</b> tab. The number under each factory shows how many people see its Dev Tracker rows. A red <b>0</b> <span class="m">1</span> means nobody does, so tick someone else on that factory.</p>
+      <figure>
+        <a href="guide-img/17-factories-zero.webp" target="_blank" rel="noopener"><img src="guide-img/17-factories-zero.webp" width="1109" height="457" loading="lazy" alt="The Factories tab, with a red 0 under Sample Factory C marked 1"></a>
+      </figure>
+      <p>Admins see every factory but aren't counted, so a 0 is fine if only admins handle it. A 0 is also fine if the factory has no Dev Tracker rows. Saul to confirm this step.</p>
+    </li>
+    <li class="step">
+      <h3>Open the Dev PLM app in Entra</h3>
+      <p>Microsoft Entra is Microsoft's admin site for accounts and app access. Removing them in Dev PLM doesn't remove them there, so do this too. You need admin rights there. If you don't have them, ask Saul.</p>
+      <p>Go to <b>Enterprise applications</b>. It's in the left menu, and it may read <b>Enterprise apps</b>. Or type it in the search box at the top. Open the app for Dev PLM. Other apps' names start the same way, so check the name, and ask Saul if you're not sure. Then click <b>Users and groups</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Remove them from the app</h3>
+      <p>Tick the box beside their name. Click <b>Remove assignment</b>, then <b>Yes</b>.</p>
+    </li>
+  </ol>
+  <div class="note"><b>If they worked on Artwork.</b> Artwork isn't open to the team yet, so this is for admins. A removed person's ticks under <b>Artwork tasks</b> stop counting. If they were the <b>Design head</b>, tick someone else. Lines on Artwork's <b>Board</b> assigned to them read <b>Unassigned (Kim Sample removed)</b>, with their name, so assign them to someone else. See <a href="Guide_12_Artwork.html">Artwork</a>.</div>
+
+  <h2 id="sop">Remove them from the SOP Hub</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Remove their role in Entra</h3>
+      <p>In Microsoft Entra, go to <b>Enterprise applications</b> and open the SOP Hub's app. Saul to confirm its name, so if you can't tell which app it is, ask him. Then click <b>Users and groups</b>.</p>
+      <p>Tick the box beside their name. Someone with two roles has two rows, so tick both. Click <b>Remove assignment</b>, then <b>Yes</b>.</p>
+    </li>
+  </ol>
+
+  <h2 id="hub">Remove them from the Tools Hub</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Manage access</h3>
+      <p>Click <b>Open Tools Hub</b> at the top of this guide. <b>Manage access</b> is at the top right. If you don't see it, ask Saul.</p>
+    </li>
+    <li class="step">
+      <h3>Click the × on their row</h3>
+      <p>It's at the end of their row <span class="m">1</span>. A box asks if you want to remove them, and says they will see no tools. Click <b>OK</b>. Or untick each of their tools instead. It saves on its own.</p>
+      <figure>
+        <a href="guide-img/17-hub-remove.webp" target="_blank" rel="noopener"><img src="guide-img/17-hub-remove.webp" width="976" height="490" loading="lazy" alt="The Manage access panel, with the X at the end of Kim Sample's row marked 1"></a>
+      </figure>
+      <p>If they ever sign in again, their row comes back with nothing ticked.</p>
+    </li>
+    <li class="step">
+      <h3>Click Done</h3>
+      <p><b>Done</b> is at the top of the panel. It closes the panel.</p>
+    </li>
+  </ol>
+
+  <h2 id="other">Remove them from other tools</h2>
+  <p>Some tools use their own access lists, such as the Quote Directory's team list and the SharePoint sites behind other tools.</p>
+  <ul class="plain">
+    <li><b>Quote Directory:</b> an admin takes them off the team. See <a href="Guide_2_Quote_Sheets.html#team">Add or remove someone on the team</a>. To list their open quote tasks first, the admin opens <b>📋 Due</b> and picks their name. Not an admin? Ask Saul.</li>
+    <li><b>Other tools:</b> ask Saul to take them off.</li>
+  </ul>
+
+  <h2 id="back">Bring someone back</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Right after: click Undo</h3>
+      <p>Click <b>Undo</b> on the message at the bottom. <b>Undo</b> at the top of the page does the same, as long as removing them was your last change. They're back exactly as they were.</p>
+    </li>
+    <li class="step">
+      <h3>Later: click Restore in Recently deleted</h3>
+      <p>Click <b>Open Recently deleted</b> at the top of this guide. In Dev PLM's side menu it's under <b>Work</b>. Only admins can open it. Set the filter to <b>Users &amp; permissions</b> <span class="m">1</span> to list removed people. Click <b>Restore</b> on their row <span class="m">2</span>. They're back exactly as they were, and a message says <b>Restored</b> and who.</p>
+      <figure>
+        <a href="guide-img/17-recently-deleted.webp" target="_blank" rel="noopener"><img src="guide-img/17-recently-deleted.webp" width="1109" height="334" loading="lazy" alt="Recently deleted, filtered to Users and permissions, listing three sample people. The filter is marked 1, Restore on the first row is marked 2 and Delete permanently is marked 3."></a>
+      </figure>
+      <p>Each row is kept 90 days, then cleared automatically. <b>Expires</b> says how long is left, in amber for the last 7 days.</p>
+      <p><b>Delete permanently</b> <span class="m">3</span> clears the row sooner, after asking you first. They stay removed and leave this list for good. They can still be added again, with a fresh start.</p>
+    </li>
+    <li class="step">
+      <h3>Any time: add them again</h3>
+      <p>Use <b>+ Employee</b>, as in <a href="Guide_16_New_Hire.html#devplm">New Hire Onboarding</a>. This is a fresh start, so set their page rights and factories again. See <a href="#comes-back">What comes back</a>.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Removed them in Entra too?</b> Add them back to the Dev PLM app there as well. They can't sign in without it. See <a href="Guide_16_New_Hire.html#devplm">New Hire Onboarding</a>.</div>
+
+  <h2>Rules to remember</h2>
+  <ul class="plain">
+    <li>Hand over admin rights before you remove an admin. The new admin needs <b>Admin features</b> and edit on <b>Users &amp; permissions</b>.</li>
+    <li>You can't remove yourself or the last admin.</li>
+    <li>Removing someone from Dev PLM keeps their history and can be undone from <b>Recently deleted</b>.</li>
+    <li>Removing them from Dev PLM doesn't remove them from Entra, the SOP Hub or the Tools Hub. Do each one.</li>
+  </ul>
+
+  <h2>Reference</h2>
+  <details>
+    <summary>What comes back</summary>
+    <div class="scroll" id="comes-back"><table>
+      <tr><th></th><th>Undo or Restore</th><th>+ Employee</th></tr>
+      <tr><td class="k">Role and department</td><td>As they were</td><td>The ones you pick</td></tr>
+      <tr><td class="k">Page rights</td><td>As they were</td><td>Cleared, so they come from the role</td></tr>
+      <tr><td class="k">Factory ticks</td><td>As they were</td><td>Cleared. <b>Factories</b> goes back to <b>assigned</b> and <b>No factory</b> is off.</td></tr>
+      <tr><td class="k">Artwork tasks</td><td>As they were</td><td>Cleared</td></tr>
+      <tr><td class="k">Admin features</td><td>As they were</td><td>On only if you pick the <b>Admin</b> role</td></tr>
+      <tr><td class="k">Inspections side, Dashboard</td><td>As they were</td><td>Back to the defaults</td></tr>
+      <tr><td class="k">Change-log history</td><td>Kept</td><td>Kept</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Messages you may see</summary>
+    <div class="scroll"><table>
+      <tr><th>Message</th><th>What it means</th></tr>
+      <tr><td>You can't remove yourself. Another admin has to do it.</td><td>Ask another admin to remove you.</td></tr>
+      <tr><td>Kim Sample has been removed from Dev PLM. Ask an admin if this is a mistake.</td><td>What a removed person sees if they sign in.</td></tr>
+      <tr><td>Kim Sample can't be brought back: kim.sample@example.com is now Lee Sample's email in Dev PLM. Nothing was changed.</td><td><b>Restore</b> was refused, because that email now belongs to someone on the <b>People</b> tab.</td></tr>
+    </table></div>
+    <p><b>Recently deleted</b> opens only for people with <b>Admin features</b>. <b>Restore</b> and <b>Delete permanently</b> on a person also need edit on <b>Users &amp; permissions</b>.</p>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

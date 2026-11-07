@@ -1,26 +1,548 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Artwork</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#c24e28,#f2734a);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
-.hero p{font-size:13.5px;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#c24e28;font-weight:700}
-ul li::marker{color:#c24e28}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#c24e28;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fef1ec}
-td.k{font-weight:600;white-space:nowrap}
-.glance td{background:#fff !important}
-.glance td.k{width:110px;color:#6b7686;font-weight:600}
-.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fef1ec;border-left:3px solid #c24e28;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
-.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
-@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · DESIGN</div><h1>Artwork</h1><p>From assignment to sending files to the factory</p></div><div class="body"><p class="lead">Artwork is assigned to a designer, saved to the Art Files folder on the Design SharePoint site, checked, and then sent to the factory from Dev PLM.</p><div class="draft"><b>Draft, not yet confirmed.</b> The Artwork screens in Dev PLM are in Preview for admins and aren’t open to the team yet. Until they are, the Design head sends files by hand and fills in the Dev Tracker date.</div><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Tool</td><td>Dev PLM, Artwork menu (Rows and Board views)</td></tr><tr><td class="k">Who</td><td>Design head assigns and sends. Designers make the files. Production sees open steps.</td></tr><tr><td class="k">You end with</td><td>Files sent, with the version and date recorded</td></tr></table><h2>Steps</h2><ol><li>The Design head opens the <b>Board</b> and clicks <b>Assign…</b>, choosing a designer, with an optional due date and notes.</li><li>The designer saves the files in the style’s folder.</li><li>The Design head clicks <b>Send to factory…</b>. The popup reads the folder and offers download, WeTransfer and email.</li><li>Click <b>Mark as sent</b>. This records the version and fills in blank dates only.</li><li>If needed, use <b>Send again</b> or <b>Withdraw</b> in the style panel.</li></ol><h2>How to save files</h2><table><tr><th>Item</th><th>Standard</th></tr><tr><td class="k">Style folder</td><td>Style # _ description</td></tr><tr><td class="k">Versions</td><td>Folders named V1, V2 and so on. No V folders means version 1.</td></tr><tr><td class="k">PDF</td><td>Exactly one in the version</td></tr><tr><td class="k">Illustrator</td><td>Exactly one .ai with “outline” in its name</td></tr></table><h2>Rules</h2><ul><li>If a required file is missing, nothing downloads. If there are duplicates, the Design head picks which one.</li><li>The check only confirms the files are there. Someone still has to look at the artwork itself.</li><li>Revision notes are required. Don’t name the factory in them.</li><li>Change PP Sample Status to clear <b>Revision needed</b>.</li></ul></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Artwork</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#f2734a;--deep:#c24e28;--tint:#fef1ec">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · DESIGN</div>
+  <h1>Artwork</h1>
+  <p>Get artwork from the designer to the factory: save the files, send them, and record what went out.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Who does it</b><span>Design head sends. Designers make the files.</span></div>
+    <div><b>Tool</b><span>Reports and Dev Tracker in <a href="Guide_8_Glossary.html#Dev%20PLM" target="_blank" rel="noopener">Dev PLM</a>. Artwork is admins only for now.</span></div>
+    <div><b>You end with</b><span>Files sent, with the version and date recorded</span></div>
+  </div>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/samples" target="_blank" rel="noopener">Open Dev Tracker</a>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/reports" target="_blank" rel="noopener">Open Reports</a>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/artwork" target="_blank" rel="noopener">Open Artwork (admins only)</a>
+
+  <div class="draft">
+    <p><b>Draft. Artwork isn't open to the team yet.</b> The Artwork screens in Dev PLM are in Preview, so only admins can open them. For everyone else, <b>Artwork</b> isn't in the menu. Until <b>Send to factory…</b> opens for the Design head, the Design head sends files by hand and fills in the <a href="Guide_8_Glossary.html#Dev%20Tracker" target="_blank" rel="noopener">Dev Tracker</a> date. <a href="#hand">See how</a>.</p>
+    <details><summary>Saul to confirm 8 things</summary>
+    <ul class="plain">
+      <li>the by-hand steps, since no tool checks them</li>
+      <li>how designers hear about new work until then</li>
+      <li>how to reach the Design site: SharePoint from Microsoft 365 apps, and asking him for access</li>
+      <li>where a designer gets a style's ingredient list, and who tells them it's ready. <a href="Guide_4_Development_Tracker.html#order">The Dev Tracker guide</a> says ingredients go in SharePoint, with the place unconfirmed. Dev PLM's INCI ingredient list is admins only today.</li>
+      <li>who makes a new style's folder</li>
+      <li>how a designer can tell a version has gone out</li>
+      <li>where the Design head finds a factory's email until the <b>Factories</b> page opens</li>
+      <li>which <b>PP Sample Status</b> to pick after updated artwork goes out</li>
+    </ul>
+    </details>
+  </div>
+
+  <h2>What do you need to do?</h2>
+  <p><b>Today, for the team</b></p>
+  <ul class="plain">
+    <li><a href="#save">Save the artwork files</a> (designers)</li>
+    <li><a href="#ingredients">Put ingredients on artwork</a> (designers, draft)</li>
+    <li><a href="#hand">Send artwork by hand</a> (Design head)</li>
+  </ul>
+  <p><b>In Dev PLM, admins only for now</b></p>
+  <ul class="plain">
+    <li><a href="#due">See what's due</a></li>
+    <li><a href="#assign">Assign a designer</a></li>
+    <li><a href="#send">Send files to a factory</a></li>
+    <li><a href="#problems">Fix a problem the popup shows</a></li>
+    <li><a href="#after">Send again, take back or comment</a></li>
+    <li><a href="#round">Start a new round</a></li>
+  </ul>
+  <p>For everyone: <a href="#rules">Rules to remember</a> and <a href="#reference">Reference</a>.</p>
+
+  <h2 id="save">Save the artwork files</h2>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger. This page is public, so folder paths and WeTransfer addresses in the pictures are shortened or changed. The tool shows the real ones.</p>
+  <p>For designers. When Artwork opens, Dev PLM finds the files by how the folders and files are named, so name them this way now. This is how one style should look.</p>
+  <figure>
+    <div class="sheet">
+      <table style="min-width:0">
+        <tr><th>Folder or file</th><th>What it is</th></tr>
+        <tr><td style="white-space:normal">The artwork folder</td><td style="white-space:normal">The top folder for artwork on the Design site</td></tr>
+        <tr><td style="white-space:normal;padding-left:24px">Sample Beauty</td><td style="white-space:normal">The brand's folder</td></tr>
+        <tr><td style="white-space:normal;padding-left:36px">SMPL1004_Sample Lavender Bath Salts</td><td style="white-space:normal">The style's folder: Style #, underscore, description</td></tr>
+        <tr><td style="white-space:normal;padding-left:48px">V1</td><td style="white-space:normal">The first version</td></tr>
+        <tr><td style="white-space:normal;padding-left:48px">V2</td><td style="white-space:normal">The newest version: the highest number goes out</td></tr>
+        <tr><td style="white-space:normal;padding-left:60px"><b>SMPL1004_V2.pdf</b></td><td style="white-space:normal"><b>Goes out.</b> Exactly one PDF</td></tr>
+        <tr><td style="white-space:normal;padding-left:60px"><b>SMPL1004_V2_Outlines.ai</b></td><td style="white-space:normal"><b>Goes out.</b> Exactly one .ai with "outline" in its name</td></tr>
+        <tr><td style="white-space:normal;padding-left:60px">SMPL1004_V2.ai</td><td style="white-space:normal">The working file. It stays here</td></tr>
+        <tr><td style="white-space:normal;padding-left:60px">SMPL1004_V2.jpg</td><td style="white-space:normal">Shows in Dev PLM as the Artwork picture, once pictures open to the team. It stays here</td></tr>
+        <tr><td style="white-space:normal;padding-left:60px">Fonts, Links</td><td style="white-space:normal">Illustrator's folders. Ignored</td></tr>
+      </table>
+    </div>
+    <figcaption>Drawn example with sample names, not a screenshot.</figcaption>
+  </figure>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the style's folder</h3>
+      <p>Open SharePoint from your Microsoft 365 apps and go to the Design site. No access? Ask Saul.</p>
+      <p>On the Design site, open the artwork folder, then the brand's folder. The style's folder is named with the <a href="Guide_8_Glossary.html#Style%20%23" target="_blank" rel="noopener"><b>Style #</b></a>, an underscore, then the description. No folder yet? Ask the Design head.</p>
+    </li>
+    <li class="step">
+      <h3>Make a V folder</h3>
+      <p>Name it <b>V1</b> for the first version. Use <b>V2</b>, <b>V3</b> and so on for each new version. The highest number is the one that goes out. Once a version has gone out, put any change in the next V folder. Not sure if it has gone out? Ask the Design head.</p>
+    </li>
+    <li class="step">
+      <h3>Save the files in it</h3>
+      <p>Save exactly one PDF, and exactly one .ai with <b>outline</b> in its name. Capitals don't matter. Other files can stay in the folder. They don't go out.</p>
+    </li>
+  </ol>
+  <div class="note"><b>No V folders?</b> If the PDF and .ai sit right in the style's folder, Dev PLM counts that as version 1.</div>
+
+  <h2 id="ingredients">Put ingredients on artwork (draft)</h2>
+  <p>For designers, once a style's ingredients are in. Saul to confirm where the list comes from and who tells the designer. See the yellow Draft note at the top. Until then, ask Saul.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Get the ingredient list</h3>
+      <p>Ask the Design head or Saul for it, until the place is confirmed.</p>
+    </li>
+    <li class="step">
+      <h3>Put it on the artwork</h3>
+      <p>Add the ingredients to the artwork.</p>
+    </li>
+    <li class="step">
+      <h3>Save it in the next V folder</h3>
+      <p>Follow <a href="#save">Save the artwork files</a>. Use the next V number, because the earlier version has gone out.</p>
+    </li>
+    <li class="step">
+      <h3>Tell the Design head</h3>
+      <p>The Design head sends it as in <a href="#hand">Send artwork by hand</a>. Group <span class="m">2</span> of the report clears once <b>Artwork With Ingredients Sent To Factory</b> is filled in.</p>
+    </li>
+  </ol>
+
+  <h2 id="hand">Send artwork by hand</h2>
+  <p>For the Design head, until <b>Send to factory…</b> opens for them.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Run the Missing Artwork Report</h3>
+      <p>Click <b>Reports</b> in the side menu. On <b>Missing Artwork Report</b>, click <b>Run</b>. A panel opens with what's due, in three groups <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>. For more, see <a href="Guide_4_Development_Tracker.html#reports">Run a report</a>.</p>
+      <figure>
+        <a href="guide-img/12-report.webp" target="_blank" rel="noopener"><img src="guide-img/12-report.webp" width="636" height="696" loading="lazy" alt="The Missing Artwork Report panel with its groups marked: Send Artwork To Factory 1, Send Ingredient Artwork To Factory 2 and Updated Artwork Needed 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Get the two files</h3>
+      <p>On the Design site, open the style's newest V folder. <a href="#save">Save the artwork files</a> shows how the folders look. Download the PDF and the .ai with <b>outline</b> in its name. Look at the artwork to make sure it's right.</p>
+    </li>
+    <li class="step">
+      <h3>Upload them to WeTransfer</h3>
+      <p>Go to WeTransfer, the site for sending big files. Drag both files from your Downloads into WeTransfer. Choose the option that gives you a link, not an email, and wait for the upload to finish. Then copy the link.</p>
+    </li>
+    <li class="step">
+      <h3>Email the link to the factory</h3>
+      <p>Write the email in your own mail app. If you don't have the factory's address, see <a href="Guide_2_Quote_Sheets.html#factory">Add a factory or change its email</a>, or ask Saul. Use these words, with your own Style #, description and version:</p>
+      <table>
+        <tr><td class="k">Subject</td><td>SMPL1003 · artwork v1</td></tr>
+        <tr><td class="k">Message</td><td>Hi <i>the contact's name</i>,<br>Please find the artwork for SMPL1003 · Sample Citrus Shower Gel (v1) here:<br><i>the WeTransfer link</i><br>Thank you</td></tr>
+      </table>
+      <p>If this version has the ingredients on it, add this line before <b>Thank you</b>: This version has the ingredients on it.</p>
+    </li>
+    <li class="step">
+      <h3>Fill in the Dev Tracker</h3>
+      <p>Click <b>Dev Tracker</b> in the side menu. Type the <b>Style #</b> in <b>Search all columns…</b> in the toolbar. If two rows show, use the one whose <b>Supplier</b> is the factory you sent to. Scroll right to the cell for what you sent, and fill it in.</p>
+      <table>
+        <tr><th>Report group</th><th>Cell to fill in</th></tr>
+        <tr><td><span class="m">1</span> Send Artwork To Factory</td><td><b>Date Artwork Sent to Factory</b> (column N): the date you sent it</td></tr>
+        <tr><td><span class="m">2</span> Send Ingredient Artwork To Factory. See <a href="#ingredients">Put ingredients on artwork</a></td><td><b>Artwork With Ingredients Sent To Factory</b> (column V): Yes</td></tr>
+        <tr><td><span class="m">3</span> Updated Artwork Needed</td><td><a href="Guide_8_Glossary.html#PPS" target="_blank" rel="noopener"><b>PP Sample Status</b></a> (column T): change it from <b>Updated Artwork Needed</b>. Pick the status that's true now. The values are in <a href="Guide_4_Development_Tracker.html#dropdowns">Dropdown values</a>, in the Dev Tracker guide.</td></tr>
+      </table>
+      <figure>
+        <a href="guide-img/12-tracker-date.webp" target="_blank" rel="noopener"><img src="guide-img/12-tracker-date.webp" width="774" height="409" loading="lazy" alt="The Dev Tracker with the blank Date Artwork Sent to Factory cell on the row for SMPL1003 marked 1"></a>
+      </figure>
+      <p>Once the cell is filled, the row leaves that group the next time you run the report. To change a cell you need Edit on the Dev Tracker. See <a href="Guide_4_Development_Tracker.html#edit">Change a row</a> and <a href="Guide_4_Development_Tracker.html#readonly">If you see Read only</a>.</p>
+    </li>
+  </ol>
+
+  <div class="note"><b>From here to Start a new round: Preview.</b> These sections are the Artwork screens in Dev PLM. Only admins can use them today. The Design head and the team get each part as an admin marks it <b>Live</b>. See <a href="#who">Who can do what</a>.</div>
+
+  <h2 id="due">See what's due</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Artwork in the side menu</h3>
+      <p>It's under <b>Development</b> <span class="m">1</span>. The <b>PREVIEW</b> tag means only admins see it. It opens on <b>Rows</b>. <b>Rows</b> and <b>Board</b> switch the view <span class="m">2</span>. The buttons beside them show one step at a time, with a count <span class="m">3</span>.</p>
+      <figure>
+        <a href="guide-img/12-rows.webp" target="_blank" rel="noopener"><img src="guide-img/12-rows.webp" width="1100" height="660" loading="lazy" alt="Artwork on the Rows view, with Artwork in the side menu marked 1, the Rows and Board switch marked 2 and the Revision needed button marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Read the steps on Rows</h3>
+      <p>Each row is a row from the Dev Tracker. <b>Design step</b> says what Design has to do. <b>Designer</b> says who has it. <b>Production step</b> says what Production has to do. Scroll right to see them.</p>
+      <figure>
+        <a href="guide-img/12-rows-cols.webp" target="_blank" rel="noopener"><img src="guide-img/12-rows-cols.webp" width="821" height="371" loading="lazy" alt="The Rows view scrolled right, with the Design step, Designer and Production step columns side by side"></a>
+      </figure>
+      <p><b>Open steps</b> shows rows with a step due. <b>Open</b> shows every open row. <b>All</b> adds the closed ones. A designer can click <b>Filters</b> on the left of the grid and tick their name under <b>Designer</b>. See <a href="Guide_4_Development_Tracker.html#find">Find a sample</a>. The notes for a style are in its <a href="#after">panel</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Click Board</h3>
+      <p>The Board <span class="m">1</span> is for the Design head and admins. It has one line for each style and Design step that's due. <b>To send</b> lines come first, then <b>Unassigned</b>, <b>Assigned</b> and <b>Sent</b>. <a href="#groups">Reference</a> says what each one means.</p>
+      <figure>
+        <a href="guide-img/12-board.webp" target="_blank" rel="noopener"><img src="guide-img/12-board.webp" width="1093" height="534" loading="lazy" alt="The Board with nine lines, with the Board switch marked 1, the Unassigned count marked 2 and the To send count marked 3"></a>
+      </figure>
+      <p>Click <b>Unassigned</b> <span class="m">2</span> or <b>To send</b> <span class="m">3</span> to see only those lines. Click it again to see them all. <b>Waiting</b> adds the styles waiting on ingredients. <b>Ended</b> shows lines that ended in the last 30 days.</p>
+    </li>
+  </ol>
+
+  <h2 id="assign">Assign a designer</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Tick the lines</h3>
+      <p>Click <b>Unassigned</b> to see the lines with no designer. Tick the box at the left of each one you want <span class="m">1</span>. For one line, you can click its <b>Item Description</b> instead.</p>
+      <figure>
+        <a href="guide-img/12-assign-tick.webp" target="_blank" rel="noopener"><img src="guide-img/12-assign-tick.webp" width="1093" height="330" loading="lazy" alt="The Board showing the three Unassigned lines, with the tick on SMPL1001 marked 1 and the Assign button marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Assign…</h3>
+      <p>It's in the toolbar at the top <span class="m">2</span>. A popup opens.</p>
+    </li>
+    <li class="step">
+      <h3>Fill in the popup</h3>
+      <p>Pick the <b>Designer</b> <span class="m">1</span>. Type the <b>Due date</b> if there is one <span class="m">2</span>. Type what the designer needs to know in <b>Notes</b> <span class="m">3</span>. <b>Don't name the factory.</b> Designers see these notes.</p>
+      <figure>
+        <a href="guide-img/12-assign.webp" target="_blank" rel="noopener"><img src="guide-img/12-assign.webp" width="720" height="364" loading="lazy" alt="The Assign popup for SMPL1001 with Robin Sample in Designer marked 1, a date in Due date marked 2 and a note in Notes marked 3"></a>
+      </figure>
+      <ul>
+        <li>On a <b>Revision needed</b> line, notes are required. Say what the buyer or factory asked for, in your own words.</li>
+        <li>Type dates as m/d/yyyy. A date with no year means the next one to come.</li>
+        <li>A blank due date or notes leaves what the line already has.</li>
+      </ul>
+    </li>
+    <li class="step">
+      <h3>Click Assign</h3>
+      <p>The line leaves the <b>Unassigned</b> list. Click <b>Unassigned</b> again to see every line, with the name in <b>Designer</b>. Changed your mind? Click <b>↶ Undo</b>.</p>
+      <div class="warn"><b>Careful.</b> With <b>Unassigned</b> on, the selection doesn't follow the line. <b>Send to factory…</b> then opens the next style, or asks you to tick a line. Click <b>Unassigned</b> to turn it off, then click the line you want. With <b>Unassigned</b> off from the start, the line moves to its new place and stays selected. <b>Send to factory…</b> then acts on that line.</div>
+    </li>
+  </ol>
+  <div class="note"><b>Change a line later.</b> Pick another name in its <b>Designer</b> cell, or type in <b>Due</b> or <b>Notes</b>. These save as you go. <b>Due</b> and <b>Notes</b> open once the line has a designer.</div>
+
+  <h2 id="send">Send files to a factory</h2>
+  <p>The popup reads the style's newest V folder, helps you send the files, and records what went out. It takes one style at a time.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Send to factory…</h3>
+      <p>On the <b>Board</b>, tick the style's line or click it. On <b>Rows</b>, tick the rows you're sending or click one. Then click <b>Send to factory…</b> in the toolbar. It's also in the style's <a href="#after">panel</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Check what's going out</h3>
+      <p>The top shows the version, who saved it and the two files <span class="m">1</span>. A red line means something's wrong. See <a href="#problems">Fix a problem</a>.</p>
+      <p>Click <b>Open folder on the Design site ↗</b> and look at the artwork. The popup only checks that the files are there.</p>
+      <figure>
+        <a href="guide-img/12-send-top.webp" target="_blank" rel="noopener"><img src="guide-img/12-send-top.webp" width="860" height="351" loading="lazy" alt="The top of the Send popup for SMPL1003, with What's going out marked 1, Open WeTransfer plus download marked 2 and the WeTransfer link box marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Open WeTransfer + download ↗</h3>
+      <p>WeTransfer opens beside Dev PLM, and both files download <span class="m">2</span>. The first time, your browser may ask if Dev PLM may download several files. Say <b>Allow</b>. Then drag both files from your Downloads into WeTransfer. Choose the option that gives you a link, not an email, and wait for the upload to finish.</p>
+      <p>Only got one file? Click <b>Didn't get both files? Download through Dev PLM</b>. <b>Download again</b> gets them a second time. If your browser blocks popups, WeTransfer opens in a normal tab.</p>
+    </li>
+    <li class="step">
+      <h3>Paste the WeTransfer link</h3>
+      <p>Copy the link from WeTransfer. Paste it in <b>WeTransfer link</b> <span class="m">3</span>. One link serves every factory in the popup.</p>
+    </li>
+    <li class="step">
+      <h3>Check the factory's rows</h3>
+      <p>Each factory has its own box. The rows this send is for start ticked <span class="m">1</span>. Untick any that aren't.</p>
+      <p><b>Date sent</b> starts on today <span class="m">2</span>. Change it if the files went out earlier. It can't be later than today, because it feeds the factory's lead times.</p>
+      <p>Tick <b>with ingredients</b> if this version has the ingredients on it <span class="m">3</span>. It starts ticked when the step is <b>Put ingredients on artwork</b>, and when a ticked row already reads <b>Yes</b> under <b>Artwork With Ingredients</b>. Untick it if this version doesn't have the ingredients. When it's ticked, the email says so too.</p>
+      <figure>
+        <a href="guide-img/12-send-factory.webp" target="_blank" rel="noopener"><img src="guide-img/12-send-factory.webp" width="822" height="285" loading="lazy" alt="One factory's box in the Send popup, with the row's tick marked 1, Date sent marked 2 and with ingredients marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Decide about the status on a revision</h3>
+      <p>If a ticked row reads <b>Updated Artwork Needed</b>, you'll see <b>Also change PP Sample Status</b> <span class="m">1</span>. To clear <b>Revision needed</b> now, tick it and pick the status that's true now. The values are in <a href="Guide_4_Development_Tracker.html#dropdowns">Dropdown values</a>, in the Dev Tracker guide.</p>
+      <p>If you leave it, the step stays due. On a line with a designer, the Board then reads <b>Sent · PP Sample Status still Updated Artwork Needed</b>.</p>
+      <figure>
+        <a href="guide-img/12-send-offer.webp" target="_blank" rel="noopener"><img src="guide-img/12-send-offer.webp" width="822" height="356" loading="lazy" alt="A factory's box for a revision, with the Also change PP Sample Status choice marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Email the factory</h3>
+      <p>Click the <b>Email</b> line under the rows, such as <b>Email Sample Factory A</b>. It shows who it goes to, the subject and the message. The address comes from the <b>Factories</b> page.</p>
+      <p>Click <b>Copy message</b> <span class="m">1</span> and paste it in an email. Or click <b>Open in email</b> <span class="m">2</span> to start the email in your own mail app, all filled in. <b>Nothing goes out until you press Send in your mail app.</b></p>
+      <figure>
+        <a href="guide-img/12-send-email.webp" target="_blank" rel="noopener"><img src="guide-img/12-send-email.webp" width="792" height="214" loading="lazy" alt="The email part of the popup with the To line, subject and message, with Copy message marked 1 and Open in email marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Mark as sent</h3>
+      <p>It's under the factory's rows. It records the version, factory, date, link and files. It fills in <b>Date Artwork Sent to Factory</b> on the ticked rows, only where it's blank. If <b>with ingredients</b> is ticked, it also sets <b>Artwork With Ingredients Sent To Factory</b> to Yes, only where it's blank.</p>
+      <p>A green line says what it did, and the top of the box shows the version sent. With no link yet, it asks <b>Mark as sent without a WeTransfer link?</b> first.</p>
+      <figure>
+        <a href="guide-img/12-send-marked.webp" target="_blank" rel="noopener"><img src="guide-img/12-send-marked.webp" width="822" height="108" loading="lazy" alt="The factory's box after Mark as sent, with a green line saying v1 was sent and Date Artwork Sent was filled on 1 row"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Do the next factory, then click Close</h3>
+      <p>A style at two factories has two boxes. The factories where the step is due come first, with their rows ticked <span class="m">1</span>. A factory that has this version already shows when it went, with <b>Send again…</b> <span class="m">2</span>.</p>
+      <figure>
+        <a href="guide-img/12-send-two.webp" target="_blank" rel="noopener"><img src="guide-img/12-send-two.webp" width="822" height="427" loading="lazy" alt="Two factory boxes: Sample Factory B with its row ticked, marked 1, and Sample Factory A showing v1 sent with Send again marked 2"></a>
+      </figure>
+      <p>Click <b>Close</b> at the bottom of the popup. A factory you didn't mark gets nothing recorded. On the Board, a line with a designer reads <b>Sent to 1 of 2</b> until every factory has it. Then it ends as <b>Done</b>, unless its step is still due. A line with no designer still reads <b>Unassigned</b> after a send. The style's <a href="#after">panel</a> shows what went.</p>
+    </li>
+  </ol>
+
+  <h2 id="problems">Fix a problem the popup shows</h2>
+  <p>These are the common ones. <a href="#messages">Reference</a> lists others.</p>
+  <h3>A file is missing</h3>
+  <p>Nothing downloads. Save the file in the V folder on the Design site, then close the popup and open it again.</p>
+  <figure>
+    <a href="guide-img/12-check-no-outline.webp" target="_blank" rel="noopener"><img src="guide-img/12-check-no-outline.webp" width="860" height="190" loading="lazy" alt="The Send popup for SMPL1008 with a red line: v1 has no OUTLINE .ai, nothing downloads"></a>
+  </figure>
+  <h3>Two files of one kind</h3>
+  <p>Pick the one that goes out. The buttons stay grey until you do.</p>
+  <figure>
+    <a href="guide-img/12-check-two-pdfs.webp" target="_blank" rel="noopener"><img src="guide-img/12-check-two-pdfs.webp" width="860" height="194" loading="lazy" alt="The Send popup for SMPL1027 offering two PDFs to pick from"></a>
+  </figure>
+  <h3>No folder found</h3>
+  <p>Open the style's folder in SharePoint. Copy the address from your browser's address bar, not <b>Copy link</b>. Paste it in the box and click <b>Save link</b>. Dev PLM keeps it for this style. If the popup found the wrong folder, click <b>Not this folder? Link another</b> and do the same.</p>
+  <figure>
+    <a href="guide-img/12-check-no-folder.webp" target="_blank" rel="noopener"><img src="guide-img/12-check-no-folder.webp" width="860" height="189" loading="lazy" alt="The Send popup for SMPL1002 with a red line saying there is no folder, and a box for the folder's address with Save link"></a>
+  </figure>
+  <h3>Two folders for one style</h3>
+  <p>Click <b>Use this folder</b> on the correct one. It asks only once.</p>
+  <figure>
+    <a href="guide-img/12-check-two-folders.webp" target="_blank" rel="noopener"><img src="guide-img/12-check-two-folders.webp" width="860" height="260" loading="lazy" alt="The Send popup for SMPL1011 listing two folders, each with a Use this folder button"></a>
+  </figure>
+
+  <h2 id="after">Send again, take back or comment</h2>
+  <p>All of these are in the style's panel.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the style's panel</h3>
+      <p>On the <b>Board</b>, click the blue <b>Style #</b>. On <b>Rows</b>, click the blue <b>Style #</b>, or click a row and then <b>Open artwork</b>. The panel shows the style's Dev Tracker rows, its steps and its lines <span class="m">1</span>. On <b>Rows</b>, the blue <b>Style #</b> also narrows the grid to that style. Press <b>Esc</b> to go back.</p>
+      <figure>
+        <a href="guide-img/12-panel.webp" target="_blank" rel="noopener"><img src="guide-img/12-panel.webp" width="620" height="604" loading="lazy" alt="The style panel for SMPL1006 with its pictures, Dev Tracker rows and steps, and its Lines part marked 1, with Assign and New round buttons"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Scroll down to Artwork sent</h3>
+      <p>Each version sent is listed, newest first, with its date, factory, files and WeTransfer link. <b>Send to factory…</b> is here too <span class="m">1</span>, along with <b>Send again…</b> <span class="m">2</span> and <b>Withdraw…</b> <span class="m">3</span>. <b>Changes</b> at the bottom lists what changed on the style.</p>
+      <figure>
+        <a href="guide-img/12-panel-sent.webp" target="_blank" rel="noopener"><img src="guide-img/12-panel-sent.webp" width="620" height="214" loading="lazy" alt="The Artwork sent part of the panel, with Send to factory marked 1, Send again marked 2 and Withdraw marked 3"></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h3>Send the same version again</h3>
+  <p>Use this when a WeTransfer link has expired. The version number stays the same, and no row changes.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Send again…</h3>
+      <p>The popup opens on that version's own files. Only a factory's latest version can go again.</p>
+    </li>
+    <li class="step">
+      <h3>Make a new link</h3>
+      <p>Click <b>Open WeTransfer + download ↗</b>, as for a first send. Paste the new link in <b>WeTransfer link</b> <span class="m">1</span>. It has to be different from the old one.</p>
+    </li>
+    <li class="step">
+      <h3>Click Send again… in the factory's box</h3>
+      <p>It asks if you're sure. Click <b>Send again</b> <span class="m">2</span>. Then email the factory the new link.</p>
+      <figure>
+        <a href="guide-img/12-again.webp" target="_blank" rel="noopener"><img src="guide-img/12-again.webp" width="860" height="607" loading="lazy" alt="The Send popup in Send again mode for SMPL1006, with the new link marked 1 and the Send again button marked 2"></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h3>Take back a send marked by mistake</h3>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Withdraw…</h3>
+      <p>It's on the version in <b>Artwork sent</b>. A question says which cells will go back. Only a factory's latest version with no comments can be withdrawn.</p>
+      <figure style="max-width:520px">
+        <a href="guide-img/12-withdraw.webp" target="_blank" rel="noopener"><img src="guide-img/12-withdraw.webp" width="520" height="179" loading="lazy" alt="The Withdraw question for v1 sent to Sample Factory A, with Cancel and Withdraw buttons"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Withdraw</h3>
+      <p>The version goes to <b>Recently deleted</b>. Only an admin can restore it. The cells it filled go back where nobody has changed them since. A date that was there before it was marked stays.</p>
+    </li>
+  </ol>
+
+  <h3>Add a comment</h3>
+  <ol class="steps">
+    <li class="step">
+      <h3>Pick the kind</h3>
+      <p>Under the version, pick <b>Factory comment</b> or <b>Internal note</b>. A factory comment changes the version's status from <b>Sent</b> to <b>Comments received</b>. An internal note doesn't.</p>
+    </li>
+    <li class="step">
+      <h3>Type it and click Add</h3>
+      <p><b>↶ Undo</b> can't take back a comment. To remove your own, click its <b>✕</b>. An admin can remove anyone's. It asks first, then the comment goes to <b>Recently deleted</b>.</p>
+    </li>
+  </ol>
+
+  <h2 id="round">Start a new round</h2>
+  <p>Use this when a line has gone to a factory and its step is still due. For example, a second revision while <b>PP Sample Status</b> still reads <b>Updated Artwork Needed</b>.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click the line on the Board</h3>
+      <p>Click its <b>Item Description</b>. A tick doesn't count here.</p>
+    </li>
+    <li class="step">
+      <h3>Click New round…</h3>
+      <p>It's in the toolbar. It's also on the line in the style's panel.</p>
+    </li>
+    <li class="step">
+      <h3>Fill in the popup</h3>
+      <p><b>Designer</b> starts on the line's own designer. <b>Notes</b> <span class="m">1</span> are required on <b>Revision needed</b>. Don't name the factory.</p>
+      <figure>
+        <a href="guide-img/12-new-round.webp" target="_blank" rel="noopener"><img src="guide-img/12-new-round.webp" width="720" height="364" loading="lazy" alt="The New round popup for SMPL1007 with Notes marked 1 and Start the new round marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Start the new round</h3>
+      <p>It's at the bottom <span class="m">2</span>. The line sent ends as <b>Done</b>. A new line opens as <b>Assigned</b>. <b>↶ Undo</b> takes it back.</p>
+    </li>
+  </ol>
+
+  <h2 id="rules">Rules to remember</h2>
+  <ul class="plain">
+    <li>Never name the factory in <b>Notes</b>. Designers see them.</li>
+    <li>Revision notes are required on a <b>Revision needed</b> line.</li>
+    <li>The check only confirms the files are there. Someone still has to look at the artwork itself.</li>
+    <li>If a required file is missing, nothing downloads. If there are duplicates, the Design head picks which one.</li>
+    <li>Put changes in a new V folder. Don't save over a version that has gone out.</li>
+    <li><b>Mark as sent</b> only records the send. The email goes when you press Send in your mail app.</li>
+    <li><b>Mark as sent</b> fills blank cells only. A date that's already there stays, and the green line says so.</li>
+    <li>Change <b>PP Sample Status</b> to clear <b>Revision needed</b>. Sending alone doesn't clear it.</li>
+    <li>Take back a send with <b>Withdraw…</b>. <b>↶ Undo</b> doesn't take back <b>Mark as sent</b>.</li>
+    <li>WeTransfer links expire after some days. The files stay on the Design site. <b>Send again…</b> records a new link.</li>
+  </ul>
+
+  <h2 id="reference">Reference</h2>
+  <details>
+    <summary>The steps, and what clears each one</summary>
+    <p>On a phone, swipe this table to see the rest.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Step</th><th>Whose</th><th>Due on</th><th>Clears when</th><th>Report group</th></tr>
+      <tr><td class="k">Send original artwork</td><td>Design</td><td>An open row with <b>Sample Type</b> Artwork Sample and no <b>Date Artwork Sent to Factory</b></td><td>That date is filled</td><td>Missing Artwork Report: Send Artwork To Factory</td></tr>
+      <tr><td class="k">Revision needed</td><td>Design</td><td>An open Artwork Sample row at <b>Updated Artwork Needed</b></td><td><b>PP Sample Status</b> changes</td><td>Missing Artwork Report: Updated Artwork Needed</td></tr>
+      <tr><td class="k">Put ingredients on artwork</td><td>Design</td><td>An open Artwork Sample row with <b>Ingredients Added To SharePoint</b> at Yes and <b>Artwork With Ingredients Sent To Factory</b> blank</td><td><b>Artwork With Ingredients Sent To Factory</b> is filled, or <b>Ingredients Added To SharePoint</b> changes from Yes</td><td>Missing Artwork Report: Send Ingredient Artwork To Factory</td></tr>
+      <tr><td class="k">Ask factory for ingredients</td><td>Production</td><td>Any open row at <b>Approved</b>, with <b>Date <a href="Guide_8_Glossary.html#PPS" target="_blank" rel="noopener">PPS</a> Received</b> filled and <b>Ingredients Added To SharePoint</b> blank</td><td><b>Ingredients Added To SharePoint</b> is filled, or the row stops being Approved and received</td><td>PPS Pending: Reach Out To Factory For Ingredients</td></tr>
+    </table>
+    </div>
+    <p>Any step also clears when its row closes.</p>
+    <p>With no Design step due, an open Artwork Sample says why in grey:</p>
+    <div class="scroll"><table>
+      <tr><th>Grey words</th><th>What it means</th></tr>
+      <tr><td class="k">Need to request ingredients</td><td>Approved and received, and Production's step is open.</td></tr>
+      <tr><td class="k">Waiting on ingredients</td><td>Not both approved and received yet, with both ingredient columns blank.</td></tr>
+      <tr><td class="k">Artwork done</td><td><b>Ingredients Added To SharePoint</b> is N/A, or the ingredient artwork has gone.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>The Board: groups, views and columns</summary>
+    <div class="scroll"><table id="groups">
+      <tr><th>Group</th><th>What it means</th></tr>
+      <tr><td class="k">To send</td><td>It has a designer, and it has gone to some of its factories, not all yet. <b>Designer</b> reads like <b>Alex Sample · Sent to 1 of 2</b>.</td></tr>
+      <tr><td class="k">Unassigned</td><td>Due, with no designer. It may say why, such as <b>Unassigned (Jordan Sample removed)</b>, or that the person isn't a designer or has no Artwork View now. A send doesn't change this: it still reads <b>Unassigned</b>.</td></tr>
+      <tr><td class="k">Assigned</td><td>It has a designer, and nothing has gone out for it yet.</td></tr>
+      <tr><td class="k">Sent</td><td>It has a designer, it has gone to every factory, and the step is still due. It reads <b>Sent · still due</b> or <b>Sent · PP Sample Status still Updated Artwork Needed</b>.</td></tr>
+      <tr><td class="k">Not due now</td><td>No row has this step due now. It can't be changed.</td></tr>
+    </table></div>
+    <div class="scroll"><table>
+      <tr><th>View</th><th>What it shows</th></tr>
+      <tr><td class="k">Due</td><td>Every due line. It opens on this one.</td></tr>
+      <tr><td class="k">Waiting</td><td>The due lines, then the styles at <b>Need to request ingredients</b> or <b>Waiting on ingredients</b>.</td></tr>
+      <tr><td class="k">Ended</td><td>Lines ended in the last 30 days, as <b>Done</b> or <b>No longer due</b>, with why. Only for people who see every factory.</td></tr>
+    </table></div>
+    <p><b>Order:</b> To send, Unassigned, Assigned, Sent, then Not due now. Inside each: by <b>Due</b>, then the soonest <b>Needs To Be Approved By</b>, then the oldest <b>Date Created</b>.</p>
+    <p><b>Columns:</b> Style #, Item Description, Picture, Artwork picture, Step, Factories (a ✓ once sent there), Designer, Due, Notes (designers see these), Needs To Be Approved By. <b>Filters</b> on the left has Group, Designer, Step and Factory.</p>
+    <p><b>Typing on the Board:</b> only <b>Designer</b>, <b>Due</b> and <b>Notes</b> can be changed. A paste, fill or clear covers one of these at a time. A line can't be unassigned: pick another designer, or <b>↶ Undo</b> the Assign. A line sent to every factory where it's due can only change through <b>New round…</b>.</p>
+  </details>
+  <details>
+    <summary>Rows: columns</summary>
+    <div class="scroll"><table>
+      <tr><th>Column</th><th>What it is</th></tr>
+      <tr><td class="k">Supplier, Style #, Item Description</td><td>Shown here. Change them on the Dev Tracker.</td></tr>
+      <tr><td class="k">Picture</td><td>The style's picture from the Quote Directory. Click it for full size.</td></tr>
+      <tr><td class="k">Artwork picture</td><td>The .jpg in the style's newest version. Click either picture for full size. On either one, a striped box means no picture, and a small lock means you can't open where it's kept.</td></tr>
+      <tr><td class="k">Design step, Production step</td><td>Worked out from the row. Nobody types them.</td></tr>
+      <tr><td class="k">Designer</td><td>From the Board. Read only here.</td></tr>
+      <tr><td class="k">Date Artwork Sent to Factory, Needs To Be Approved By Date, Ingredients Added To SharePoint, Artwork With Ingredients Sent To Factory</td><td>Typed here or on the Dev Tracker. They need Edit on the Dev Tracker, and they save on the Dev Tracker row.</td></tr>
+      <tr><td class="k">INCI ingredient list</td><td>The official list of ingredients. One per <b>Style #</b>, and every row of the style shows it. It needs Edit on Artwork.</td></tr>
+    </table></div>
+    <p>New rows are made on the Dev Tracker. Rows has no New Sample, Export or Delete. A change shows on the other screen within 30 seconds. <b>Filters</b> on the left has Design step, Designer, Production step, Supplier and Ingredients Added To SharePoint.</p>
+  </details>
+  <details>
+    <summary>Folder and file rules</summary>
+    <div class="scroll"><table>
+      <tr><th>Item</th><th>Standard</th></tr>
+      <tr><td class="k">Where</td><td>Inside the artwork folder on the Design site, in the brand's folder. A brand can have category folders, with the style folders inside them.</td></tr>
+      <tr><td class="k">Style folder</td><td>Style # _ description, or the Style # alone. The part before the first underscore must match the <b>Style #</b> exactly: SMPL1003 doesn't match SMPL1003-F. Dev PLM only finds a name that starts with 1 to 5 letters, then 2 or more digits.</td></tr>
+      <tr><td class="k">Versions</td><td>Folders named V1, V2 and so on. V3_final or Version 2 also count, and capitals don't matter. The highest number goes out. No V folders means version 1, if a PDF or .ai is in the style folder.</td></tr>
+      <tr><td class="k">PDF</td><td>Exactly one in the version.</td></tr>
+      <tr><td class="k">Illustrator</td><td>Exactly one .ai with "outline" in its name.</td></tr>
+      <tr><td class="k">Artwork picture</td><td>The version's .jpg. With several, the one named like the PDF, or else the newest.</td></tr>
+      <tr><td class="k">Not counted</td><td>Fonts and Links folders. A folder with no number. Files sitting in the style folder when it has V folders.</td></tr>
+      <tr><td class="k">Linked folder</td><td>A folder picked or linked in the popup stays with the style. <b>Unlink</b> in the panel's <b>Artwork sent</b> takes it off, and the next send looks for the folder by its <b>Style #</b> again.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Other messages in the Send popup</summary>
+    <div id="messages" class="scroll">
+    <table>
+      <tr><th>What you see</th><th>What to do</th></tr>
+      <tr><td>You don't have access to the Design site's artwork folder.</td><td>Ask Saul for read access to the Design site.</td></tr>
+      <tr><td>You don't have access to this style's folder on the Design site.</td><td>Ask Saul for read access to the Design site.</td></tr>
+      <tr><td>The folder linked for this style isn't there any more (moved or deleted).</td><td>Link it again: paste the folder's address.</td></tr>
+      <tr><td>Use the address bar, not Copy link.</td><td>Copy the address from the browser's address bar.</td></tr>
+      <tr><td>That address isn't on the Design site.</td><td>Copy the address of a folder on the Design site.</td></tr>
+      <tr><td>That folder isn't inside the artwork folder on the Design site.</td><td>Link a folder inside the artwork folder.</td></tr>
+      <tr><td>That's a file: link its folder.</td><td>Open the folder, not the file, and copy that address.</td></tr>
+      <tr><td>The style's folder has no version yet: no V folder, and no PDF or .ai in it.</td><td>Save the files first.</td></tr>
+      <tr><td>Two folders have the top number, v3. Pick the one going out (this send only).</td><td>Pick one. The pick isn't kept.</td></tr>
+      <tr><td>Not counted: this folder has no version number. If it's the newest, rename it.</td><td>Rename it with the V number the message gives.</td></tr>
+      <tr><td>The Design site's v2 isn't the v2 sent to this factory. Rename it V3.</td><td>Files changed after that send. Rename the folder as the message says.</td></tr>
+      <tr><td>This factory has v3, newer than the Design site's v2.</td><td>Check the Design site. An older version can't be marked.</td></tr>
+      <tr><td>v1's PDF was changed on the Design site after it went. Save it as V2.</td><td><b>Send again…</b> needs the files as they went. Save the change as a new version.</td></tr>
+      <tr><td>v1's files aren't on the Design site any more. Send the newest version instead.</td><td>Close the popup and use <b>Send to factory…</b> for the newest version.</td></tr>
+      <tr><td>This factory has no open row of this style to mark.</td><td>Nothing to mark there. Check the row on the Dev Tracker.</td></tr>
+      <tr><td>SharePoint is busy. Try again in a minute.</td><td>Wait a minute, then open the popup again.</td></tr>
+      <tr><td>Couldn't reach SharePoint. Check the connection and try again.</td><td>Check your connection, then open the popup again.</td></tr>
+      <tr><td>SharePoint sent a page instead of the file (perhaps a sign-in).</td><td>Click <b>Didn't get both files? Download through Dev PLM</b>, or open the folder.</td></tr>
+      <tr><td>That doesn't look like a WeTransfer link.</td><td>Paste the whole link, just as WeTransfer gives it.</td></tr>
+      <tr><td>No WeTransfer link in the message: the factory won't get the files.</td><td>Click <b>Back</b> and paste the link, or <b>Open anyway</b>.</td></tr>
+      <tr><td>This factory has no email on the Factories page yet.</td><td>Use <b>Copy message</b>. Add the email on the <b>Factories</b> page. See <a href="Guide_2_Quote_Sheets.html#factory">Add a factory or change its email</a>.</td></tr>
+      <tr><td>Too long for an email link: use Copy message.</td><td>Click <b>Copy message</b> and paste it in an email.</td></tr>
+      <tr><td>Tick the lines to send, or put the cursor on one.</td><td>Tick the line's box, or click the line. The cursor is the cell you clicked.</td></tr>
+      <tr><td>Send to factory… takes one style at a time.</td><td>Tick the rows of one style only.</td></tr>
+      <tr><td>Only due lines are sent from the Board.</td><td>Use <b>Rows</b> for that style.</td></tr>
+      <tr><td>v1 has comments, so it can't be withdrawn.</td><td>Delete the comments first. Only the writer or an admin can.</td></tr>
+    </table>
+    </div>
+  </details>
+  <details>
+    <summary>Who can do what</summary>
+    <p id="who">Today only admins can do any of this. Each part opens for the team when an admin marks it <b>Live</b> on the <b>Tools</b> tab of <b>Users &amp; permissions</b>. See <a href="Guide_16_New_Hire.html#live">Check the tool is Live</a>. <b>Artwork · Assignments</b> and <b>Artwork · Send to factory</b> also need <b>Artwork</b> Live.</p>
+    <div class="scroll">
+    <table>
+      <tr><th>Job</th><th>Who, once it's Live</th><th>Opens with</th></tr>
+      <tr><td class="k">See Rows and open steps</td><td>Design and Production, by role. They need View on Artwork and the Dev Tracker.</td><td>Artwork</td></tr>
+      <tr><td class="k">See the Designer column, pictures and lines</td><td>The same people.</td><td>Artwork · Assignments</td></tr>
+      <tr><td class="k">Use the Board, Assign… and New round…</td><td>The Design head, with Edit on Artwork and View on the Dev Tracker.</td><td>Artwork · Assignments</td></tr>
+      <tr><td class="k">Send to factory…, Mark as sent, Send again…, Withdraw…</td><td>The Design head, with Edit on Artwork and the Dev Tracker, and Factories: all.</td><td>Artwork · Send to factory</td></tr>
+      <tr><td class="k">See versions sent</td><td>People who can open Artwork, for their own factories.</td><td>Artwork · Send to factory</td></tr>
+      <tr><td class="k">Add a comment</td><td>People with Edit on Artwork.</td><td>Artwork · Send to factory</td></tr>
+      <tr><td class="k">Be in the Designer list</td><td>People with the <b>Designer</b> tick and View on Artwork.</td><td>Artwork · Assignments</td></tr>
+      <tr><td class="k">Restore a withdrawn version</td><td>Admins only, in <b>Recently deleted</b>.</td><td>Always</td></tr>
+    </table>
+    </div>
+    <p>An admin sets <b>Design head</b> and <b>Designer</b> in <b>Users &amp; permissions</b>, on the <b>People</b> tab, under <b>Artwork tasks</b>. See <a href="Guide_16_New_Hire.html#devplm">Give access in Dev PLM</a>.</p>
+    <div class="warn" style="margin-left:14px;margin-right:14px"><b>Careful.</b> Don't tick anyone on the team as <b>Designer</b> before Artwork's first Live step. The amber note on that tab says why. From a coming update, a ticked designer loses the Dev Tracker, Reports, the Order Tracker, Factories and the Change log straight away. That holds even while Artwork's assignments are Preview.</div>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

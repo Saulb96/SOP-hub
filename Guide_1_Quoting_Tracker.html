@@ -1,22 +1,426 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Item Intake &amp; Quoting</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#e0a92e,#e0a92edd);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;opacity:.9;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px}
-.hero p{font-size:13.5px;opacity:.92;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#8a94a3;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#e0a92e;font-weight:700}
-ul li::marker{color:#e0a92e}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#e0a92e;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fdf6e6}
-td.k{font-weight:600;white-space:nowrap}
-.foot{padding:18px 44px;color:#9aa5b3;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fdf6e6;border-left:3px solid #e0a92e;padding:11px 14px;border-radius:8px;font-size:13px;margin:4px 0}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · PROCESS FLOW</div><h1>Item Intake &amp; Quoting</h1><p>Tracker &amp; workflow reference</p></div><div class="body"><p class="lead">The Quoting Tracker is the single intake log for new items — every item we develop artwork for starts here and is monitored until an order is placed.</p><h2>Steps</h2><ol><li>Create a new row as soon as artwork exists.</li><li>Fill core fields: Date Created, Image, Style, Description, Brand, Category, Customer, Stock or Program, Design/Color Sensitive.</li><li>Set the <b>Action</b> — what the item needs next.</li><li>Set the <b>Stage</b> — where it is in the quoting cycle.</li><li>Record the Quote Sheet Name once added to a quote.</li><li>Update Stage through to Placed Order / Done.</li></ol><h2>Dropdown Values</h2><table><tr><th>Field</th><th>Allowed values</th></tr><tr><td class="k">Action</td><td>Need Sample · Need Quote · Need Sample/Quote · Need Factory Sample Model · Updated Artwork – Need Requote · Updated Artwork For MP · Updated Artwork For Resample</td></tr><tr><td class="k">Stage</td><td>Received Pricing · Arranged Artwork Sample · Requested Factory Sample · Quoted · Factory Sample Received · Need to Review Pricing · Placed Order · Other (See Notes) · Done</td></tr><tr><td class="k">Category</td><td>Bath · Body · Body Razors · Cosmetics · Electric Beauty · Fragrance · Hair · Holiday · Implements · Lashes · Makeup Brushes · Mirrors · Skincare · Storage · Wipes</td></tr><tr><td class="k">Customer</td><td>M1S · Burlington · Ross · DDs · TJ Maxx · GT · Dollar Tree</td></tr><tr><td class="k">Stock or Program</td><td>Stock · Program</td></tr></table></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Item Intake &amp; Quoting</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#2f9bd6;--deep:#1b76ac;--tint:#eaf5fb">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · PRODUCTION</div>
+  <h1>Item Intake &amp; Quoting</h1>
+  <p>Log every new item in the Quote Tracker, then keep its row up to date until an order is placed.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Who does it</b><span>Production</span></div>
+    <div><b>When</b><span>As soon as artwork exists</span></div>
+    <div><b>You end with</b><span>One up-to-date row for each item</span></div>
+  </div>
+  <a class="open-tool" href="https://saulb96.github.io/quote-tracker/" target="_blank" rel="noopener">Open Quote Tracker</a>
+  <a class="open-tool" href="https://saulb96.github.io/quote-directory/" target="_blank" rel="noopener">Open Quote Directory</a>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/samples" target="_blank" rel="noopener">Open Dev Tracker</a>
+
+  <div class="draft">
+    <details><summary><b>Draft.</b> Saul to confirm 4 things on this page</summary>
+    <ul class="plain">
+      <li>The <b>Action</b>, <b>Stage</b>, <b>Category</b> and <b>Customer</b> lists under Reference. They come from the last version of this guide. The real lists are kept inside the tool and can change.</li>
+      <li>When to pick <b>Yes</b> in <b>Design/Color Sensitive</b>.</li>
+      <li>What MP means in <b>Updated Artwork For MP</b>.</li>
+      <li>How a sample request file or a PPS comments file gets to the factory. The tool only downloads it.</li>
+    </ul>
+    </details>
+  </div>
+
+  <p class="sample-note"><b>Jump to:</b> <a href="#add">Add a new item</a> · <a href="#update">Update an item</a> · <a href="#find">Find an item</a> · <a href="#files">Make files</a> · <a href="#scent">Add a scent</a> · <a href="#fix">Fix a mistake</a> · <a href="#lists">Change a dropdown list</a> · <a href="#rules">Rules</a> · <a href="#reference">Reference</a></p>
+
+  <h2 id="add">Add a new item</h2>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the Quote Tracker</h3>
+      <p>Click <b>Open Quote Tracker</b> above. On the Tools Hub its tile is called <b>Quoting Tracker</b>. The screen says <b>M1S Quote Tracker</b>.</p>
+      <p>If it asks, click <b>Sign in with Microsoft</b>. The list opens at the bottom, where the newest rows are.</p>
+    </li>
+    <li class="step">
+      <h3>Click + New Quote</h3>
+      <p>It's the blue button in the top bar <span class="m">1</span>. A popup opens.</p>
+      <figure>
+        <a href="guide-img/1-grid.webp" target="_blank" rel="noopener"><img src="guide-img/1-grid.webp" width="1100" height="900" loading="lazy" alt="The Quote Tracker with sample rows. The blue + New Quote button in the top bar is marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add the photo</h3>
+      <p>Drag a PNG or JPG onto the box at the left <span class="m">1</span>, or click the box to pick a file.</p>
+      <p>Tip: name the file like <b>SAMPLE-1013_<wbr>Sample_<wbr>Citrus_<wbr>Body_<wbr>Mist.jpg</b>. The tool then fills in <b>Style</b> and <b>Description</b> for you.</p>
+      <figure>
+        <a href="guide-img/1-new-quote.webp" target="_blank" rel="noopener"><img src="guide-img/1-new-quote.webp" width="880" height="639" loading="lazy" alt="The New Quote popup, filled in with a sample item. The photo box is marked 1, the Style box 2 and the Add Quote button 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Enter the Style</h3>
+      <p>Type the style number in <b>Style</b> <span class="m">2</span>. It's the only box you must fill in.</p>
+      <p>Need a new <a href="Guide_8_Glossary.html#CAD" target="_blank" rel="noopener">CAD number</a>? Tick <b>Auto-assign CAD #</b> under the box instead. The tool takes the next number when you add the item.</p>
+    </li>
+    <li class="step">
+      <h3>Fill in the item details</h3>
+      <p>Enter <b>Description</b>, <b>Brand</b>, <b>Category</b>, <b>Customer</b>, <b>Season</b> and <b>Design/Color Sensitive</b>. <b>Date Created</b> is already set to today.</p>
+      <p>Leave <b>Quote Sheet Name</b> blank until the item is on a quote sheet. Use <b>Note</b> for anything else.</p>
+    </li>
+    <li class="step">
+      <h3>Set the Action</h3>
+      <p><b>Action</b> is what the item needs next, such as <b>Need Sample/Quote</b>. Pick one here. You can add more later.</p>
+    </li>
+    <li class="step">
+      <h3>Set the Stage</h3>
+      <p><b>Stage</b> is where the item is in the quoting cycle, such as <b>Arranged Artwork Sample</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Click Add Quote</h3>
+      <p>It's at the bottom right of the popup, marked <span class="m">3</span> in the picture in step 3. Your new row appears at the bottom of the list <span class="m">1</span>, and a black message confirms it.</p>
+      <figure>
+        <a href="guide-img/1-new-row.webp" target="_blank" rel="noopener"><img src="guide-img/1-new-row.webp" width="1035" height="527" loading="lazy" alt="The bottom of the list after adding an item. The new row SAMPLE-1013 is marked 1, and a message says Added SAMPLE-1013 with photo."></a>
+      </figure>
+    </li>
+  </ol>
+  <div class="note"><b>Faster way, with no photo.</b> Click <b>+ Row</b> in the top bar. The cursor moves to the blank line under the last row. Type the style number and keep going across the row. The row saves once a box has a value. Add a photo later with <b>+ PHOTO</b> in the <b>Image</b> column.</div>
+
+  <h2 id="update">Update an item as it moves along</h2>
+  <div class="note"><b>There's no Save button.</b> Each change saves about a second after you stop. The bar at the bottom says <b>✓ All changes saved</b>.</div>
+  <ol class="steps">
+    <li class="step">
+      <h3>Find the row</h3>
+      <p>Use the search box or filters. See <a href="#find">Find an item</a>. Scroll right to reach <b>Action</b> and <b>Stage</b>. <b>Date Created</b>, <b>Image</b>, <b>Style</b> and <b>Description</b> stay in place as you scroll.</p>
+    </li>
+    <li class="step">
+      <h3>Change the Action</h3>
+      <p>Click the small ▾ at the right edge of the <b>Action</b> box <span class="m">1</span>. Tick every value that's true now, and untick what's finished. Click <b>Done</b> <span class="m">2</span>.</p>
+      <figure>
+        <a href="guide-img/1-action.webp" target="_blank" rel="noopener"><img src="guide-img/1-action.webp" width="1110" height="574" loading="lazy" alt="The list scrolled to the Action, Stage and Quote Sheet Name columns. The ▾ in an Action box is marked 1. A list of Action values is open, with its Done button marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Change the Stage</h3>
+      <p>Do the same in the <b>Stage</b> column. Keep it current, through to <b>Placed Order</b> and <b>Done</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Add the quote sheet's name</h3>
+      <p>Once the item is on a quote sheet, click its <b>Quote Sheet Name</b> box <span class="m">1</span>. The heading may be cut off as <b>Quote Sheet …</b>. Type the sheet's name, such as <b>N26Q05</b>. Press <b>Enter</b>.</p>
+      <p>Sheet names come from the Quote Directory. See <a href="Guide_2_Quote_Sheets.html">Quoting Out to Factories</a>.</p>
+      <figure>
+        <a href="guide-img/1-sheet-name.webp" target="_blank" rel="noopener"><img src="guide-img/1-sheet-name.webp" width="1110" height="435" loading="lazy" alt="A Quote Sheet Name box being typed in, with N26Q05 in it, marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Mark it Done when it's finished</h3>
+      <p>Open <b>Stage</b>. Tick <b>Done</b> in the list <span class="m">1</span>. Then click the blue <b>Done</b> button <span class="m">2</span>. The row moves to the <b>Archive</b> view.</p>
+      <p>Changed your mind? Press <b>Ctrl+Z</b> twice. Then click <b>Active</b> at the top to see the row again.</p>
+      <figure>
+        <a href="guide-img/1-stage.webp" target="_blank" rel="noopener"><img src="guide-img/1-stage.webp" width="1110" height="518" loading="lazy" alt="The list of Stage values open on a row. The Done value is ticked and marked 1. The blue Done button is marked 2."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h2 id="find">Find an item</h2>
+  <p>Use the one you need. These don't go in order.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Search</h3>
+      <p>Type in <b>Search all columns…</b> at the top left <span class="m">1</span>. The list shrinks as you type. The bottom left shows how many rows match <span class="m">2</span>. Capital letters don't matter.</p>
+      <figure>
+        <a href="guide-img/1-search.webp" target="_blank" rel="noopener"><img src="guide-img/1-search.webp" width="1100" height="640" loading="lazy" alt="The word burlington in the search box, marked 1. Three rows show, and the bottom left says 3 of 16 rows, marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Open the Filters panel</h3>
+      <p>Click the small <b>›</b> at the far left of the list <span class="m">1</span>.</p>
+      <figure style="max-width:560px">
+        <a href="guide-img/1-filters-closed.webp" target="_blank" rel="noopener"><img src="guide-img/1-filters-closed.webp" width="560" height="170" loading="lazy" alt="The closed Filters panel at the left of the list. Its small arrow is marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Tick a filter</h3>
+      <p>Click a group name, such as <b>Action</b> <span class="m">1</span>. Tick a value <span class="m">2</span>. The number beside each value is how many rows have it.</p>
+      <p><b>Clear all filters</b> <span class="m">3</span> takes every filter off and empties the search box.</p>
+      <figure>
+        <a href="guide-img/1-filters.webp" target="_blank" rel="noopener"><img src="guide-img/1-filters.webp" width="900" height="493" loading="lazy" alt="The open Filters panel. The Action group is marked 1, a ticked value Need Sample is marked 2, and Clear all filters is marked 3. The list shows the three matching rows."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Filter one column</h3>
+      <p>Click the ▼ in a column heading <span class="m">1</span>. Untick what you don't want. Click <b>Apply</b> <span class="m">2</span>. The ▼ turns red while that filter is on.</p>
+      <figure>
+        <a href="guide-img/1-column-filter.webp" target="_blank" rel="noopener"><img src="guide-img/1-column-filter.webp" width="1029" height="310" loading="lazy" alt="The Customer heading's filter open, listing customers with a count beside each. The ▼ is marked 1 and the Apply button 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Sort a column</h3>
+      <p>Click the ▲▼ at the left of the column heading. Click again to reverse the order. A third click turns the sort off.</p>
+    </li>
+    <li class="step">
+      <h3>Look in the Archive</h3>
+      <p>Click <b>Archive</b> in the switch at the top <span class="m">1</span>. Archived rows show, oldest first. <b>All</b> shows every row. <b>Active</b> takes you back.</p>
+      <p>To bring a row back, click it, then click <b>Restore</b> <span class="m">2</span>. If its <b>Stage</b> still has <b>Done</b>, untick it too. Otherwise the next change to <b>Stage</b> archives the row again.</p>
+      <figure>
+        <a href="guide-img/1-archive.webp" target="_blank" rel="noopener"><img src="guide-img/1-archive.webp" width="1100" height="640" loading="lazy" alt="The Archive view with four sample rows, oldest first. The Archive switch is marked 1 and the Restore button 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>See a photo large</h3>
+      <p>Click any photo. It opens large, with the item's details beside it. Use <b>‹</b> and <b>›</b> to move between photos. Press <b>Esc</b> to close.</p>
+      <figure>
+        <a href="guide-img/1-lightbox.webp" target="_blank" rel="noopener"><img src="guide-img/1-lightbox.webp" width="912" height="558" loading="lazy" alt="A large placeholder photo of a sample item, with its style, description, brand, category, customer, season, action and date at the right."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h2 id="files">Make files from ticked rows</h2>
+  <p>Tick the rows first. Then use the button you need.</p>
+  <div class="note"><b>Good to know.</b> These buttons use only the ticked rows. Ticks stay when you search again, so you can collect rows from several searches. Switching between <b>Active</b>, <b>Archive</b> and <b>All</b> clears them.</div>
+  <ol class="steps">
+    <li class="step">
+      <h3>Tick the rows</h3>
+      <p>Click the box at the left of each row <span class="m">1</span>. <b>Sample Request</b> <span class="m">3</span> and <b>Dev Tracker</b> show how many rows are ticked.</p>
+      <figure>
+        <a href="guide-img/1-export.webp" target="_blank" rel="noopener"><img src="guide-img/1-export.webp" width="1100" height="760" loading="lazy" alt="Three ticked rows, with the first tick box marked 1. The Quote Sheet button is marked 2. The Sample Request button, now showing (3), is marked 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Make a quote sheet</h3>
+      <p>Click <b>Quote Sheet</b> <span class="m">2</span>. An Excel file downloads with <b>Style #</b>, <b>Picture</b> and <b>Description</b> filled in from each row. <b>Package</b>, <b>Qty</b> and <b>Price</b> are blank.</p>
+      <p>Fill in <b>Package</b> and <b>Qty</b>. Leave <b>Price</b> blank for the factory.</p>
+      <p>Rename the file to say what the quote is for. Its name holds only the date, and a second file with the same name lands on the first file's sheet. Then click <b>⬆ Import</b> at the top right of the Quote Directory's <b>Quote Sheets</b> page. See <a href="Guide_2_Quote_Sheets.html#other-ways">Other ways to start</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Make a sample request</h3>
+      <p>Click <b>Sample Request</b> in the top bar, marked <span class="m">3</span> in the picture in step 1. In the popup, pick the <b>Supplier</b> <span class="m">1</span>. Factory not on the list? See <a href="Guide_2_Quote_Sheets.html#factory">Add a factory or change its email</a>. Type <b>Sample Qty Needed</b> <span class="m">2</span>. Click <b>Create Files</b> <span class="m">3</span>.</p>
+      <p>An Excel file with photos downloads, ready for the factory. The tool only downloads the file. It doesn't send it. The factory fills in <b>Artwork Receive Date</b> and <a href="Guide_8_Glossary.html#SRD" target="_blank" rel="noopener">SRD</a>, and <b>Sample Time</b> works itself out.</p>
+      <p>To record the file in the Dev Tracker, see <a href="Guide_4_Development_Tracker.html#log">Add an SR, SC or BS file</a>.</p>
+      <figure style="max-width:560px">
+        <a href="guide-img/1-sample-request.webp" target="_blank" rel="noopener"><img src="guide-img/1-sample-request.webp" width="560" height="416" loading="lazy" alt="The Create Request Files popup. Supplier is marked 1, Sample Qty Needed 2 and the Create Files button 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Make Dev Tracker rows</h3>
+      <p>Click <b>Dev Tracker</b>. The same popup opens with <b>Development Tracker rows</b> ticked. Pick the <b>Supplier</b> and <b>Sample Type</b>. Click <b>Create Files</b>.</p>
+      <p>The file's columns match the Dev Tracker screen. Copy the rows, without the heading row. In the Dev Tracker, click the <b>Status</b> cell on a blank line and press <b>Ctrl+V</b>. One value that isn't on a Dev Tracker list stops the whole paste, and a box lists the cells. See <a href="Guide_4_Development_Tracker.html#typed">Development &amp; Sample Tracking</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Make a PPS comments sheet</h3>
+      <p>Click <b>PPS Sheet</b>. An Excel file downloads with <b>Style #</b>, <b>Picture</b>, <b>Description</b> and a blank <b>Sample Comments</b> column. <a href="Guide_8_Glossary.html#PPS" target="_blank" rel="noopener">PPS</a> is explained in the Glossary.</p>
+      <p>The tool only downloads the file. It doesn't send it. To record it in the Dev Tracker, see <a href="Guide_4_Development_Tracker.html#log">Add an SR, SC or BS file</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Export the columns you choose</h3>
+      <p>Click <b>Export…</b>. Tick the columns you want. Click <b>Export</b> <span class="m">1</span>. If you keep <b>Image</b> ticked, the photos go into the file.</p>
+      <figure style="max-width:560px">
+        <a href="guide-img/1-custom-export.webp" target="_blank" rel="noopener"><img src="guide-img/1-custom-export.webp" width="560" height="572" loading="lazy" alt="The Custom Export popup with a ticked list of columns. The Export button is marked 1."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h2 id="scent">Add a scent to a fragrance item</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click + Scent</h3>
+      <p>Scroll all the way right to the <b>Scent</b> column. Rows with a fragrance <b>Category</b> show <b>+ Scent</b> <span class="m">1</span>. A row that has a scent shows its name instead. Click that name to change it.</p>
+      <figure>
+        <a href="guide-img/1-scent-cell.webp" target="_blank" rel="noopener"><img src="guide-img/1-scent-cell.webp" width="820" height="290" loading="lazy" alt="The Scent column beside the frozen columns. One row shows a chosen scent. Another shows a + Scent button, marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick the scent</h3>
+      <p>Click its tile <span class="m">1</span>. Pick more than one for a set. Click <b>Save</b> <span class="m">2</span>.</p>
+      <p>Not in the list? Go on to the next step to add it.</p>
+      <figure>
+        <a href="guide-img/1-scent.webp" target="_blank" rel="noopener"><img src="guide-img/1-scent.webp" width="820" height="430" loading="lazy" alt="The scent popup with six sample tiles. The chosen tile is marked 1 and the Save button 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Open Fragrance Library, if the scent isn't in the list</h3>
+      <p>Click <b>Add a new sampler in Fragrance Library</b> at the bottom left of the popup. A sampler is a factory's fragrance sample. Fragrance Library opens in a new tab, on that style's scent picker. Sign in if it asks.</p>
+      <figure>
+        <a href="guide-img/1-frag-picker.webp" target="_blank" rel="noopener"><img src="guide-img/1-frag-picker.webp" width="860" height="610" loading="lazy" alt="The scent picker in Fragrance Library for one style. The New fragrance button is marked 1 and the Save button is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click + New fragrance</h3>
+      <p>It's at the top right of the picker <span class="m">1</span>. A popup opens.</p>
+    </li>
+    <li class="step">
+      <h3>Add a photo of the label</h3>
+      <p>Click the box at the left, or drop or paste a picture on it. The fields then fill in from the label.</p>
+      <figure style="max-width:560px">
+        <a href="guide-img/1-frag-new.webp" target="_blank" rel="noopener"><img src="guide-img/1-frag-new.webp" width="640" height="423" loading="lazy" alt="The New fragrance popup, with a box for the label photo at the left, and boxes for Factory, Description, Date, Scent Option, Percent and Factory code."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check the fields</h3>
+      <p>Check <b>Factory</b>, <b>Description</b>, <b>Date</b>, <b>Scent Option</b>, <b>Percent</b> and <b>Factory code</b>. <b>Factory</b> and <b>Description</b> are required.</p>
+      <p>The <b>Factory</b> list can be limited to the factories that make fragrance. To change it, click <b>Cancel</b> on this popup and on the picker. Click the <b>Library</b> tab at the top. Click <b>Factories</b> <span class="m">1</span>, as in this picture. Tick the factories that make fragrance and click <b>Save</b>. Go back to the Quote Tracker tab and start again from step 3.</p>
+      <figure>
+        <a href="guide-img/1-frag-library.webp" target="_blank" rel="noopener"><img src="guide-img/1-frag-library.webp" width="1200" height="505" loading="lazy" alt="The Library tab of Fragrance Library, with sample fragrances. The Factories button is marked 1 and the Add fragrance button is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Add fragrance, then Save</h3>
+      <p>Click <b>Add fragrance</b> at the bottom right of the popup. The new fragrance is picked for you on the scent picker. Click <b>Save</b> on the picker, marked <span class="m">2</span> in the picture in step 3.</p>
+      <p>Go back to the Quote Tracker tab. Its popup is still open, so click <b>Cancel</b>. Press <b>F5</b> to load the page again. The row now shows the scent's name. Until you do, the <b>Scent</b> box can still say <b>+ Scent</b>, or <b>Deleted #</b> and a number. The scent isn't lost, and the <b>Reload</b> button doesn't change this.</p>
+      <p>You can also add a fragrance from the <b>Library</b> tab with <b>+ Add fragrance</b>, marked <span class="m">2</span> in the picture in step 6. That adds it to the library without picking it for a style.</p>
+    </li>
+  </ol>
+
+  <h2 id="fix">Fix a mistake</h2>
+  <p>Use the one you need. These don't go in order.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Undo a change</h3>
+      <p>Click <b>↶ Undo</b> <span class="m">3</span> in the top bar, or press <b>Ctrl+Z</b>. <b>↷ Redo</b> or <b>Ctrl+Y</b> brings the change back.</p>
+      <figure>
+        <a href="guide-img/1-topbar-fix.webp" target="_blank" rel="noopener"><img src="guide-img/1-topbar-fix.webp" width="1100" height="141" loading="lazy" alt="The top bar of the Quote Tracker. The Archive button is marked 1, Delete is marked 2 and Undo is marked 3."></a>
+      </figure>
+      <p>Undo doesn't cover <b>+ New Quote</b>. It leaves that row and takes back your change before it. To remove a row made with <b>+ New Quote</b>, use <b>Delete a row</b> below. For a row made with <b>+ Row</b>, Undo empties the boxes one at a time, last first, then asks if you want to delete the row.</p>
+    </li>
+    <li class="step">
+      <h3>Change or clear a box</h3>
+      <p>Click the box and start typing to replace what's there. Double-click to edit it. Press <b>Delete</b> to empty it.</p>
+    </li>
+    <li class="step">
+      <h3>Add or replace a photo</h3>
+      <p>Click <b>+ PHOTO</b> <span class="m">1</span> in the <b>Image</b> column. To replace a photo, hold <b>Alt</b> and click it. The row needs a <b>Style</b> first.</p>
+      <figure style="max-width:600px">
+        <a href="guide-img/1-image-col.webp" target="_blank" rel="noopener"><img src="guide-img/1-image-col.webp" width="600" height="226" loading="lazy" alt="Three rows of the list. A + PHOTO box in the Image column is marked 1 and a row number is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Archive a row by hand</h3>
+      <p>Click the row, or tick several rows. Click the <b>Archive</b> button beside the <b>Active / Archive / All</b> switch, marked <span class="m">1</span> in the picture in step 1. To undo it, press <b>Ctrl+Z</b>, then click <b>Active</b> to see the row again.</p>
+    </li>
+    <li class="step">
+      <h3>Delete a row</h3>
+      <p>Tick the rows, or click a row's number at the left, marked <span class="m">2</span> in the picture in step 3. Click <b>Delete</b> in the top bar, marked <span class="m">2</span> in the picture in step 1. Click <b>OK</b> when it asks.</p>
+    </li>
+  </ol>
+  <div class="warn"><b>Careful.</b> Undo can't bring back a row you removed with <b>Delete</b>. A CAD number on a deleted row is gone for good too.</div>
+
+  <h2 id="lists">Change a dropdown list</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open Lists</h3>
+      <p>Click <b>Lists</b> in the top bar. Pick a list at the left <span class="m">1</span>.</p>
+      <figure>
+        <a href="guide-img/1-lists.webp" target="_blank" rel="noopener"><img src="guide-img/1-lists.webp" width="698" height="395" loading="lazy" alt="The dropdown lists popup showing the Stage list. Stage is marked 1, the Add button 2 and a Retire button 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add a value</h3>
+      <p>Type it in <b>Add a value…</b> at the top. Click <b>Add</b> <span class="m">2</span>.</p>
+    </li>
+    <li class="step">
+      <h3>Rename or retire a value</h3>
+      <p><b>Rename</b> asks if you want to update the rows that use the old name. <b>Retire</b> <span class="m">3</span> takes a value off the dropdown, and its button changes to <b>Restore</b>. Rows that use it keep it.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Good to know.</b> These changes save right away, for everyone. You can also add a value while you pick: use <b>＋ New</b> in the <b>Action</b> or <b>Stage</b> list, or <b>＋ Add new…</b> in the other dropdowns.</div>
+
+  <h2 id="rules">Rules to remember</h2>
+  <ul class="plain">
+    <li>Make the row as soon as artwork exists. This tracker is the one intake log for new items. Every item we develop artwork for starts here and is followed until an order is placed.</li>
+    <li>If the tool says a style already exists, check before you add a second row.</li>
+    <li>Ticking <b>Done</b> in <b>Stage</b> archives the row. Taking <b>Done</b> off brings it back to <b>Active</b>.</li>
+    <li>Editing the <b>Stage</b> of an archived row brings it back to <b>Active</b>, unless <b>Done</b> stays ticked.</li>
+    <li>If someone else changed the same box first, their value stays. A message at the bottom of the screen tells you.</li>
+    <li>If the bottom bar says <b>Save failed</b>, click those words to try again. Keep the page open until it says <b>✓ All changes saved</b>.</li>
+  </ul>
+
+  <h2 id="reference">Reference</h2>
+  <details>
+    <summary>Columns, left to right</summary>
+    <div class="scroll"><table>
+      <tr><th>Column</th><th>What goes in it</th></tr>
+      <tr><td class="k">Date Created</td><td>The date the row was made. Starts as today.</td></tr>
+      <tr><td class="k">Image</td><td>The item's photo.</td></tr>
+      <tr><td class="k">Style</td><td>The style number.</td></tr>
+      <tr><td class="k">Description</td><td>What the item is.</td></tr>
+      <tr><td class="k">Design/Color Sensitive</td><td>Yes or No.</td></tr>
+      <tr><td class="k">Brand</td><td>Picked from the Brand list.</td></tr>
+      <tr><td class="k">Category</td><td>Picked from the Category list.</td></tr>
+      <tr><td class="k">Customer</td><td>Picked from the Customer list.</td></tr>
+      <tr><td class="k">Season</td><td>Picked from the Season list.</td></tr>
+      <tr><td class="k">Action</td><td>What the item needs next. Can hold more than one value.</td></tr>
+      <tr><td class="k">Stage</td><td>Where it is in the quoting cycle. Can hold more than one value.</td></tr>
+      <tr><td class="k">Quote Sheet Name</td><td>The name of the quote sheet it's on, such as N26Q05.</td></tr>
+      <tr><td class="k">Note</td><td>Anything else. Hold your mouse on it to read a long note.</td></tr>
+      <tr><td class="k">Scent</td><td>The scent from the Fragrance Library. Set with <b>+ Scent</b>.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Dropdown values</summary>
+    <p>These lists are kept in the tool under <b>Lists</b>, so your screen may differ.</p>
+    <div class="scroll"><table>
+      <tr><th>Field</th><th>Values</th></tr>
+      <tr><td class="k">Action</td><td>Need Sample · Need Quote · Need Sample/Quote · Need Factory Sample Model · Updated Artwork – Need Requote · Updated Artwork For MP · Updated Artwork For Resample</td></tr>
+      <tr><td class="k">Stage</td><td>Received Pricing · Arranged Artwork Sample · Requested Factory Sample · Quoted · Factory Sample Received · Need to Review Pricing · Placed Order · Other (See Notes) · Done</td></tr>
+      <tr><td class="k">Category</td><td>Bath · Body · Body Razors · Cosmetics · Electric Beauty · Fragrance · Hair · Holiday · Implements · Lashes · Makeup Brushes · Mirrors · Skincare · Storage · Wipes</td></tr>
+      <tr><td class="k">Customer</td><td>M1S · Burlington · Ross · DDs · TJ Maxx · GT · Dollar Tree</td></tr>
+      <tr><td class="k">Season</td><td>NA · Valentines · Christmas · Spring · Summer · Fall · Holiday</td></tr>
+      <tr><td class="k">Design/Color Sensitive</td><td>Yes · No</td></tr>
+      <tr><td class="k">Brand</td><td>See the Brand list under <b>Lists</b>.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Top bar buttons</summary>
+    <div class="scroll"><table>
+      <tr><th>Button</th><th>What it does</th></tr>
+      <tr><td class="k">Active / Archive / All</td><td>Chooses which rows the list shows.</td></tr>
+      <tr><td class="k">Archive</td><td>Archives the ticked or selected rows. It says <b>Restore</b> in the Archive view.</td></tr>
+      <tr><td class="k">S M L XL</td><td>Changes the row height and photo size.</td></tr>
+      <tr><td class="k">+ New Quote</td><td>Opens the popup to add an item.</td></tr>
+      <tr><td class="k">+ Row</td><td>Moves the cursor to the blank line under the last row.</td></tr>
+      <tr><td class="k">Delete</td><td>Deletes the ticked rows. With nothing ticked, it deletes the selected rows. It asks first.</td></tr>
+      <tr><td class="k">↶ Undo, ↷ Redo</td><td>Takes back a change, or puts it back.</td></tr>
+      <tr><td class="k">Sample Request, Dev Tracker, Export…, PPS Sheet, Quote Sheet</td><td>Make Excel files from the ticked rows.</td></tr>
+      <tr><td class="k">⤒ ⤓</td><td>Jump to the top or the bottom of the list.</td></tr>
+      <tr><td class="k">Lists</td><td>Opens the dropdown lists.</td></tr>
+      <tr><td class="k">Reload</td><td>Gets the latest rows. The list also refreshes itself every hour.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Files the buttons make</summary>
+    <div class="scroll"><table>
+      <tr><th>Button</th><th>File name</th><th>Columns</th></tr>
+      <tr><td class="k">Quote Sheet</td><td>M1S_<wbr>Quote_<wbr>Sheet_<wbr>date</td><td>Style #, Picture, Description, Package, Qty, Price</td></tr>
+      <tr><td class="k">PPS Sheet</td><td>M1S_<wbr>PPS_<wbr>Comments_<wbr>date</td><td>Style #, Picture, Description, Sample Comments</td></tr>
+      <tr><td class="k">Sample Request</td><td>SampleRequest_<wbr>supplier_<wbr>date</td><td>Supplier, Picture, Style#, Description, Sample Qty Needed, Artwork Receive Date, SRD, Sample Time, Notes</td></tr>
+      <tr><td class="k">Dev Tracker</td><td>DevTracker_<wbr>supplier_<wbr>date</td><td>Status, Date Created, Supplier, Style #, Item Description, SR / BS #, PPS Comments #, PO#, Quote#, Sample Type, Customer. A second block under it lists each quote: Date, Factory, File Name, Products, Customer.</td></tr>
+      <tr><td class="k">Export…</td><td>QuoteExport_<wbr>date</td><td>The columns you tick.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Keyboard and mouse</summary>
+    <div class="scroll"><table>
+      <tr><th>Do this</th><th>To get this</th></tr>
+      <tr><td class="k">Arrow keys, Tab</td><td>Move around the list.</td></tr>
+      <tr><td class="k">Enter, Shift+Enter</td><td>Move down or up. While typing in a box, Enter saves it and moves down.</td></tr>
+      <tr><td class="k">Start typing, double-click or F2</td><td>Edit a box.</td></tr>
+      <tr><td class="k">Delete or Backspace</td><td>Empty the selected boxes.</td></tr>
+      <tr><td class="k">Click-drag, Shift+click</td><td>Select a block of boxes.</td></tr>
+      <tr><td class="k">Click a row number</td><td>Select the row.</td></tr>
+      <tr><td class="k">Click a column letter or heading</td><td>Select the column.</td></tr>
+      <tr><td class="k">Ctrl+click a row number</td><td>Tick the row.</td></tr>
+      <tr><td class="k">Ctrl+D</td><td>Fill down from the top of the selection. On one box, it copies the box above.</td></tr>
+      <tr><td class="k">Ctrl+C, Ctrl+V</td><td>Copy and paste, also from Excel. One value pasted over a selection fills all of it. Lines pasted on the blank line each make a new row.</td></tr>
+      <tr><td class="k">Ctrl+Z, Ctrl+Y</td><td>Undo and redo.</td></tr>
+      <tr><td class="k">Ctrl+A</td><td>Select everything.</td></tr>
+    </table></div>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

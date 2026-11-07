@@ -296,9 +296,9 @@ const FLOW = [
 
   /* ── Production: quoting → development → production → inspection ── */
   {dept:"Production", stage:"1 — Quoting", sops:[
-    {name:"Quoting", desc:"Quoting items out to factories and tracking responses (Quoting Tracker / Quote Sheet Directory).", url:""}]},
+    {name:"Quoting", desc:"Quoting items out to factories and tracking responses (Quote Tracker / Quote Directory).", url:""}]},
   {dept:"Production", stage:"2 — Development", sops:[
-    {name:"Development", desc:"Samples and pre-production approvals (the Dev Tracker in Dev PLM: SR/SC/BS/BF/FF).", url:""}]},
+    {name:"Development", desc:"Samples and pre-production approvals (the Dev Tracker in Dev PLM: SR/SC/BS).", url:""}]},
   {dept:"Production", stage:"3 — Production", sops:[
     {name:"Production & PO Tracking", desc:"Mass production to ready-to-ship: PI status, carton marks, batch #, tickets, CRD dates.", url:""}]},
   {dept:"Production", stage:"4 — Inspection", sops:[
@@ -751,6 +751,8 @@ viewer.onclick=e=>{if(e.target===viewer)closeViewer();};
 function openGuide(file){
   viewer.classList.add('open');
   document.getElementById('vBody').innerHTML='<iframe src="'+esc(file)+'" style="background:#fff"></iframe>';
+  const frame=document.querySelector('#vBody iframe');
+  frame.onload=()=>frame.contentWindow.addEventListener('keydown',e=>{if(e.key==='Escape')closeViewer();});
 }
 
 async function graphToken(){

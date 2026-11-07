@@ -1,26 +1,492 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Inventory Report</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#96690c,#e0a92e);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
-.hero p{font-size:13.5px;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#96690c;font-weight:700}
-ul li::marker{color:#96690c}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#96690c;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fdf6e6}
-td.k{font-weight:600;white-space:nowrap}
-.glance td{background:#fff !important}
-.glance td.k{width:110px;color:#6b7686;font-weight:600}
-.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fdf6e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
-.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
-@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · SALES</div><h1>Inventory Report</h1><p>What we can sell, and when it can be pulled</p></div><div class="body"><p class="lead">The Shalam Tool reads the weekly inventory report and shows what is available to sell, where it is, and what can be pulled from China. Sales uses the files it produces to offer goods to buyers.</p><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Tool</td><td>Shalam Tool. Salespeople use the Shalam Sales page.</td></tr><tr><td class="k">When</td><td>Weekly, when the new report comes out</td></tr><tr><td class="k">You end with</td><td>On hand ATS and Pull from China files</td></tr></table><h2>Steps</h2><ol><li>Save the weekly ERP inventory report to the ATS reports folder on SharePoint. The tool always reads the newest file.</li><li>Sign in to the Shalam Tool and check the source chips and banners at the top. Anything red needs fixing first.</li><li>Review the tabs (below). Click any number to open <b>Behind this number</b> and see what makes it up.</li><li>Download <b>On hand ATS</b> (blue button) or <b>Pull from China</b> (orange button).</li><li>Salespeople open Shalam Sales and read the same two files.</li></ol><h2>The tabs</h2><table><tr><th>Tab</th><th>What it shows</th></tr><tr><td class="k">Available to sell</td><td>Stock that can be offered now</td></tr><tr><td class="k">Where it is</td><td>Goods by stage: No CRD, In production, Ready, Booked, Loaded, On the water, At port, Landed</td></tr><tr><td class="k">Pull from China</td><td>Goods that can be pulled, with pull dates</td></tr><tr><td class="k">Problems</td><td>Items that need a person to look at them</td></tr></table><h2>Rules</h2><ul><li>In-transit goods count as available at ETA + 7 days.</li><li>Pull date: 10 days before ETD. With no ETD, 5 days before CRD. With no CRD, 75 days after the order date. Past dates stay off the file.</li><li>Oversold items show 0 on hand on the sheet.</li><li>Styles written differently stay separate items, so a typo can split one style in two.</li><li>POs ending in -BCF show as <b>Reserved -BCF</b>.</li><li>Sales files only save on a clean load: no red source, report 8 days old or less, balances OK. Otherwise the last good file stays in place.</li></ul></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inventory Report</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#e0a92e;--deep:#96690c;--tint:#fdf6e6">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · SALES</div>
+  <h1>Inventory Report</h1>
+  <p>See what we can sell, where the goods are, and when they can be pulled from China.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Who does it</b><span>Sales</span></div>
+    <div><b>When</b><span>Weekly, when the new report comes out</span></div>
+    <div><b>You end with</b><span>On hand ATS and Pull from China files</span></div>
+  </div>
+  <a class="open-tool" href="https://saulb96.github.io/shalam-tool/" target="_blank" rel="noopener">Open Shalam Tool</a>
+  <a class="open-tool" href="https://saulb96.github.io/shalam-tool/sales.html" target="_blank" rel="noopener">Open Shalam Sales</a>
+  <p>Selling? Go to <a href="#offer">Offer goods from Shalam Sales</a>. Loading the report? Start at <a href="#load">Load the new report</a>. Something red or amber in the Shalam Tool? Go to <a href="#fix">Fix a red chip</a>.</p>
+
+  <div class="draft">
+    <p><b>Draft.</b> Saving into Shalam Sales may not be switched on yet. Until Saul confirms it, use the two download buttons.</p>
+    <details><summary>Saul to confirm 5 things</summary>
+    <ul class="plain">
+      <li>That saving the two files into Shalam Sales is switched on. <a href="#offer">Offer goods from Shalam Sales</a> depends on it. Until it's confirmed, use the two download buttons and check the <b>Sales sheet</b> chip (a status box at the top of the Shalam Tool, see <a href="#files">Get the two files</a>).</li>
+      <li>Who saves the weekly report into its folder on SharePoint, how to get the report out of the ERP, and how staff reach that folder.</li>
+      <li>How to turn pictures on in the ERP, and how often.</li>
+      <li>Who runs the Shalam Tool, and who fixes problems in the source sheets.</li>
+      <li>When <b>Save anyway</b> may be used.</li>
+    </ul>
+    </details>
+  </div>
+
+  <p class="sample-note"><b>Jump to:</b> <a href="#load">Load the new report</a> · <a href="#sell">See what you can sell</a> · <a href="#where">See where the goods are</a> · <a href="#pull">Check what can be pulled from China</a> · <a href="#files">Get the two files</a> · <a href="#offer">Offer goods from Shalam Sales</a> · <a href="#fix">Fix a red chip</a> · <a href="#old-report">Replace an old ATS report</a> · <a href="#problems">Work through the Problems tab</a> · <a href="#rules">Rules</a> · <a href="#reference">Reference</a></p>
+
+  <h2 id="load">Load the new report</h2>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger. This page is public, so a few file and list names in the pictures are changed or left out. The tool shows the real ones.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Save the report in its folder</h3>
+      <p>Save the weekly inventory report from the <a href="Guide_8_Glossary.html#ERP" target="_blank" rel="noopener">ERP</a> into its folder on SharePoint. The tool calls it the ATS report. ATS means available to sell. Saul to confirm how to get it out of the ERP (see the yellow Draft note at the top).</p>
+      <p>Keep the date and time at the end of the file name, such as 11-5-2026 9-00 AM. The tool reads the file with the newest date.</p>
+      <div class="note"><b>Can't find the folder?</b> Do steps 2 and 3 first. Then click the <b>ATS</b> chip. It opens the newest report, and that file sits in the folder.</div>
+    </li>
+    <li class="step">
+      <h3>Open the Shalam Tool and sign in</h3>
+      <p>Click <b>Open Shalam Tool</b> at the top of this guide, then <b>Sign in</b> with your Metro1 Microsoft account. The tool reads every file and list by itself. Wait until the chips stop saying <b>loading</b> or <b>waiting</b>.</p>
+      <p>Page already open? Click <b>Refresh</b> at the top right <span class="m">1</span>, shown in the next picture. It also reads everything again every 5 minutes.</p>
+    </li>
+    <li class="step">
+      <h3>Check the dot on each chip</h3>
+      <p>Each chip at the top is one source, meaning a file or list the tool reads. Look at its dot:</p>
+      <ul>
+        <li><b>Green:</b> read with no trouble.</li>
+        <li><b>Amber:</b> read, but look at the word next to the name. The numbers still show.</li>
+        <li><b>Red:</b> can't be used. Fix it first. See <a href="#fix">Fix a red chip</a>.</li>
+        <li><b>Grey:</b> not read, such as <b>no report yet</b> or <b>waiting</b>.</li>
+      </ul>
+      <figure>
+        <a href="guide-img/9-sources.webp" target="_blank" rel="noopener"><img src="guide-img/9-sources.webp" width="1016" height="227" loading="lazy" alt="The top of the Shalam Tool: Refresh marked 1, green chips for each source, the ATS chip marked 2 and the Sales sheet chip marked 3"></a>
+      </figure>
+      <p>The <b>ATS</b> chip <span class="m">2</span> should show the day you saved the report. The <b>Sales sheet</b> chip <span class="m">3</span> is about the saved files. See <a href="#files">Get the two files</a>.</p>
+      <p>Hold your mouse on a chip to read more. Click a chip to open its file.</p>
+    </li>
+    <li class="step">
+      <h3>Read the line beside the tool's name</h3>
+      <p>It says <b>All sources loaded</b> when every source was read. <b>Unmatched</b> beside it counts units on the <a href="Guide_8_Glossary.html#Container%20Tracking%20Sheet" target="_blank" rel="noopener">Container Tracking Sheet</a> with no <a href="Guide_8_Glossary.html#Master%20Sheet%20Live" target="_blank" rel="noopener">Master Sheet Live</a> line. Amber means there are some. They're listed on the <b>Problems</b> tab.</p>
+    </li>
+  </ol>
+
+  <h2 id="sell">See what you can sell</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Read the tiles</h3>
+      <p>In the Shalam Tool, click the <b>Available to sell</b> tab. The tiles add up the styles shown below them.</p>
+      <figure>
+        <a href="guide-img/9-available-tiles.webp" target="_blank" rel="noopener"><img src="guide-img/9-available-tiles.webp" width="990" height="152" loading="lazy" alt="The four tabs above five tiles: Available now, Arriving, Available from China, Total available and Oversold styles"></a>
+      </figure>
+      <ul>
+        <li><b>Available now:</b> in the warehouse, after customer orders.</li>
+        <li><b>Arriving:</b> on its way here, after customer orders.</li>
+        <li><b>Available from China:</b> still in China, after customer orders. A pull date is the day a buyer can have goods from China.</li>
+        <li><b>Total available:</b> those three added up.</li>
+        <li><b>Oversold styles:</b> styles with more customer orders than their stock and all goods coming.</li>
+      </ul>
+      <p>Click <b>Arriving</b>, <b>Available from China</b> or <b>Total available</b> to see every lot behind it. A lot is one batch of goods with one date.</p>
+    </li>
+    <li class="step">
+      <h3>Find a style</h3>
+      <p>Type a style, UPC or description in the search box <span class="m">1</span>. Or use <b>All factories</b> <span class="m">2</span> or <b>All categories</b> <span class="m">3</span>.</p>
+      <figure>
+        <a href="guide-img/9-filters.webp" target="_blank" rel="noopener"><img src="guide-img/9-filters.webp" width="805" height="61" loading="lazy" alt="The filter bar: the search box marked 1, the All factories list marked 2, the All categories list marked 3, and the box Only styles with something available"></a>
+      </figure>
+      <p>Tick <b>Only styles with something available</b> to hide the rest. <b>Clear filters</b> shows up when a filter is on. The same filters stay on when you move to <b>Where it is</b> and <b>Pull from China</b>. Click a column name to sort by it.</p>
+    </li>
+    <li class="step">
+      <h3>Read the style's row</h3>
+      <p><b>Available now</b> <span class="m">1</span> is what you can offer today. It's <b>In warehouse</b> minus <b>Customer orders</b>. Blank means none. Scroll the table right for more columns.</p>
+      <figure>
+        <a href="guide-img/9-available-table.webp" target="_blank" rel="noopener"><img src="guide-img/9-available-table.webp" width="785" height="477" loading="lazy" alt="The Available to sell table up to the Available now column, marked 1, with the style SAMPLE-1003 marked 2 and a red oversold 240 tag on SAMPLE-1005"></a>
+      </figure>
+      <p>A red tag such as <b>oversold 240</b> means customer orders are 240 units more than the stock and every lot coming.</p>
+      <div class="warn"><b>Careful.</b> Two pairs of columns further right are swapped today. <ul class="plain"><li>Under <b>Arriving</b> and <b>First arrival</b> are really goods from China and their pull dates.</li><li>Under <b>Available from China</b> and <b>First pull date</b> are really arriving goods and their <a href="Guide_8_Glossary.html#ETA" target="_blank" rel="noopener">ETAs</a>.</li></ul> The tiles and the panel in the next step are right, so check there. These four columns also look out of order when you sort them, because sorting goes by the column's name.</div>
+    </li>
+    <li class="step">
+      <h3>Click a number or a style name to see its lots</h3>
+      <p>Click any blue number, or a style name <span class="m">2</span> in the picture above. A panel called <b>What can be sold</b> opens.</p>
+      <figure>
+        <a href="guide-img/9-what-can-be-sold.webp" target="_blank" rel="noopener"><img src="guide-img/9-what-can-be-sold.webp" width="1016" height="368" loading="lazy" alt="The What can be sold panel for SAMPLE-1003: three lots with their status, PO, units, available units and date, and a box explaining the stock"></a>
+      </figure>
+      <p>Each line is one lot. <b>Taken by orders</b> is what customer orders took. <b>Available</b> is what's left. <b>Available from</b> is the date a buyer can have it, with the reason under it. The box at the bottom explains the stock.</p>
+      <p>To close the panel, click <b>Close</b> or press Esc.</p>
+    </li>
+  </ol>
+
+  <h2 id="where">See where the goods are</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click the Where it is tab in the Shalam Tool</h3>
+      <p>Each row is a style. After <b>Description</b>, <b>Category</b> and <b>Factory</b> come <b>On hand</b> and one column per stage, from <b>No CRD</b> to <b>At port</b> (<a href="Guide_8_Glossary.html#CRD" target="_blank" rel="noopener">CRD</a> is the cargo ready date). This picture is scrolled right past the first three. The tiles add up the stages. <b>On hand</b> is what's in the warehouse, before customer orders.</p>
+      <figure>
+        <a href="guide-img/9-where-it-is.webp" target="_blank" rel="noopener"><img src="guide-img/9-where-it-is.webp" width="990" height="664" loading="lazy" alt="The Where it is tab: tiles such as In China and On the water, the All stages list marked 1, and a table of styles by stage with a number under On the water marked 2"></a>
+      </figure>
+      <p>To see one stage, pick it in <b>All stages</b> <span class="m">1</span>. <a href="#stages">Stages on Where it is</a>, under Reference at the bottom of this guide, lists them.</p>
+    </li>
+    <li class="step">
+      <h3>Click a number to see what's behind it</h3>
+      <p>Click any blue number <span class="m">2</span> in the picture above. A panel called <b>Behind this number</b> opens. Click a style name to see all its lines.</p>
+      <figure>
+        <a href="guide-img/9-behind-this-number.webp" target="_blank" rel="noopener"><img src="guide-img/9-behind-this-number.webp" width="1016" height="212" loading="lazy" alt="The Behind this number panel for SAMPLE-1008 On the water: one line with its UPC, PO, customer, units, cases, CRD and round, each with the file it came from"></a>
+      </figure>
+      <p>The small words under a value name the file it came from. Scroll right for <b>Containers</b>, <b>ETD</b>, <b>ETA</b>, <b>Stage</b>, <b>Flags</b> and <b>From</b>.</p>
+    </li>
+  </ol>
+
+  <h2 id="pull">Check what can be pulled from China</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click the Pull from China tab in the Shalam Tool</h3>
+      <p>Shalam Sales has a tab with the same name. These steps are for the one in the Shalam Tool.</p>
+      <p>It has one line for each open PO line, meaning one that isn't marked shipped yet. The number on the tab counts them. Scroll the table right to reach the dates, as in this picture.</p>
+      <figure>
+        <a href="guide-img/9-pull-from-china.webp" target="_blank" rel="noopener"><img src="guide-img/9-pull-from-china.webp" width="990" height="604" loading="lazy" alt="The Pull from China tab scrolled right, with PO, style, ETD and ETA, the Pull-from date column marked 1 and Available after orders marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Read the dates and what's left</h3>
+      <p>The numbers are in the picture above.</p>
+      <ul>
+        <li><b>Pull-from date</b> <span class="m">1</span>: when a buyer can have the goods. The small words give the rule, using the <a href="Guide_8_Glossary.html#ETD" target="_blank" rel="noopener">ETD</a> or <a href="Guide_8_Glossary.html#CRD" target="_blank" rel="noopener">CRD</a>. Goods that have sailed show their ETA.</li>
+        <li><b>now:</b> that date has passed. These goods aren't on the Pull from China file.</li>
+        <li><b>about:</b> an estimate, from the order date.</li>
+        <li><b>Sold:</b> already sold, as a China Pickup or straight to the customer. Never available to sell.</li>
+        <li><b>Available after orders</b> <span class="m">2</span>: units left to sell. Customer orders the warehouse stock can't cover come off these goods, earliest first. <b>all taken</b> means orders took them all. <b>on the ATS report</b> means the report already counts them.</li>
+      </ul>
+    </li>
+    <li class="step">
+      <h3>Click a number under Units for the details</h3>
+      <p>Scroll the table back to <b>Units</b> and click the number. The <b>Behind this number</b> panel opens for that line.</p>
+    </li>
+  </ol>
+
+  <h2 id="files">Get the two files</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click a download button</h3>
+      <p>In the Shalam Tool, the buttons are in the filter bar on the <b>Available to sell</b> tab.</p>
+      <figure style="max-width:366px">
+        <a href="guide-img/9-download-buttons.webp" target="_blank" rel="noopener"><img src="guide-img/9-download-buttons.webp" width="366" height="54" loading="lazy" alt="The blue On hand ATS button marked 1 and the orange Pull from China sheet button marked 2"></a>
+      </figure>
+      <ul>
+        <li><b>On hand ATS</b> <span class="m">1</span>, blue: what's on hand and in transit.</li>
+        <li><b>Pull from China sheet</b> <span class="m">2</span>, orange: our goods in China that aren't sold yet, by pull date.</li>
+      </ul>
+      <p>A message says when the file is ready, such as <b>On hand ATS downloaded: 11 styles, 11 photos.</b> Your browser saves it as On hand ATS.xlsx or Pull from China.xlsx.</p>
+            <p>Is a button pale, and nothing happens when you click it? No file can be made right now. Hold your mouse on it to read why.</p>
+    </li>
+    <li class="step">
+      <h3>Check the Sales sheet chip</h3>
+      <p>Once saving is set up, the tool saves both files into Shalam Sales by itself after a clean load. A clean load means every source was read with no red, the report is 8 days old or less, and the <b>Problems</b> tab says <b>Every unit adds up</b>. It only does this while someone has the tool open. The chip <span class="m">1</span> shows how it went.</p>
+      <figure style="max-width:360px">
+        <a href="guide-img/9-sales-chip.webp" target="_blank" rel="noopener"><img src="guide-img/9-sales-chip.webp" width="360" height="69" loading="lazy" alt="The Sales sheet chip marked 1, with a green dot. It says saved, with the date and time, and counts 11 styles, 11 photos and Pull from China 7 rows"></a>
+        <figcaption>This picture shows saving switched on. Today the chip may say saving off.</figcaption>
+      </figure>
+      <ul>
+        <li><b>saved</b> or <b>up to date:</b> both files are in Shalam Sales.</li>
+        <li><b>not saved:</b> the words under it say why. The last good files stay in place.</li>
+        <li><b>saving off:</b> saving isn't set up. Use the download buttons.</li>
+      </ul>
+      <figure style="max-width:360px">
+        <a href="guide-img/9-sales-chip-off.webp" target="_blank" rel="noopener"><img src="guide-img/9-sales-chip-off.webp" width="360" height="69" loading="lazy" alt="The Sales sheet chip marked 1, with a grey dot. It says saving off, and under that the Entra step isn't done"></a>
+        <figcaption>The same chip when saving isn't set up.</figcaption>
+      </figure>
+    </li>
+  </ol>
+
+  <div class="note"><b>Good to know.</b> Sales uses these files to offer goods to buyers. Filters on the page don't change a file. Each row has a photo when there is one. A file has no factory, customer, PO or person's name.</div>
+
+  <h2 id="offer">Offer goods from Shalam Sales</h2>
+  <p>Shalam Sales is the page for salespeople. It shows the same two files, with their photos. It only reads, so nothing you do there changes the files. It needs saving to be switched on (see the yellow Draft note at the top). The pictures after step 1 show it with both files saved.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open Shalam Sales and sign in</h3>
+      <p>Click <b>Open Shalam Sales</b> at the top of this guide, then <b>Sign in</b> with your Metro1 Microsoft account. If it says <b>On hand ATS can't be shown</b>, read the line under it:</p>
+      <ul>
+        <li><b>Your account can't open Shalam Sales tool:</b> ask Saul for access.</li>
+        <li><b>On hand ATS hasn't been saved into Shalam Sales tool yet:</b> the two files aren't there. Use the download buttons in the Shalam Tool (see <a href="#files">Get the two files</a>), or ask Saul.</li>
+      </ul>
+      <figure>
+        <a href="guide-img/9-sales-not-saved.webp" target="_blank" rel="noopener"><img src="guide-img/9-sales-not-saved.webp" width="800" height="230" loading="lazy" alt="Shalam Sales with nothing saved: the heading On hand ATS can't be shown and, under it, On hand ATS hasn't been saved into Shalam Sales tool yet. There are no filters and no download button"></a>
+      </figure>
+      </li>
+    <li class="step">
+      <h3>Check when the files were saved</h3>
+      <p>The line beside the page's name says when each file was saved. If it adds <b>not saved since</b>, the file is more than a day old and the numbers may be out of date. Tell Saul.</p>
+      <p>The page looks for new files every 5 minutes, or when you click <b>Refresh</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Read the On hand ATS tab</h3>
+      <p><b>On hand</b> is ready now. <b>In transit</b> is on its way, and <b>Available from</b> says when. <b>Total</b> adds them up. <b>Master/Inner</b> is the pack size, such as 48/12. See the <a href="Guide_8_Glossary.html" target="_blank" rel="noopener">Glossary</a>.</p>
+      <figure>
+        <a href="guide-img/9-sales-on-hand.webp" target="_blank" rel="noopener"><img src="guide-img/9-sales-on-hand.webp" width="1076" height="634" loading="lazy" alt="Shalam Sales on the On hand ATS tab: rows with photos, the search box marked 1, the On hand and in transit list marked 2 and Available by marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Narrow it down to what the buyer wants</h3>
+      <p>The numbers are in the picture above.</p>
+      <ul>
+        <li>Type in the search box <span class="m">1</span>, or use the <b>All brands</b>, <b>All categories</b> and <b>All sub categories</b> lists.</li>
+        <li>Use <b>On hand and in transit</b> <span class="m">2</span> to show only one of the two.</li>
+        <li>Pick a date in <b>Available by</b> <span class="m">3</span> to see only what a buyer can have by then.</li>
+      </ul>
+    </li>
+    <li class="step">
+      <h3>Check the Pull from China tab</h3>
+      <p>Click <b>Pull from China</b> <span class="m">1</span>. It lists goods still in China that aren't sold, with the date they can be pulled. <b>about</b> in front of a date means it's an estimate.</p>
+      <figure>
+        <a href="guide-img/9-sales-pull.webp" target="_blank" rel="noopener"><img src="guide-img/9-sales-pull.webp" width="1050" height="558" loading="lazy" alt="Shalam Sales on the Pull from China tab, marked 1, with units and a Pull from date on each row, one of them about 12/31/2026"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Download what you see</h3>
+      <p>Click <b>Download On hand ATS</b> <span class="m">2</span>, or <b>Download Pull from China</b> on the other tab. The file holds exactly what's on the screen, with its photos. If a filter is on, the button says <b>(filtered)</b>. <b>Clear filters</b> <span class="m">1</span> takes the filters off.</p>
+      <figure>
+        <a href="guide-img/9-sales-filtered.webp" target="_blank" rel="noopener"><img src="guide-img/9-sales-filtered.webp" width="1052" height="332" loading="lazy" alt="A search for SAMPLE-1008 showing two lines. Clear filters is marked 1, Download On hand ATS (filtered) is marked 2 and a Reserved note is marked 3"></a>
+      </figure>
+      <p>A style can have more than one line, one for each pack. Goods on a PO held for a customer get their own line, with <b>Reserved</b> and the PO's ending under <b>Notes</b> <span class="m">3</span>.</p>
+    </li>
+  </ol>
+
+  <h2 id="fix">Fix a red chip</h2>
+  <p>This fix and the next two are in the Shalam Tool. Go back to it first if you're on Shalam Sales. An amber <b>ATS</b> chip has its own steps: <a href="#old-report">Replace an old ATS report</a>.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>See what's wrong</h3>
+      <p>A red chip means that source can't be used. Where the page says why depends on the chip.</p>
+      <p><b>PO Book group or Container Tracking</b> <span class="m">1</span>: the banner under the chips says what's wrong. The stage numbers and <b>Available to sell</b> stop until it's fixed.</p>
+      <figure>
+        <a href="guide-img/9-banner-red.webp" target="_blank" rel="noopener"><img src="guide-img/9-banner-red.webp" width="1016" height="300" loading="lazy" alt="A red Container Tracking chip marked 1 that says not found, an amber Sales sheet chip that says not saved, and a red banner saying the stage numbers are not loaded"></a>
+      </figure>
+      <p><b>Forwarder or Drayage:</b> an amber banner shows under the chips. The numbers still show, using the dates on the Container Tracking Sheet.</p>
+      <p><b>ATS</b> <span class="m">1</span>: the banner <span class="m">2</span> is under the tabs on <b>Available to sell</b>. The other tabs don't show it.</p>
+      <figure>
+        <a href="guide-img/9-banner-ats-red.webp" target="_blank" rel="noopener"><img src="guide-img/9-banner-ats-red.webp" width="1016" height="338" loading="lazy" alt="A red ATS chip marked 1 that says no access and, under the tabs on Available to sell, a red banner marked 2 saying the ATS report couldn't be used"></a>
+      </figure>
+      <p><b>The style list chip (the one after ATS) or Sales sheet:</b> there's no banner. Hold your mouse on the chip, or read <b>Message</b> <span class="m">1</span> on the <b>Problems</b> tab. If you can't see it, scroll the <b>Sources</b> table right.</p>
+      <figure>
+        <a href="guide-img/9-problems-message.webp" target="_blank" rel="noopener"><img src="guide-img/9-problems-message.webp" width="990" height="333" loading="lazy" alt="The Sources table on the Problems tab, scrolled right. The style list says no access, and its Message, marked 1, says your account can't open it and that Saul has been emailed"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Look up the word on the chip</h3>
+      <p>Open <a href="#chip-words">Words on a source's chip, and what to do</a> under Reference. Find the word on the red chip and do what it says. For the <b>Sales sheet</b> chip, use <a href="#sales-chip-words">Words on the Sales sheet chip</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Click Refresh</h3>
+      <p>It's at the top right. The chip should turn green.</p>
+    </li>
+  </ol>
+
+  <div class="note"><b>Good to know.</b> When a source fails, the tool emails Saul from the mailbox of whoever has the page open. It sends one email per source per day from each browser, and the page says so, in the banner or when you hold your mouse on the chip. If the page says the email failed, tell Saul yourself.</div>
+
+  <h2 id="old-report">Replace an old ATS report</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Check the ATS chip</h3>
+      <p>In the Shalam Tool, the <b>ATS</b> chip <span class="m">1</span> turns amber when the report is more than 8 days old. Once saving is set up, the <b>Sales sheet</b> chip <span class="m">2</span> then says <b>not saved</b>.</p>
+      <figure>
+        <a href="guide-img/9-banner-amber.webp" target="_blank" rel="noopener"><img src="guide-img/9-banner-amber.webp" width="1016" height="332" loading="lazy" alt="An amber ATS chip marked 1 that says 12 days old, a Sales sheet chip marked 2 that says not saved with a Save anyway button, and an amber banner under the tabs"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Save a new report in its folder</h3>
+      <p>Do it the same way as in <a href="#load">Load the new report</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Click Refresh</h3>
+      <p>It's at the top right. The <b>ATS</b> chip should turn green.</p>
+    </li>
+  </ol>
+
+  <div class="warn"><b>Careful.</b> Ask Saul before you click <b>Save anyway</b>. It saves the files even though the load wasn't clean, so salespeople may get out-of-date numbers.</div>
+
+  <h2 id="problems">Work through the Problems tab</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the Problems tab</h3>
+      <p>Click <b>Problems</b> in the Shalam Tool. The number on the tab counts the open issues. The top line should be green and say <b>Every unit adds up</b>. If it's red and says <b>Units don't add up</b>, that's a bug in the tool, not in the files. Tell Saul.</p>
+      <figure>
+        <a href="guide-img/9-problems-sources.webp" target="_blank" rel="noopener"><img src="guide-img/9-problems-sources.webp" width="1046" height="424" loading="lazy" alt="The Problems tab: a green line saying every unit adds up, then the Sources table with each file, when it was saved, who saved it, counts and status"></a>
+      </figure>
+      <p>The <b>Sources</b> table shows each file, who saved it last, and its <b>Status</b>. Scroll right to read the <b>Message</b> for anything that isn't ok.</p>
+    </li>
+    <li class="step">
+      <h3>Work through the issues</h3>
+      <p>Each line says what's wrong and where. The <b>Message</b> often says what to correct. Logistics keeps the Container Tracking Sheet (see <a href="Guide_7_Container_Logistics.html#fix">Fix what the tools flag</a>). Production keeps the PO Status Tracker (see <a href="Guide_5_Production_PO.html#issues">Clear an issue</a>). Then click <b>Refresh</b>.</p>
+      <figure>
+        <a href="guide-img/9-problems-issues.webp" target="_blank" rel="noopener"><img src="guide-img/9-problems-issues.webp" width="1046" height="524" loading="lazy" alt="Issues found in the files: the Filter issues box marked 1, and lines such as a near-miss, ready dates that disagree, an oversold style and a style with no picture. The check box at the start of the first line is marked 2"></a>
+      </figure>
+      <ul>
+        <li>Type in the <b>Filter issues</b> box <span class="m">1</span> to find one.</li>
+        <li>Tick the box at the start of a line <span class="m">2</span> when you've checked it. It hides until its message changes.</li>
+        <li>Your ticks stay in your browser only. <b>Show checked</b> brings them back.</li>
+        <li>A <b>new</b> tag marks what's new since you last looked.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="note"><b>Next in the Sales flow:</b> <a href="Guide_3_Order_Placement.html">Order Placement</a>.</div>
+
+  <h2 id="rules">Rules to remember</h2>
+  <ul class="plain">
+    <li>Anything red needs fixing first.</li>
+    <li>In the On hand ATS file, in-transit goods count as available at <a href="Guide_8_Glossary.html#ETA" target="_blank" rel="noopener">ETA</a> + 7 days. The <b>Available to sell</b> tab dates them by the ETA itself.</li>
+    <li>Pull date: 10 days before ETD. With no ETD, 5 days before CRD. With no CRD, about 75 days after the order date. Goods whose pull date has passed stay off the Pull from China file, though the Shalam Tool still shows those goods as <b>now</b> and counts them as available.</li>
+    <li>Oversold items show nothing under on hand on the file. A blank means none.</li>
+    <li>Styles written differently stay separate items, so a typo can split one style in two. SAMPLE-1011 and SAMPLE-1011-F in the pictures are two items.</li>
+    <li>Goods on a PO held for a customer show as <b>Reserved</b>, with the PO's ending.</li>
+    <li>Sales files only save on a clean load: every source read with no red, report 8 days old or less, and the <b>Problems</b> tab says <b>Every unit adds up</b>. Otherwise the last good file stays in place.</li>
+  </ul>
+
+  <div class="note"><b>Good to know.</b> The On hand ATS file uses the ATS report's own figure for what's on hand. The <b>Available to sell</b> tab works it out itself and leaves out customer orders that ship from China with goods sold there. So the file and the tab can differ for some styles. Customer orders beyond the stock also come off differently. In the files they come off in-transit goods first. On the tab they come off the earliest date first.</div>
+
+  <h2 id="reference">Reference</h2>
+  <details>
+    <summary>The four tabs</summary>
+    <div class="scroll"><table>
+      <tr><th>Tab</th><th>What it shows</th></tr>
+      <tr><td class="k">Available to sell</td><td>Stock that can be offered now, and goods coming, after customer orders</td></tr>
+      <tr><td class="k">Where it is</td><td>Goods by stage</td></tr>
+      <tr><td class="k">Pull from China</td><td>Each open PO line, with its pull date and what's left after orders</td></tr>
+      <tr><td class="k">Problems</td><td>Items that need a person to look at them</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>The chips</summary>
+    <div class="scroll"><table>
+      <tr><th>Chip</th><th>What it is</th><th>If there's trouble</th></tr>
+      <tr><td class="k">Master Sheet Live, PO Status Tracker, PO Book lines</td><td>The <b>PO Book</b> group, read together as the PO Book reads them</td><td>If one fails, the stage numbers stop</td></tr>
+      <tr><td class="k">Container Tracking</td><td>The sheet with its Booking, Loaded, Open and Complete tabs</td><td>If it's red, the stage numbers stop</td></tr>
+      <tr><td class="k">Forwarder</td><td>The newest forwarder's report in its folder</td><td>Amber from 2 business days old. Not used after 7 days: sailings and rolled vessels can't be seen</td></tr>
+      <tr><td class="k">Drayage</td><td>The newest drayage report (trucking from the port) in its folder</td><td>Amber from 2 business days old. Not used after 7 days: pickups and deliveries can't be seen</td></tr>
+      <tr><td class="k">ATS</td><td>The newest weekly report in its folder</td><td>Amber after 8 days. After 10 days, Saul is emailed too. With no usable report, customer orders aren't taken off the goods from China</td></tr>
+      <tr><td class="k">Style list (the chip after ATS)</td><td>The list of styles: UPCs, descriptions, categories, brands. On screen this chip has the list's own name</td><td>If it's red, styles can't be matched to their UPCs</td></tr>
+      <tr><td class="k">Sales sheet</td><td>The two files saved into Shalam Sales</td><td>See the next list</td></tr>
+    </table></div>
+    <p>A chip's second line shows when the file was saved, then how many rows were read and counted. <b>Sources and their counts</b>, at the bottom of the <b>Available to sell</b> and <b>Where it is</b> tabs, gives more detail.</p>
+  </details>
+  <details>
+    <summary>Words on the Sales sheet chip</summary>
+    <div class="scroll" id="sales-chip-words"><table>
+      <tr><th>Word</th><th>What it means</th></tr>
+      <tr><td class="k">waiting</td><td>The tool is still reading the sources</td></tr>
+      <tr><td class="k">saved</td><td>The files were saved at that time</td></tr>
+      <tr><td class="k">up to date</td><td>Nothing has changed since the files were last saved</td></tr>
+      <tr><td class="k">checking… or saving…</td><td>Working on it. <b>Cancel</b> stops it, and the file there stays as it was</td></tr>
+      <tr><td class="k">not saved</td><td>The words under it say why, such as <b>your account can't save to it</b>. <b>Save anyway</b> or <b>Save now</b> may show beside it. Red means saving failed, and Saul is emailed</td></tr>
+      <tr><td class="k">saving off</td><td>Saving isn't set up. It may say <b>the Entra step isn't done</b>, which is a setup step for Saul. The download buttons still work</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Words on a source's chip, and what to do</summary>
+    <p id="chip-words">Saul to confirm who makes these fixes (see the yellow Draft note at the top). If a file isn't yours to change, tell Saul.</p>
+    <div class="scroll"><table>
+      <tr><th>Word</th><th>What it means</th><th>What to do</th></tr>
+      <tr><td class="k">waiting</td><td>Not read yet. Master Sheet Live also waits when the PO Status Tracker didn't load</td><td>Wait for the load to finish. If Master Sheet Live stays on it, fix the PO Status Tracker chip first</td></tr>
+      <tr><td class="k">no report yet</td><td>No report in its folder</td><td>Save it there</td></tr>
+      <tr><td class="k">12 days old, 3 business days old</td><td>The file is getting old</td><td>Save a new one, or check the report is still arriving</td></tr>
+      <tr><td class="k">date in the future</td><td>The date in the file name is after today</td><td>Check the date in the file name</td></tr>
+      <tr><td class="k">not found</td><td>It was moved, renamed or deleted</td><td>Put it back, or tell Saul</td></tr>
+      <tr><td class="k">no access</td><td>Your account can't open it</td><td>Ask Saul for access</td></tr>
+      <tr><td class="k">link refused, can't read the location</td><td>SharePoint refused the file's link, or the tool has the wrong location for it</td><td>Tell Saul</td></tr>
+      <tr><td class="k">can't read, can't read the list</td><td>SharePoint gave an error while reading it</td><td>Click <b>Refresh</b>. If it stays, tell Saul</td></tr>
+      <tr><td class="k">PO Book rules changed</td><td>The PO Book was updated, and this tool still reads with the older rules</td><td>Tell Saul</td></tr>
+      <tr><td class="k">missing column, missing tab</td><td>A column or tab is gone or renamed</td><td>Put it back with the name shown</td></tr>
+      <tr><td class="k">empty</td><td>It has no rows</td><td>Open it and check its rows are still there</td></tr>
+      <tr><td class="k">can't read the file</td><td>It won't open</td><td>Check it opens in Excel. Save it again if it's damaged</td></tr>
+      <tr><td class="k">doesn't add up</td><td>The ATS report's rows don't match its Grand Total row</td><td>Check the rows, then save a fresh copy from the ERP into the folder</td></tr>
+      <tr><td class="k">older file used</td><td>The newest file couldn't be read</td><td>Check the newest file</td></tr>
+      <tr><td class="k">not used</td><td>The newest Forwarder or Drayage file is more than 7 days old</td><td>Check the report is still arriving</td></tr>
+      <tr><td class="k">can't reach</td><td>The page couldn't reach SharePoint</td><td>Check your connection. The page tries again in a few minutes</td></tr>
+      <tr><td class="k">not read (cancelled)</td><td>Loading was cancelled</td><td>Click <b>Refresh</b></td></tr>
+      <tr><td class="k">not set, or a bug banner</td><td>The location is blank, or a banner says it's a bug in the Shalam Tool</td><td>Tell Saul</td></tr>
+      <tr><td class="k">Stopped: nothing is loaded, or Couldn't load the sources</td><td>A red banner about the sign-in or the connection</td><td>Click <b>Sign in again</b> if it shows. If this keeps happening, tell Saul</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Available to sell: the columns</summary>
+    <p>Listed in the order of their names on screen. See the <b>Careful</b> note above about the two swapped pairs.</p>
+    <div class="scroll"><table>
+      <tr><th>Column</th><th>What it is</th></tr>
+      <tr><td class="k">Style</td><td>The style with its UPC and photo, and any tag</td></tr>
+      <tr><td class="k">Description</td><td>The style's description</td></tr>
+      <tr><td class="k">Case pack</td><td>Units in a master carton. <b>mixed</b> when its goods come in different ones</td></tr>
+      <tr><td class="k">In warehouse</td><td>In WH on the ATS report: physical stock</td></tr>
+      <tr><td class="k">Customer orders</td><td>Total Customer Orders on the ATS report: sold, not shipped yet</td></tr>
+      <tr><td class="k">Available now</td><td>In warehouse minus customer orders, when above zero. Orders that ship from China with goods sold there aren't taken off. Orders beyond the stock come off the earliest goods from China</td></tr>
+      <tr><td class="k">Arriving</td><td>In Trans (in transit) on the ATS report, plus our goods on the water or at port that aren't on it yet, after customer orders. The line under the name says where it comes from</td></tr>
+      <tr><td class="k">First arrival</td><td>The earliest ETA of what's arriving. <b>ETA passed</b> shows when that date has gone by</td></tr>
+      <tr><td class="k">Available from China</td><td>Still in China (in production, ready, booked, loaded), after customer orders</td></tr>
+      <tr><td class="k">First pull date</td><td>The first date goods in China can be pulled. <b>now</b> means that date has passed, and it says since when</td></tr>
+      <tr><td class="k">Total available</td><td>Available now + arriving + from China</td></tr>
+      <tr><td class="k">Sold (ships from China)</td><td>China Pickup POs and goods going straight to the customer. Never available to sell. Click its number for <b>Behind this number</b></td></tr>
+    </table></div>
+    <p>Tags on a style: <b>oversold</b>, <b>check orders</b>, <b>no ETA</b>, <b>check</b>, <b>not on ATS report</b>, <b>stock can't be read</b>. Hold your mouse on a tag to read why it's there.</p>
+  </details>
+  <details>
+    <summary>Stages on Where it is</summary>
+    <div class="scroll" id="stages"><table>
+      <tr><th>Stage</th><th>What it means</th></tr>
+      <tr><td class="k">No CRD</td><td>An open PO line with no CRD yet</td></tr>
+      <tr><td class="k">In production</td><td>Its CRD is today or later</td></tr>
+      <tr><td class="k">Ready</td><td>Its CRD has passed</td></tr>
+      <tr><td class="k">Booked</td><td>On the Container Tracking Sheet's Booking tab, not sailed</td></tr>
+      <tr><td class="k">Loaded</td><td>On the Container Tracking Sheet's Loaded tab, not sailed</td></tr>
+      <tr><td class="k">In China</td><td>No CRD + In production + Ready + Booked + Loaded</td></tr>
+      <tr><td class="k">On the water</td><td>Sailed, not arrived</td></tr>
+      <tr><td class="k">At port</td><td>Arrived or picked up, not delivered</td></tr>
+      <tr><td class="k">Incoming</td><td>In China + On the water + At port</td></tr>
+      <tr><td class="k">Sold, ships from China</td><td>Already sold: China Pickup POs and goods going straight to the customer</td></tr>
+      <tr><td class="k">Unmatched</td><td>On the Container Tracking Sheet with no Master Sheet Live line. Never in the stage numbers</td></tr>
+    </table></div>
+    <p><b>Cases incoming</b> is Incoming in cases. <b>Next ETA</b> is the earliest ETA of goods on the water or at port.</p>
+    <p><b>Landed</b> goods have no column. They come back through the ATS report as stock. To list them, use <b>All stages</b>. It has them under <b>Not counted (side panel and Problems)</b>, with <b>Short-shipped</b>, <b>Shipped, not on Container Tracking</b>, <b>Repeat of a shipped line</b>, <b>Container Tracking holds more</b>, <b>Planned, not booked yet</b>, <b>Ignored section</b> and <b>Older than the PO Status Tracker</b>.</p>
+    <p><b>All PO types</b> offers <b>LA</b>, <b>China Pickup</b> and <b>Unknown</b>.</p>
+  </details>
+  <details>
+    <summary>What's in the two files</summary>
+    <p>On hand ATS.xlsx has the 13 columns below. Scroll the table right to see them all. Row 1 is the title and row 2 is the headers.</p>
+    <figure>
+      <div class="sheet"><table>
+        <tr><th>Photo</th><th>Style</th><th>UPC</th><th>Description</th><th>Brand</th><th>Category</th><th>Sub category</th><th>Master/Inner</th><th>Available on hand (units)</th><th>Available in transit (units)</th><th>In transit available from</th><th>Total available (units)</th><th>Notes</th></tr>
+        <tr><td>(photo)</td><td>SAMPLE-1001</td><td>000000110010</td><td>Sample Rose Body Mist</td><td>Sample Beauty</td><td>Body Care</td><td>Body Mist</td><td>48/12</td><td>3,600</td><td></td><td></td><td>3,600</td><td></td></tr>
+        <tr><td>(photo)</td><td>SAMPLE-1008</td><td>000000110080</td><td>Sample Mint Foot Scrub</td><td>Sample Beauty</td><td>Bath</td><td>Scrub</td><td>36/6</td><td>840</td><td></td><td></td><td>840</td><td></td></tr>
+        <tr><td>(photo)</td><td>SAMPLE-1008</td><td>000000110080</td><td>Sample Mint Foot Scrub</td><td>Sample Beauty</td><td>Bath</td><td>Scrub</td><td>36/6</td><td></td><td>720</td><td>12/2/2026</td><td>720</td><td>Reserved -HLD</td></tr>
+      </table></div>
+      <figcaption>Drawn layout with sample data, not a screenshot.</figcaption>
+    </figure>
+    <div><ul class="plain">
+      <li><b>On hand ATS.xlsx</b> has a first tab with every row, a tab per category, then <b>By date</b>. By date has Style, Description, Category, Master/Inner, Available from, Where, Units and Notes.</li>
+      <li><b>Pull from China.xlsx</b> has a first tab with every row, then a tab per category. It has the same first eight columns, then Units, Pull from date and Notes.</li>
+      <li>On hand ATS holds only styles on the ATS report with something available. A style that's oversold beyond what's in transit stays off.</li>
+    </ul></div>
+  </details>
+  <details>
+    <summary>What the ATS report needs</summary>
+    <p>If a file name has no date, the tool uses the day the file was saved.</p>
+    <p>The ERP can also save the report with a picture for each style. The tool uses the pictures from the newest report that has them, even an older one. Other styles use the photos in the Quote Tracker's photo store. If the <b>ATS</b> chip says <b>no report with pictures</b>, the photos all come from that store. Saul to confirm how to turn pictures on, and how often.</p>
+    <div class="scroll"><table>
+      <tr><th>Column</th><th>What the tool does with it</th></tr>
+      <tr><td class="k">Style</td><td>Needed. Rows of one style are added up</td></tr>
+      <tr><td class="k">In WH</td><td>Needed. The stock. The rows must add up to the <b>Grand Total</b> row</td></tr>
+      <tr><td class="k">Total Customer Orders</td><td>Needed. Taken off the stock</td></tr>
+      <tr><td class="k">ATS from in WH</td><td>Used for Available on hand in the files</td></tr>
+      <tr><td class="k">In Trans Qty and ETA Date</td><td>Arriving, one ETA for each quantity</td></tr>
+      <tr><td class="k">Import PO Backlog Qty</td><td>The style's goods the ERP still has in China</td></tr>
+      <tr><td class="k">Style Description, Category, Sub Category</td><td>Shown on the tool and in the files</td></tr>
+    </table></div>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

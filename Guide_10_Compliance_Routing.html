@@ -1,26 +1,445 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Compliance &amp; Routing</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#96690c,#e0a92e);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
-.hero p{font-size:13.5px;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#96690c;font-weight:700}
-ul li::marker{color:#96690c}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#96690c;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fdf6e6}
-td.k{font-weight:600;white-space:nowrap}
-.glance td{background:#fff !important}
-.glance td.k{width:110px;color:#6b7686;font-weight:600}
-.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fdf6e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
-.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
-@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · SALES</div><h1>Compliance &amp; Routing</h1><p>Checking a customer buy against its routing before it ships</p></div><div class="body"><p class="lead">Before goods ship, check the PO and the customer’s routing and distribution instructions against each other. PO Recap does this today for TJX buys.</p><div class="draft"><b>Draft, not yet confirmed.</b> PO Recap covers TJX routing and distribution files only. The steps for other customers, vendor manuals, carrier setup and chargebacks are general practice and need Saul’s review.</div><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Tool</td><td>PO Recap, for TJX buys</td></tr><tr><td class="k">When</td><td>When a new buy and its routing file come in</td></tr><tr><td class="k">You end with</td><td>A checked buy, with every flag cleared or explained</td></tr></table><h2>Steps: TJX buy in PO Recap</h2><ol><li>Click <b>New buy</b> and choose the customer.</li><li>Add the PO files and the distro (routing and distribution) files.</li><li>Click <b>Save buy</b>.</li><li>Open <b>Flags</b> and the <b>Distro</b> card and work through what comes up.</li><li>Fix or explain each flag with the buyer or Production.</li><li>Export the recap.</li></ol><h2>What a flag means</h2><table><tr><th>Flag</th><th>Check</th></tr><tr><td class="k">FOB</td><td>The FOB point differs from the customer’s rule</td></tr><tr><td class="k">Distro</td><td>Distro units don’t match PO units. Hover the red figure for the reason.</td></tr><tr><td class="k">Pack</td><td>The pack is missing from the Master Sheet or doesn’t match it</td></tr><tr><td class="k">Pair</td><td>A reference doesn’t have one PO for each banner</td></tr><tr><td class="k">Cost</td><td>The same style has more than one cost</td></tr><tr><td class="k">Description</td><td>The same style has more than one description</td></tr><tr><td class="k">Twice</td><td>Two POs have the same lines, units, banner and ship window. One may have been sent twice.</td></tr></table><h2>Good to know</h2><div class="note">A newer distro version won’t replace the one in use until you save it.</div><h2>Steps: other customers (draft)</h2><ol><li>Find the customer’s current vendor manual and routing instructions.</li><li>Note the labeling, ticketing, packing and carton requirements.</li><li>Confirm the routing and ship window with the customer.</li><li>Pass the requirements to Production before goods are packed.</li><li>Record any exceptions the customer agrees to, in writing.</li></ol></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Compliance &amp; Routing</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#e0a92e;--deep:#96690c;--tint:#fdf6e6">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · SALES</div>
+  <h1>Compliance &amp; Routing</h1>
+  <p>Check a customer's POs against its routing and distribution files before goods ship.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Tool</b><span>PO Recap, for TJX and Burlington buys</span></div>
+    <div><b>When</b><span>When a new buy and its routing file come in</span></div>
+    <div><b>You end with</b><span>A checked buy, with every flag cleared or explained</span></div>
+  </div>
+  <a class="open-tool" href="https://saulb96.github.io/po-recap/" target="_blank" rel="noopener">Open PO Recap</a>
+
+  <div class="draft">
+    <p><b>Draft.</b> PO Recap checks TJX POs against their distros. For Burlington, it reads POs and ticketing, but not routing or distro files. The <a href="#other">Other customers</a> section is general practice, not from our tools.</p>
+    <details><summary>Saul to confirm 6 things</summary>
+    <ul class="plain">
+      <li>The steps under Other customers, and that they also cover Burlington's routing.</li>
+      <li>How vendor manuals, carrier setup and chargebacks are handled.</li>
+      <li>What happens to the exported file: who gets it, and who ticks the <b>Check</b> boxes.</li>
+      <li>Which flags go to the buyer and which go to Production.</li>
+      <li>Where to record the explanation of a flag, including one that isn't about a single style, such as FOB, PAIR or TWICE.</li>
+      <li>What to do when a Burlington PO asks for tickets, such as who to tell.</li>
+    </ul>
+    </details>
+  </div>
+
+  <p class="sample-note"><b>Jump to:</b> <a href="#check">Check a new TJX buy</a> · <a href="#flags">What each flag means</a> · <a href="#add">Add a late distro or PO</a> · <a href="#several">Export several buys</a> · <a href="#burlington">Check a Burlington buy</a> · <a href="#revised">Add a revised Burlington PO</a> · <a href="#move">Move a PO</a> · <a href="#other">Other customers</a> · <a href="#rules">Rules to remember</a> · <a href="#reference">Reference</a></p>
+
+  <h2 id="check">Check a new TJX buy</h2>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open PO Recap</h3>
+      <p>Click <b>Open PO Recap</b> above. If it asks, click <b>Sign in with Microsoft</b> and use your Metro1 Microsoft account. If it says you don't have access, ask Saul to add you.</p>
+      <p><b>NEW BUY</b> <span class="m">1</span> is at the top. A buy is the POs one customer sent together. Saved buys are under <b>BUYS</b> <span class="m">2</span>, newest first.</p>
+      <figure>
+        <a href="guide-img/10-home.webp" target="_blank" rel="noopener"><img src="guide-img/10-home.webp" width="1000" height="517" loading="lazy" alt="The PO Recap home page. The New buy box is marked 1 and the list of saved buys is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick the customer</h3>
+      <p>Open the <b>CUSTOMER</b> list <span class="m">1</span> in <b>NEW BUY</b>. For a TJX buy, pick the first name on the list. The tool lists TJX under its division name.</p>
+      <p>The list remembers your last pick, so check it's right. The box next to it <span class="m">2</span> stays grey until a customer is picked.</p>
+      <figure>
+        <a href="guide-img/10-customer.webp" target="_blank" rel="noopener"><img src="guide-img/10-customer.webp" width="980" height="146" loading="lazy" alt="The New buy box with a customer picked. The Customer list is marked 1, the drop box 2 and the Pick a folder button 3."></a>
+      </figure>
+      <p class="sample-note">These pictures say TJX. The second store chain (Sample B) and the <a href="Guide_8_Glossary.html#FOB" target="_blank" rel="noopener">FOB</a> rules and terms (Port A, Port B, Term A) are made up too. The tool shows the real ones.</p>
+    </li>
+    <li class="step">
+      <h3>Add the PO files and the distro files</h3>
+      <p>A <a href="Guide_8_Glossary.html#Distro" target="_blank" rel="noopener">distro</a> is the customer's routing and distribution instructions for one PO. It says how many units go to each distribution center (DC).</p>
+      <p>In the picture above, drag the files onto the box <span class="m">2</span>, or click the box to pick them. For a whole folder, click <b>Pick a folder</b> <span class="m">3</span>. You can add PDFs, Excel distros, or saved emails that have them attached.</p>
+      <p>No distro yet? Add the POs now. You can <a href="#add">add the distro later</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Read what PO Recap found</h3>
+      <p>It reads each file, then shows these bars:</p>
+      <ul>
+        <li><span class="m">1</span> Green: what's ready to save.</li>
+        <li><span class="m">2</span> Red: files it refused, and why. A refused file isn't saved. You can <a href="#add">add it later</a>. <a href="#refused">Why a file is refused</a> says what to do.</li>
+        <li><span class="m">3</span> Gold: flags to look at. You can still save.</li>
+        <li>White, if it shows: notes. A file it skipped is named here, not in red. So is a file it read once, or an older version it didn't use.</li>
+      </ul>
+      <p>If nothing can be saved, a red bar says so and you can't click <b>Save buy</b>.</p>
+      <p><b>BUY NAME</b> at the top is filled in with the customer and today's date. Type over it to change it.</p>
+      <figure>
+        <a href="guide-img/10-job-read.webp" target="_blank" rel="noopener"><img src="guide-img/10-job-read.webp" width="970" height="530" loading="lazy" alt="After the files are read: the buy name, a green bar marked 1 saying what's ready to save, a red bar marked 2 with one refused file and the reason, a white bar naming a skipped file, and a gold bar marked 3 listing 10 flags."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Save buy</h3>
+      <p>The table lists each PO it read. Check that every PO you added is listed. If one is missing, look in the red and white bars. Then click <b>Save buy</b> <span class="m">1</span>. The buy opens when it's saved.</p>
+      <p>Nothing is saved before you click. If you open another buy first, you'll have to add the files again. To start over, click <b>Cancel</b>.</p>
+      <figure>
+        <a href="guide-img/10-save-buy.webp" target="_blank" rel="noopener"><img src="guide-img/10-save-buy.webp" width="970" height="232" loading="lazy" alt="A table of four POs with banner, reference, ship window, lines, units, cost and file. The Save buy button under it is marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Look over the figures at the top</h3>
+      <p>The tiles sum up the buy. A ship window runs from the start ship date to the cancel date. <b>DISTROS IN</b> <span class="m">1</span> turns gold when a PO has no distro yet. <b>FOB POINT</b> <span class="m">2</span> turns red when it's flagged. The FOB point is the place, or for Burlington the term, that the PO names for <a href="Guide_8_Glossary.html#FOB" target="_blank" rel="noopener">FOB</a>.</p>
+      <p>Under the tiles are the totals, <b>BY SHIP WINDOW</b> and <b>BY BANNER</b>. A banner is the store chain the PO is for.</p>
+      <figure>
+        <a href="guide-img/10-buy-top.webp" target="_blank" rel="noopener"><img src="guide-img/10-buy-top.webp" width="1090" height="434" loading="lazy" alt="The top of a saved buy: its name, six tiles, and totals by ship window and by banner. The gold Distros in tile is marked 1 and the red FOB point tile is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step" id="flags">
+      <h3>Read the flags</h3>
+      <p>Scroll down. <b>FLAGS</b> is under the totals. It lists what needs a look. The word at the left says what kind of flag it is. This sample buy has every kind. If the buy has no flags, this box isn't there.</p>
+      <figure>
+        <a href="guide-img/10-flags.webp" target="_blank" rel="noopener"><img src="guide-img/10-flags.webp" width="976" height="359" loading="lazy" alt="The Flags card with 11 flags. Each line starts with its kind: Pair, Cost, Description, Twice, FOB, Distro or Pack."></a>
+      </figure>
+      <table>
+        <tr><th>Flag</th><th>What it means</th></tr>
+        <tr><td class="k">FOB</td><td>The <a href="Guide_8_Glossary.html#FOB" target="_blank" rel="noopener">FOB</a> point differs from the customer's rule. The flag says what the PO has and what the rule is.</td></tr>
+        <tr><td class="k">DISTRO</td><td>Something on the distro doesn't match the PO: the units, pack, ship dates, banner or a style. Or a DC's units aren't whole cartons. Hold your mouse on the red figure (don't click) for the reason. An Excel distro is checked for less. See <a href="#distro-step">Check the DISTRO card</a>.</td></tr>
+        <tr><td class="k">PACK</td><td>The case pack (units in a carton) is missing from <a href="Guide_8_Glossary.html#Master%20Sheet%20Live" target="_blank" rel="noopener">Master Sheet Live</a>, our Excel workbook of PO lines, or doesn't match it. Or the style isn't on PO Recap's saved copy of that sheet yet, so it wasn't checked. The flag says which.</td></tr>
+        <tr><td class="k">PAIR</td><td>Each reference number (the <b>REFERENCE</b> column) should have one PO for each banner. This one doesn't. TJX only.</td></tr>
+        <tr><td class="k">COST</td><td>The same style has more than one cost.</td></tr>
+        <tr><td class="k">DESCRIPTION</td><td>The same style has more than one description. Differences in capitals or spacing don't count.</td></tr>
+        <tr><td class="k">TWICE</td><td>Two POs have the same lines, units, banner and ship window. One may have been sent twice.</td></tr>
+      </table>
+    </li>
+    <li class="step">
+      <h3>Check the RECAP table</h3>
+      <p><b>RECAP</b> is under <b>FLAGS</b>. It has a row for each style and a column for each PO. Each ship window has its own color. Click a PO number to open its PDF.</p>
+      <ul>
+        <li><span class="m">1</span> The dot beside a PO number is its distro. Green: it matches. Red: something to look at. Grey: no distro yet.</li>
+        <li><span class="m">2</span> The flag beside a style means that style has a flag. Hold your mouse on it to read it.</li>
+        <li><span class="m">3</span> A red cell means the cost, description or pack needs a look. Hold your mouse on it to see what each PO says.</li>
+      </ul>
+      <figure>
+        <a href="guide-img/10-recap.webp" target="_blank" rel="noopener"><img src="guide-img/10-recap.webp" width="984" height="383" loading="lazy" alt="The Recap table. A red dot beside a PO number is marked 1, a flag beside a style is marked 2, and a red cell showing its hover text with each PO's cost is marked 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Write a note, if you need one</h3>
+      <p>Scroll the table to the right to reach <b>NOTES</b>. Type in the box on that style's row <span class="m">1</span>. It saves as you type and goes on the export.</p>
+      <figure>
+        <a href="guide-img/10-recap-notes.webp" target="_blank" rel="noopener"><img src="guide-img/10-recap-notes.webp" width="956" height="383" loading="lazy" alt="The Recap table scrolled to the right, with a sample note typed in the Notes column, marked 1."></a>
+      </figure>
+    </li>
+    <li class="step" id="distro-step">
+      <h3>Check the DISTRO card</h3>
+      <p>The <b>DISTRO</b> card is the box under <b>RECAP</b>. Each PO with a distro has a line. Click a line to open or close it. A line where the distro and the PO disagree is already open. The last columns show the units going to each DC.</p>
+      <p><b>matches the PO ✓</b> <span class="m">1</span> means the distro agrees with its PO. It doesn't check Master Sheet Live, so a closed line can still hold a red pack. That also shows as a <b>PACK</b> flag.</p>
+      <p>Red cells don't match. Hold your mouse on the red figure <span class="m">2</span> for the reason. A problem with the whole distro, such as its ship dates, shows in a red bar. <b>No distro yet</b> <span class="m">3</span> lists the POs still waiting for one.</p>
+      <figure>
+        <a href="guide-img/10-distro.webp" target="_blank" rel="noopener"><img src="guide-img/10-distro.webp" width="976" height="746" loading="lazy" alt="The Distro card. One PO's line says matches the PO, marked 1. In an open PO, a red Distro units figure shows its reason on hover, marked 2. No distro yet at the bottom is marked 3."></a>
+      </figure>
+      <div class="warn"><b>Careful.</b> An Excel distro is checked for less. You can tell one by its file name, which ends in .xlsx or .xls <span class="m">4</span>. It has no ship dates, so they aren't checked, even when its dot is green and its line says <b>matches the PO ✓</b>. The dates on the line are the PO's. Its banner is checked only if the file name says it. To check both, add the distro's PDF too, with <a href="#add">Add POs or distros</a>. See <a href="#files">Files PO Recap can read</a>.</div>
+      <figure>
+        <a href="guide-img/10-distro-excel.webp" target="_blank" rel="noopener"><img src="guide-img/10-distro-excel.webp" width="976" height="142" loading="lazy" alt="Two lines of the Distro card, both saying matches the PO. The first has a version, a date and a PDF file. The second has no version or date, and its file, marked 4, ends in .xlsx."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Fix or explain each flag</h3>
+      <p>Work through each flag with the buyer or Production. For TJX, the buyer's name is in the line under the buy's name <span class="m">1</span>, and in the <b>BUYER</b> column of the <b>POS</b> card, the list of POs at the bottom of the buy. Burlington buys show no buyer.</p>
+      <figure>
+        <a href="guide-img/10-buyer.webp" target="_blank" rel="noopener"><img src="guide-img/10-buyer.webp" width="976" height="138" loading="lazy" alt="The top of a buy. In the line under its name, the words buyer Lee Sample are marked 1."></a>
+      </figure>
+      <p>If the customer sends a corrected file, <a href="#add">add it to the buy</a>. A corrected TJX PO is refused until Saul removes the old one. A re-sent distro needs a higher version number. See <a href="#rules">Rules to remember</a>.</p>
+      <p>To explain a style's flag, write it in <b>NOTES</b> on that style's row. There's one box for each style, and it goes on the export. A flag about a whole PO (FOB, PAIR, TWICE, a distro's ship dates) has no row of its own. Saul to confirm where to record those.</p>
+      <p>PO Recap has no button to clear a flag. A flag goes away only when what sets it off changes: the POs, the distros or, for a <b>PACK</b> flag, Master Sheet Live. A corrected sheet counts once the buy reads it or the saved copy updates. See <b>The case pack line</b> under <a href="#reference">Reference</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Export the recap</h3>
+      <p>Click <b>Export</b> <span class="m">1</span> at the top of the buy. An Excel file named after the buy downloads. The top right says <b>Exported 1 buy</b> <span class="m">2</span>.</p>
+      <figure>
+        <a href="guide-img/10-export.webp" target="_blank" rel="noopener"><img src="guide-img/10-export.webp" width="1000" height="222" loading="lazy" alt="The top of a buy. The Export button is marked 1 and the words Exported 1 buy at the top right are marked 2."></a>
+      </figure>
+      <p>The first tab has the buy's totals, then the recap, then the flags. Each style and each flag has a ☐ in a <b>Check</b> column. A buy with distros gets a second tab for them, with the units by DC. Scroll this table sideways to see all of it.</p>
+      <figure>
+        <div class="sheet"><table>
+          <tr><th rowspan="3">Check</th><th rowspan="3">Style</th><th rowspan="3">Description</th><th rowspan="3">Cost</th><th rowspan="3">Pack</th><th colspan="2">12/1–12/8</th><th colspan="2">12/9–12/15</th><th rowspan="3">Total units</th><th rowspan="3">Ext cost</th><th rowspan="3">Notes</th></tr>
+          <tr><th>Sample B</th><th>TJ Maxx</th><th colspan="2">TJ Maxx</th></tr>
+          <tr><th>900002</th><th>900001</th><th>900003</th><th>900004</th></tr>
+          <tr><td>☐</td><td>SAMPLE-1001</td><td>Sample Rose Body Mist</td><td>$1.00</td><td>12</td><td>960</td><td>1,200</td><td>720</td><td>720</td><td>3,600</td><td>$3,600.00</td><td></td></tr>
+          <tr><td>☐</td><td>SAMPLE-1002</td><td>Sample Vanilla Hand Cream</td><td>$1.00</td><td>24</td><td>1,920</td><td>2,400</td><td>1,440</td><td>1,440</td><td>7,200</td><td>$7,200.00</td><td></td></tr>
+          <tr><td>☐</td><td>SAMPLE-1004</td><td>Sample Shea Body Butter</td><td style="background:#ffc7ce;color:#9c0006">1.00 / 2.00</td><td>12</td><td style="background:#ffc7ce;color:#9c0006">480-$1.00</td><td style="background:#ffc7ce;color:#9c0006">600-$1.00</td><td style="background:#ffc7ce;color:#9c0006">360-$2.00</td><td style="background:#ffc7ce;color:#9c0006">360-$2.00</td><td>1,800</td><td>$2,520.00</td><td>Buyer confirming the cost</td></tr>
+          <tr><td>☐</td><td>SAMPLE-1006</td><td>Sample Aloe Face Mask</td><td>$1.00</td><td style="background:#ffc7ce;color:#9c0006">12 (master 24)</td><td>360</td><td>480</td><td>240</td><td>240</td><td>1,320</td><td>$1,320.00</td><td></td></tr>
+        </table></div>
+        <figcaption>Drawn layout with sample data, not a screenshot.</figcaption>
+      </figure>
+      <p>Saul to confirm what happens to this file next.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Next in the Sales flow:</b> <a href="Guide_11_Order_Tracking.html">Order Tracking</a>.</div>
+
+  <h2 id="add">Add a late distro or PO to a buy</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the buy</h3>
+      <p>Find it under <b>BUYS</b> on the home page and click its name. To narrow the list, use <b>All customers</b> above it. From inside a buy, <b>‹ All buys</b> at the top left takes you back.</p>
+      <p>The list doesn't show PO numbers. Not sure which buy has the PO? Try this. It saves nothing.</p>
+      <ul>
+        <li>Pick the customer in <b>NEW BUY</b> (for TJX, the first name on the list) and drag the file onto its box.</li>
+        <li>If a buy has that PO, the file is refused. The red bar names the buy <span class="m">1</span>. Click <b>Cancel</b> <span class="m">2</span>, then open that buy.</li>
+        <li>If no buy is named, no buy has that PO yet. Click <b>Cancel</b>. A late PO can go into the buy you choose. A distro goes in with its PO.</li>
+      </ul>
+      <figure>
+        <a href="guide-img/10-which-buy.webp" target="_blank" rel="noopener"><img src="guide-img/10-which-buy.webp" width="980" height="388" loading="lazy" alt="The New buy box with a late distro dropped in. A red bar, marked 1, says PO 900022 is in TJX holiday reorder, add the distro there. The Save buy button is greyed out and the Cancel button is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Add POs or distros</h3>
+      <p>It's at the top of the buy <span class="m">1</span>. A drop box opens below <span class="m">2</span>.</p>
+      <figure>
+        <a href="guide-img/10-add-open.webp" target="_blank" rel="noopener"><img src="guide-img/10-add-open.webp" width="980" height="258" loading="lazy" alt="The top of a buy. The Add POs or distros button is marked 1 and the drop box that opens below it is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add the files</h3>
+      <p>Drag them onto the box, click the box to pick them, or click <b>Pick a folder</b>. Each distro attaches to its own PO. A corrected TJX PO and a re-sent distro have their own rules. See <a href="#rules">Rules to remember</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Click the blue button</h3>
+      <p>The green bar <span class="m">1</span> says what's ready. It also says when a newer distro replaces an older one. The button <span class="m">2</span> names what it will add, such as <b>Add 2 distros</b>. The distro in use stays until you click it. The top right then says <b>Saved</b>.</p>
+      <figure>
+        <a href="guide-img/10-add-ready.webp" target="_blank" rel="noopener"><img src="guide-img/10-add-ready.webp" width="970" height="112" loading="lazy" alt="A green bar, marked 1, says two distros are ready, one replacing version 1. The Add 2 distros button is marked 2."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h2 id="several">Export several buys at once</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Tick the buys</h3>
+      <p>Tick the box at the left of each buy <span class="m">1</span> under <b>BUYS</b>.</p>
+      <figure>
+        <a href="guide-img/10-export-selected.webp" target="_blank" rel="noopener"><img src="guide-img/10-export-selected.webp" width="976" height="346" loading="lazy" alt="The list of buys with two buys ticked, marked 1. The Export selected button, now showing 2, is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Export selected</h3>
+      <p>It's at the top right <span class="m">2</span>. One Excel file downloads, named PO Recap and today's date. Each buy gets its own tab, plus a second one if it has distros.</p>
+    </li>
+  </ol>
+
+  <h2 id="burlington">Check a Burlington buy</h2>
+  <p>Follow <a href="#check">Check a new TJX buy</a>, but add only PO files and skip step 10. These steps show what's different.</p>
+  <p>PO Recap reads Burlington POs and their ticketing. It doesn't read Burlington routing or distro files, so there's no <b>DISTRO</b> card and no dots. For routing, see <a href="#other">Other customers</a>.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Pick Burlington</h3>
+      <p>Pick <b>Burlington</b> under <b>CUSTOMER</b> in <b>NEW BUY</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Add the PO files</h3>
+      <p>Add them the same way as for TJX. One file can hold several PO numbers. The table shows each PO's <b>DC</b> and <b>VERSION</b>. <b>TICKETING</b> <span class="m">1</span> says what the PO asks for.</p>
+      <figure>
+        <a href="guide-img/10-burl-read.webp" target="_blank" rel="noopener"><img src="guide-img/10-burl-read.webp" width="980" height="446" loading="lazy" alt="The New buy box with Burlington picked and three POs read. The Ticketing column is marked 1 and the Save buy button is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Save buy</h3>
+      <p>It's under the table <span class="m">2</span> in the picture above. The buy opens when it's saved.</p>
+    </li>
+    <li class="step">
+      <h3>Look over the figures</h3>
+      <p>The button <span class="m">1</span> says <b>Add POs</b>. <b>PO VERSION</b> <span class="m">2</span> takes the place of <b>DISTROS IN</b>. It says if Burlington has revised a PO. The totals are <b>BY DC</b>, not by banner.</p>
+      <figure>
+        <a href="guide-img/10-burl-buy.webp" target="_blank" rel="noopener"><img src="guide-img/10-burl-buy.webp" width="1090" height="434" loading="lazy" alt="The top of a Burlington buy. The Add POs button is marked 1 and the PO version tile is marked 2. Totals are by ship window and by DC."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>See what ticketing each PO asks for</h3>
+      <p>A <b>T</b> beside a PO number <span class="m">1</span> means it asks for <a href="Guide_8_Glossary.html#Tickets" target="_blank" rel="noopener">tickets</a>. Hold your mouse on it to read what it asks for. The <b>TICKETING</b> column <span class="m">2</span> in the <b>POS</b> card, the list of POs at the bottom of the buy, says the same, or <b>No ticketing</b>. The export has it too.</p>
+      <figure>
+        <a href="guide-img/10-burl-ticket.webp" target="_blank" rel="noopener"><img src="guide-img/10-burl-ticket.webp" width="976" height="534" loading="lazy" alt="The Recap table and POs card of a Burlington buy. A T beside a PO number, showing its hover text, is marked 1. The Ticketing column is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check the prepacks</h3>
+      <p>A prepack is Burlington's word for the <a href="Guide_8_Glossary.html#Master/Inner" target="_blank" rel="noopener">inner pack</a>, the smaller pack inside a carton. The pack column is called <b>PREPACK</b> here.</p>
+      <p>A <b>PACK</b> flag means the prepack doesn't match the <b>Inner</b> column of <a href="Guide_8_Glossary.html#Master%20Sheet%20Live" target="_blank" rel="noopener">Master Sheet Live</a>, or isn't on it. It can also mean the style isn't on PO Recap's saved copy of that sheet yet.</p>
+      <figure>
+        <a href="guide-img/10-burl-flags.webp" target="_blank" rel="noopener"><img src="guide-img/10-burl-flags.webp" width="976" height="100" loading="lazy" alt="The Flags card with one Pack flag: a prepack of 12 on two POs, while Master Sheet Live's Inner column says 6."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h2 id="revised">Add a revised Burlington PO</h2>
+  <p>Burlington's POs carry a version number. A revised PO has a higher one, and it replaces the older one in the buy.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the buy</h3>
+      <p>Find the buy that has the PO under <b>BUYS</b> on the home page, and click its name.</p>
+      <p>The list doesn't show PO numbers. Not sure which buy has the PO? Try this. It saves nothing.</p>
+      <ul>
+        <li>Pick <b>Burlington</b> in <b>NEW BUY</b> and drag the file onto its box.</li>
+        <li>If a buy has that PO, the file is refused. The red bar names the buy <span class="m">1</span>. Click <b>Cancel</b> <span class="m">2</span>, then open that buy.</li>
+        <li>If no buy is named, no buy has that PO yet. Follow <a href="#burlington">Check a Burlington buy</a> instead.</li>
+      </ul>
+      <figure>
+        <a href="guide-img/10-burl-which-buy.webp" target="_blank" rel="noopener"><img src="guide-img/10-burl-which-buy.webp" width="980" height="388" loading="lazy" alt="The New buy box with Burlington picked and a revised PO dropped in. A red bar, marked 1, says PO 900011 is already in Burlington buy 11/6, add this version to that buy. The Save buy button is greyed out and the Cancel button is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Add POs</h3>
+      <p>It's at the top of the buy <span class="m">1</span>. A drop box opens below <span class="m">2</span>.</p>
+      <figure>
+        <a href="guide-img/10-burl-add-open.webp" target="_blank" rel="noopener"><img src="guide-img/10-burl-add-open.webp" width="980" height="258" loading="lazy" alt="The top of a Burlington buy. The Add POs button is marked 1 and the drop box that opens below it is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add the new file</h3>
+      <p>Drag it onto the box, or click the box to pick it. If its version is higher, it replaces the older one. The green bar <span class="m">1</span> says so. The same or an older version is refused.</p>
+      <figure>
+        <a href="guide-img/10-burl-revised.webp" target="_blank" rel="noopener"><img src="guide-img/10-burl-revised.webp" width="970" height="185" loading="lazy" alt="A green bar, marked 1, says one PO is replacing an older version. The table shows v2 replacing v1. The Add 1 new PO version button is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Add 1 new PO version</h3>
+      <p>It's under the table <span class="m">2</span> in the picture above. The notes on its styles stay. The top right then says which version it is now.</p>
+    </li>
+  </ol>
+
+  <h2 id="move">Move a PO to another buy</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the buy</h3>
+      <p>Find it under <b>BUYS</b> on the home page and click its name.</p>
+    </li>
+    <li class="step">
+      <h3>Tick the PO</h3>
+      <p>In <b>RECAP</b>, tick the box beside the PO number <span class="m">1</span>. A bar opens above the table.</p>
+      <figure>
+        <a href="guide-img/10-move-tick.webp" target="_blank" rel="noopener"><img src="guide-img/10-move-tick.webp" width="976" height="274" loading="lazy" alt="The top of the Recap table. The ticked box beside a PO number is marked 1 and the Move to another buy button in the bar above is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Move to another buy…</h3>
+      <p>It's at the right of that bar <span class="m">2</span>.</p>
+    </li>
+    <li class="step">
+      <h3>Choose where it goes</h3>
+      <p>Under <b>MOVE THEM TO</b>, pick another buy for the same customer, or <b>A new buy</b>. For a new buy, <b>NEW BUY'S NAME</b> is already filled in with the old name plus (split). Type over it if you want another name.</p>
+      <figure style="max-width:450px">
+        <a href="guide-img/10-move-dialog.webp" target="_blank" rel="noopener"><img src="guide-img/10-move-dialog.webp" width="450" height="284" loading="lazy" alt="The Move box, with Move them to set to A new buy, the new buy's name filled in with (split) at the end, and the Cancel and Move buttons."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Move</h3>
+      <p>The PO's PDF, its distro and the notes on its styles go with it. At least one PO has to stay in the buy. The top right says where it went.</p>
+    </li>
+  </ol>
+
+  <h2 id="other">Other customers (draft)</h2>
+  <div class="draft"><b>Draft.</b> General practice, not from our tools. Saul to confirm these steps. Use them for customers that aren't on the <b>CUSTOMER</b> list, and for Burlington's routing.
+    <ol class="plain">
+      <li>Find the customer's current vendor manual and routing instructions.</li>
+      <li>Note the labeling, ticketing, packing and carton requirements.</li>
+      <li>Confirm the routing and ship window with the customer.</li>
+      <li>Pass the requirements to Production before goods are packed.</li>
+      <li>Record any exceptions the customer agrees to, in writing.</li>
+    </ol>
+  </div>
+
+  <h2 id="rules">Rules to remember</h2>
+  <ul class="plain">
+    <li>Check the customer before you add files. A PO from another customer is refused.</li>
+    <li>A PO can be in only one buy. If it's already in one, it's refused, and the reason names that buy.</li>
+    <li>A distro goes in with its PO, or into the buy that already has its PO.</li>
+    <li>A newer distro version won't replace the one in use until you save it.</li>
+    <li>A re-sent distro needs a higher version number. A different distro with the same number is refused.</li>
+    <li>An Excel distro's file name must include the 6-digit PO number. Its version comes from the file name too, written like _V2. Without it, a re-sent Excel distro counts as unnumbered and is refused.</li>
+    <li>An Excel distro has no ship dates, so PO Recap can't check them. If you have its PDF, add that too.</li>
+    <li>A corrected TJX PO is refused while the old one is in the buy. Ask Saul to remove the old one, then add the new one and its distro. Removing a PO removes its distro too.</li>
+    <li>Only Saul can delete a buy or remove a PO from one. Ask him if one has to go.</li>
+  </ul>
+
+  <div class="note"><b>Good to know.</b> The number under <b>FLAGS</b> in the buys list, and the gold bar before you save, leave out <b>PACK</b> flags. Open the buy to see them all. Buys are shared, so everyone who uses PO Recap sees the same list. To rename a buy, type in <b>BUY</b> at the top of it. It saves by itself.</div>
+
+  <h2 id="reference">Reference</h2>
+  <details>
+    <summary>TJX and Burlington side by side</summary>
+    <div class="scroll"><table>
+      <tr><th></th><th>TJX</th><th>Burlington</th></tr>
+      <tr><td class="k">Reads</td><td>Domestic POs for TJ Maxx and one other TJX banner, and their distros. Any other TJX PO is refused.</td><td>POs and their ticketing. Prepack lines only.</td></tr>
+      <tr><td class="k">Second heading in RECAP</td><td>Banner</td><td>DC</td></tr>
+      <tr><td class="k">PO columns</td><td>REFERENCE, BUYER</td><td>VERSION, TICKETING</td></tr>
+      <tr><td class="k">Pack column</td><td>PACK, checked against Master on Master Sheet Live</td><td>PREPACK, checked against Inner on Master Sheet Live</td></tr>
+      <tr><td class="k">Fifth tile</td><td>DISTROS IN</td><td>PO VERSION</td></tr>
+      <tr><td class="k">Add button</td><td>Add POs or distros</td><td>Add POs</td></tr>
+      <tr><td class="k">Flags</td><td>All seven</td><td>All but PAIR and DISTRO</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Files PO Recap can read</summary>
+    <div class="scroll" id="files"><table>
+      <tr><th>File</th><th>What PO Recap does</th></tr>
+      <tr><td class="k">PDF</td><td>Reads it as a PO, or as a TJX distro.</td></tr>
+      <tr><td class="k">Excel (.xlsx, .xls)</td><td><p>Reads it as a TJX distro. The PO number and version come only from the file name. The name must include the 6-digit PO number. Write the version like _V2. Any other spreadsheet is skipped.</p><p>An Excel distro has no ship dates, so PO Recap can't check them. It checks the banner only if the file name has it. To check both, add the distro's PDF too. The PDF replaces the Excel copy. If their version numbers match but their lines don't, the PDF is refused.</p></td></tr>
+      <tr><td class="k">Saved email (.eml, Outlook .msg)</td><td>Reads its attachments, and any emails attached to it.</td></tr>
+      <tr><td class="k">Folder</td><td>Reads everything inside it, all the way down.</td></tr>
+      <tr><td class="k">Anything else</td><td>Skips it and names it in a note.</td></tr>
+    </table></div>
+    <p>If you add the PDF and the Excel copy of one distro, it's read once, from the PDF. If they have the same version number but different lines, both are refused.</p>
+  </details>
+  <details>
+    <summary>Why a file is refused</summary>
+    <div class="scroll" id="refused"><table>
+      <tr><th>The red bar says</th><th>What to do</th></tr>
+      <tr><td>This is the distro for PO 900009, which isn't among the POs dropped.</td><td>Drop it together with its PO. If the PO is in a saved buy, the reason names that buy. Add the distro there.</td></tr>
+      <tr><td>PO 900001 is already in “TJX buy 11/6”.</td><td>It's saved in that buy. A revised Burlington PO goes into that same buy.</td></tr>
+      <tr><td>PO 900001 is already in this buy.</td><td>Burlington: only a higher version replaces it. TJX: ask Saul to remove the old one, then add the new one and its distro. Removing a PO removes its distro too.</td></tr>
+      <tr><td>PO 900011 is version 2 in this buy; this file is version 1.</td><td>Use the newest version.</td></tr>
+      <tr><td>Two different versions of PO 900001 were dropped. Or: Two different distros for PO 900001, both version 1, were dropped.</td><td>Drop only the one you want.</td></tr>
+      <tr><td>PO 900001 already has a different distro with the same version number (1).</td><td>Ask the customer to re-send it with a higher version number.</td></tr>
+      <tr><td>PO 900001 already has version 1 of its distro; this is unnumbered.</td><td>Use the distro's PDF, which carries its version, or check that the Excel file's name has its version, like _V2.</td></tr>
+      <tr><td>This isn't a Burlington PO. For TJX, it says the file doesn't have the TJX domestic PO header.</td><td>Check the customer you picked. For TJX, PO Recap reads domestic POs only.</td></tr>
+      <tr><td>This looks like a distribution sheet, but its file name doesn't carry a 6-digit PO number.</td><td>Put the PO number in the Excel file's name.</td></tr>
+      <tr><td>The lines add up to 1,200 units, but the PO says 1,440. Or: a line couldn't be read.</td><td>The reason says where. Check that part of the file. If the file is wrong, ask the customer for a corrected one.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>The POS card: the list of POs at the bottom of a buy</summary>
+    <figure>
+      <a href="guide-img/10-pos.webp" target="_blank" rel="noopener"><img src="guide-img/10-pos.webp" width="1046" height="217" loading="lazy" alt="The POs card with four POs. The Original column, which links to each PO's PDF, is marked 1."></a>
+    </figure>
+    <p><b>ORIGINAL</b> <span class="m">1</span> opens the PO's PDF. <b>DISTRO</b> shows the distro's version, or <b>in</b> if it has none. After that comes <b>✓</b> if it matches, or how many things to look at. <b>not yet</b> means it has no distro.</p>
+    <p><b>not read</b> under <b>FOB POINT</b> or <b>TICKETING</b> means the PO was saved before PO Recap read that. A bar at the top of the buy has a button to read it from the PDF, such as <b>Read FOB from their PDFs</b>.</p>
+  </details>
+  <details>
+    <summary>The case pack line at the top of RECAP</summary>
+    <div class="scroll"><table>
+      <tr><th>It says</th><th>What it means</th></tr>
+      <tr><td>Case packs from the saved copy of Master Sheet Live, updated…</td><td>Packs were checked against a copy everyone can read. You don't need access to Master Sheet Live. If it adds that a style isn't on it yet, that style's pack wasn't checked.</td></tr>
+      <tr><td>Case packs from Master Sheet Live, read…</td><td>Packs were checked against the sheet itself.</td></tr>
+      <tr><td>Case packs not checked…</td><td>Packs weren't checked, and it says why. Click <b>Try again</b>.</td></tr>
+    </table></div>
+    <p>The copy updates when someone who keeps it up to date opens a buy. It updates only if it's a day old or a style is missing from it. That person needs access to Master Sheet Live and the right to save the copy. <b>Update from Master Sheet Live</b> does it now, if you have both.</p>
+    <p>The export says what it used, on its <b>Case packs</b> line (<b>Prepacks</b> for Burlington). That line is red if not every pack was checked.</p>
+  </details>
+  <details>
+    <summary>Red cells in the Excel file</summary>
+    <div class="scroll"><table>
+      <tr><th>The cell says</th><th>What it means</th></tr>
+      <tr><td class="k">360-$2.00</td><td>This style's cost differs between POs. This PO has 360 units at $2.00.</td></tr>
+      <tr><td class="k">240-Sample Foot Scrub</td><td>This style's description differs between POs. This PO has 240 units under this description.</td></tr>
+      <tr><td class="k">12 (master 24)</td><td>The pack is 12 here, but Master Sheet Live says 24. A Burlington cell says inner instead of master.</td></tr>
+      <tr><td class="k">12 (not on master)</td><td>This style isn't on Master Sheet Live, so its pack wasn't checked. If it says (not on the saved copy yet), the style isn't on PO Recap's copy of the sheet yet.</td></tr>
+      <tr><td class="k">300 (PO 360)</td><td>On the distro tab: the distro sends 300 units, but the PO has 360.</td></tr>
+      <tr><td class="k">490 (not ×12)</td><td>On the distro tab: these units aren't whole cartons of 12.</td></tr>
+    </table></div>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

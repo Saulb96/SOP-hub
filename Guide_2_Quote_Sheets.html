@@ -1,22 +1,570 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quoting Out to Factories</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#e0a92e,#e0a92edd);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;opacity:.9;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px}
-.hero p{font-size:13.5px;opacity:.92;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#8a94a3;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#e0a92e;font-weight:700}
-ul li::marker{color:#e0a92e}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#e0a92e;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fdf6e6}
-td.k{font-weight:600;white-space:nowrap}
-.foot{padding:18px 44px;color:#9aa5b3;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fdf6e6;border-left:3px solid #e0a92e;padding:11px 14px;border-radius:8px;font-size:13px;margin:4px 0}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · PROCESS FLOW</div><h1>Quoting Out to Factories</h1><p>Tracker &amp; workflow reference</p></div><div class="body"><p class="lead">Two tools: the outbound Quote Sheet sent to factories, and the Quote Sheet Directory that indexes every quote and tracks negotiation status.</p><h2>Quote Sheet Columns</h2><ul><li><b>Style #</b> — variant code (MAY26Q08-01-A); -A/-B are pricing variants.</li><li><b>Description · Package · Qty · Concentrate</b> — product, pack, quantity, fragrance level.</li><li><b>Price</b> — left blank; the factory fills this in.</li></ul><h2>Naming Convention</h2><div class="note">[MONTH][YR] Q[##] _ [customer] _ [product] _ Quote — e.g. <b>MAY26Q08_JH_Big_White_Cap_Mist_Quote</b>. Logged in the Directory, linked on the Quoting Tracker.</div><h2>Directory Workflow Checkpoints</h2><table><tr><th>Internal review</th><th>Factory side</th></tr><tr><td>Ready For Review</td><td>Sent</td></tr><tr><td>Judah Reviewed</td><td>Suppliers Replied</td></tr><tr><td>Fixes Needed</td><td>Judah Replied Supplier</td></tr><tr><td>Fixes Corrected</td><td>Negotiation Complete</td></tr></table></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quoting Out to Factories</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#2f9bd6;--deep:#1b76ac;--tint:#eaf5fb">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · PRODUCTION</div>
+  <h1>Quoting Out to Factories</h1>
+  <p>Make a quote sheet in the Quote Directory, send it to factories, bring the prices back and award each style.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Who does it</b><span>Production</span></div>
+    <div><b>When</b><span>When an item needs factory prices</span></div>
+    <div><b>You end with</b><span>A sent quote sheet, prices in, styles awarded</span></div>
+  </div>
+  <a class="open-tool" href="https://saulb96.github.io/quote-directory/" target="_blank" rel="noopener">Open Quote Directory</a>
+  <a class="open-tool" href="https://saulb96.github.io/quote-tracker/" target="_blank" rel="noopener">Open Quote Tracker</a>
+
+  <div class="draft">
+    <details><summary><b>Draft.</b> Saul to confirm 8 things on this page</summary>
+    <ul class="plain">
+      <li>Does a sheet still need a review before it goes out? Are the old review and reply checkpoints tracked anywhere? The Quote Directory doesn't show them, so no step below uses them. They're under Reference.</li>
+      <li>The file name pattern under Reference.</li>
+      <li>That the M1S comparison is made with <b>Export comparison</b>.</li>
+      <li>What benchmark pictures are, and who to tell when a month's folder is missing. This guide says they show the factory the item to quote, and to tell Saul.</li>
+      <li>What to do when <b>Follow up</b> says overdue. A likely answer: contact the factory, add a line in <b>Notes</b>, and set a new date.</li>
+      <li>Who adds a factory to each of the three lists under <a href="#factory">Add a factory or change its email</a>, and whether all three must be kept.</li>
+      <li>Which <b>Style #</b> goes on a quote sheet when the item already has a style number in the Quote Tracker: that number, or the sheet's name plus a number.</li>
+      <li>What to do after a sample request is taken back.</li>
+    </ul>
+    </details>
+  </div>
+
+  <p class="sample-note"><b>Jump to:</b> <a href="#start">Start a sheet</a> · <a href="#send">Send it</a> · <a href="#prices">Bring prices back</a> · <a href="#award">Award</a> · <a href="#samples">Samples</a> · <a href="#due">What's due</a> · <a href="#finish">Finish a sheet</a> · <a href="#factory">Add a factory</a> · <a href="#team">The team</a> · <a href="#rules">Rules</a> · <a href="#reference">Reference</a></p>
+
+  <h2 id="start">Start a new quote sheet</h2>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the Quote Directory</h3>
+      <p>Click <b>Open Quote Directory</b> above. On the Tools Hub its tile is called <b>Quoting Directory</b>. The screen says <b>M1S Quote Directory</b>. If it asks, click <b>Sign in with Microsoft</b>.</p>
+      <p>You'll see <b>Quote Sheets</b>, grouped by month, newest first. Months start closed. Click a month to open it <span class="m">3</span>, or click <b>Expand all</b>.</p>
+      <figure>
+        <a href="guide-img/2-list.webp" target="_blank" rel="noopener"><img src="guide-img/2-list.webp" width="1100" height="828" loading="lazy" alt="The Quote Sheets page with sample sheets by month. The Template button is marked 1, the Import button 2 and the November 2026 month row 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Template</h3>
+      <p>It's at the top right, marked <span class="m">1</span> in the picture above. A popup opens.</p>
+    </li>
+    <li class="step">
+      <h3>Type a description</h3>
+      <p>Type what the quote is for in <b>Description</b> <span class="m">1</span>. The tool names the sheet for you <span class="m">2</span>. <b>N26Q06</b> means November 2026, quote 6.</p>
+      <p>If it says the sheet looks like the same quote as another one, use its <b>Open</b> button to go to that sheet instead.</p>
+      <figure style="max-width:440px">
+        <a href="guide-img/2-new-sheet.webp" target="_blank" rel="noopener"><img src="guide-img/2-new-sheet.webp" width="440" height="280" loading="lazy" alt="The New quote sheet popup. Description is marked 1, the name N26Q06 November 2026 is marked 2, and the Create and download template button 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Create &amp; download template</h3>
+      <p>It's the blue button <span class="m">3</span>. The new sheet opens. A blank Excel file downloads, named with the sheet's name and description.</p>
+    </li>
+    <li class="step">
+      <h3>Fill in the Excel file</h3>
+      <p>Put one style on each row. Type its <b>Style #</b>: the sheet's name plus a number, such as <b>N26Q06-01</b>. Add <b style="white-space:nowrap">-A</b> or <b style="white-space:nowrap">-B</b> for pricing variants of one item. A row with no <b>Style #</b> is skipped when you import.</p>
+      <p>Is the item already in the Quote Tracker? Quote images and <b>+ Scent</b> only link up when the <b>Style #</b> is the same as the item's <b>Style</b> in the Quote Tracker. Saul to confirm which number to use. See the yellow Draft note at the top.</p>
+      <p>Fill in <b>Package</b> and <b>Qty</b>. Put the product name in bold in <b>Description</b>, and add the <b>Picture</b>. Use <b>Option</b> for what differs, such as the fragrance level.</p>
+      <p>Leave <b>Price</b> and <b>MOQ</b> blank. The factory fills them in. MOQ means minimum order quantity. Save the file.</p>
+      <figure>
+        <div class="sheet"><table>
+          <tr><th>Style #</th><th>Picture</th><th>Description</th><th>Package</th><th>Qty</th><th>Option</th><th>Price</th><th>MOQ</th></tr>
+          <tr><td>N26Q06-01-A</td><td>(photo)</td><td><b>Sample Citrus Body Mist</b></td><td>Hang tag</td><td>2,000</td><td>10% concentrate</td><td></td><td></td></tr>
+          <tr><td>N26Q06-01-B</td><td>(photo)</td><td><b>Sample Citrus Body Mist</b></td><td>Hang tag</td><td>2,000</td><td>15% concentrate</td><td></td><td></td></tr>
+          <tr><td>N26Q06-02</td><td>(photo)</td><td><b>Sample Lime Body Mist</b></td><td>Hang tag</td><td>2,000</td><td></td><td></td><td></td></tr>
+        </table></div>
+        <figcaption>Drawn layout with sample data, not a screenshot. On a phone, swipe the table to see Price and MOQ.</figcaption>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Bring the file into the sheet</h3>
+      <p>Go back to the Quote Directory. Your new sheet is still open there. Click <b>⬆ Import factory or compare</b> <span class="m">1</span>.</p>
+      <figure>
+        <a href="guide-img/2-sheet.webp" target="_blank" rel="noopener"><img src="guide-img/2-sheet.webp" width="1100" height="310" loading="lazy" alt="The top of the new sheet N26Q06, Sample Citrus Body Mists. The Import factory or compare button is marked 1."></a>
+      </figure>
+      <p>Drag your file into the box, or click <b>Browse…</b>. A line under the box may say <b>No workbooks</b>. You can ignore it.</p>
+      <figure style="max-width:440px">
+        <a href="guide-img/2-import-drop.webp" target="_blank" rel="noopener"><img src="guide-img/2-import-drop.webp" width="440" height="278" loading="lazy" alt="The top of the import popup, with a box to drag Excel files into, a Browse button and the line Imports into N26Q06."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check it and click Import</h3>
+      <p>The popup says what the tool found in the file. Click <b>Import</b> <span class="m">1</span>. Your styles appear under <b>Styles on this quote</b>. A picture in the file becomes that style's <b>Quote image</b>.</p>
+      <figure style="max-width:440px">
+        <a href="guide-img/2-check-quote.webp" target="_blank" rel="noopener"><img src="guide-img/2-check-quote.webp" width="440" height="210" loading="lazy" alt="The Check this import popup for the file N26Q06_Sample_Citrus_Body_Mists.xlsx, with 3 styles in the file. The Import button is marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Put the sheet's name in the Quote Tracker</h3>
+      <p>For each style, type the sheet's name in <b>Quote Sheet Name</b>. See <a href="Guide_1_Quoting_Tracker.html#update">Item Intake &amp; Quoting</a>.</p>
+    </li>
+  </ol>
+  <div class="note" id="other-ways"><b>Other ways to start.</b>
+    <ul class="plain">
+      <li>Already have a quote sheet in Excel? Click <b>⬆ Import</b> at the top right of the <b>Quote Sheets</b> page. It's marked <span class="m">2</span> in the picture in step 1. The tool reads the sheet's name from the file name. A file with no sheet name gets the next one, with two exceptions. A file name that was imported before goes back onto that sheet. A file name that matches another sheet's description makes the tool ask first. You can drop several files at once.</li>
+      <li>Coming from the Quote Tracker? Its <b>Quote Sheet</b> button makes a file you can import the same way. Read the warning below first. Check the sheet's description afterward, because it comes from the file name.</li>
+      <li>Only a few styles? Click <b>+ Add style</b> or <b>+ 5 rows</b> under the grid and type them in.</li>
+    </ul>
+  </div>
+  <div class="warn">
+    <p><b>Careful with Quote Tracker files.</b> The file's name holds only the date. A second file with the same name goes onto the first file's sheet, and nothing warns you. Factories could then get both sets of styles. To avoid this, rename the file before you import it, so the name says what the quote is for.</p>
+    <p>Didn't rename it? Read the <b>Into</b> line in the popup <span class="m">1</span>. If it names an older sheet, one that was already on the <b>Quote Sheets</b> page, click <b>Cancel</b> <span class="m">2</span>. Click <b>← All quotes</b>, rename the file and import it again.</p>
+    <figure style="max-width:440px">
+      <a href="guide-img/2-import-again.webp" target="_blank" rel="noopener"><img src="guide-img/2-import-again.webp" width="440" height="210" loading="lazy" alt="The Check this import popup for the file M1S_Quote_Sheet_2026-11-06.xlsx. The line Into N26Q06, M1S 2026 11 06, 1 style in the file is marked 1, and the Cancel button 2."></a>
+    </figure>
+  </div>
+
+  <h2 id="send">Add factories and send the quote</h2>
+  <p class="sample-note">The pictures from here on use other sample sheets, at the stage each step needs.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Add each factory</h3>
+      <p>Under <b>Factory status</b>, open the <b>Add factory…</b> list <span class="m">1</span> and pick a factory. Do this for each one. <b>+ Add factory</b> opens the same list. Factory not on the list? See <a href="#factory">Add a factory or change its email</a>.</p>
+      <figure>
+        <a href="guide-img/2-add-factory.webp" target="_blank" rel="noopener"><img src="guide-img/2-add-factory.webp" width="1060" height="282" loading="lazy" alt="The Factory status section with no factories yet. The Add factory list is marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>See who still needs the quote</h3>
+      <p>The top of the sheet says <b>Need to send to</b> and lists them <span class="m">1</span>. Each factory has a row. Its <b>Sent Status</b> box stays empty until the quote goes out <span class="m">2</span>.</p>
+      <figure>
+        <a href="guide-img/2-factories-added.webp" target="_blank" rel="noopener"><img src="guide-img/2-factories-added.webp" width="1076" height="436" loading="lazy" alt="A sheet with two factories added. The words Need to send to, with both factory names, are marked 1. An empty Sent Status box is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check the styles</h3>
+      <p>Under <b>Styles on this quote</b>, each factory has its own column. Scroll the grid right to reach the factory columns. <b>Style</b>, <b>Quote image</b> and <b>Artwork</b> stay in place, so <b>Description</b> slides under them, as in the picture.</p>
+      <p><b>Price</b> and <b>MOQ</b> show a dash because they're blank <span class="m">1</span>. Leave them blank. Styles ending in <b>-A</b> or <b>-B</b> are pricing variants of the same item.</p>
+      <figure>
+        <a href="guide-img/2-grid-blank.webp" target="_blank" rel="noopener"><img src="guide-img/2-grid-blank.webp" width="1100" height="616" loading="lazy" alt="The Styles on this quote grid with five sample styles and two factory columns. Every Price and MOQ is blank. The first Price box is marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add the benchmark pictures</h3>
+      <p>Benchmark pictures show the factory the item to quote. Click <b>Attachments</b> under <b>Factory status</b> to open it. Then find <b>Benchmark</b> under <b>Pictures</b>.</p>
+      <p>Click <b>Create it</b> if you see it. Pick the item in <b>+ Folder…</b> <span class="m">1</span>. Drag the pictures onto the new folder <span class="m">2</span>, or click the folder and click <b>+ Add</b> <span class="m">3</span>.</p>
+      <figure style="max-width:360px">
+        <a href="guide-img/2-benchmark.webp" target="_blank" rel="noopener"><img src="guide-img/2-benchmark.webp" width="360" height="152" loading="lazy" alt="The Benchmark row in Attachments. The + Folder list is marked 1, a folder named N26Q04-01 is marked 2, and the + Add button beside its pictures is marked 3."></a>
+      </figure>
+      <p>If it says the month's folder is missing, tell Saul.</p>
+    </li>
+    <li class="step">
+      <h3>Click ✉ Email factories</h3>
+      <p>It's the blue button at the top of <b>Factory status</b>. A popup opens with the email ready to go. Factories that already got the quote start unticked.</p>
+      <figure>
+        <a href="guide-img/2-email.webp" target="_blank" rel="noopener"><img src="guide-img/2-email.webp" width="760" height="602" loading="lazy" alt="The Email factories popup. The Open WeTransfer + ZIP button is marked 1, the Paste the WeTransfer link box 2, a 5/5 styles button 3, and the Send to 2 factories button 4."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add the WeTransfer link</h3>
+      <p>Click <b>Open WeTransfer + ZIP</b> <span class="m">1</span>. WeTransfer opens beside the tool, and a ZIP of the sheet's benchmark pictures downloads.</p>
+      <p>Drag the ZIP into WeTransfer. Copy the link it gives you. Paste it into <b>Paste the WeTransfer link</b> <span class="m">2</span> in the popup. The link goes into the message.</p>
+      <p>No benchmark pictures yet? Click <b>Close</b>. Add them as in step 4, then click <b>✉ Email factories</b> again.</p>
+    </li>
+    <li class="step">
+      <h3>Check the email</h3>
+      <p>Each ticked factory gets its own email. The subject starts with the factory's name. The message starts with Hi and the contact's first name. The quote sheet is attached.</p>
+      <p>Check the address beside each factory. You can type over it. A red box means no address is on file, and that factory's email fails until you type one. To keep an address for next time, see <a href="#factory">Add a factory or change its email</a>.</p>
+      <p>To leave a style out for one factory, click its <b>5/5 styles</b> button <span class="m">3</span> and untick the style.</p>
+    </li>
+    <li class="step">
+      <h3>Click Send</h3>
+      <p>The button shows the count, such as <b>Send to 2 factories</b> <span class="m">4</span>. If there's no WeTransfer link, the tool warns you first.</p>
+      <p>Microsoft may open a small window the first time you send. Sign in or accept there, and allow popups for this page if your browser blocks them.</p>
+      <p>The emails go out from your own mailbox, and a ✓ line shows for each one. Read the last line. It says how many went and how many failed. If a line shows ✗, read the reason. That factory stays ticked, so you can click Send again.</p>
+      <p>Click <b>Close</b>. You'll then see <b>Sent Status</b> ticked for those factories, with a follow-up date of the next day.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Sending it yourself?</b> Open <b>Export sheet for factory…</b> at the top of <b>Factory status</b>. Pick the factory, then <b>Summarized</b> or <b>Full</b>. Click <b>Export</b>, and the Excel file downloads. After you send it, click that factory's <b>Sent Status</b> box.</div>
+
+  <h2 id="prices">Bring the prices back</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the sheet</h3>
+      <p>On the <b>Quote Sheets</b> page, click the sheet's month to open it, then click its row. The search box finds sheets by name, description or factory, but it doesn't open the months. The number beside a month shows the matches. Click the month or <b>Expand all</b> to see them.</p>
+    </li>
+    <li class="step">
+      <h3>Import the factory's file</h3>
+      <p>Click <b>⬆ Import factory or compare</b>. Drag in the Excel file the factory sent back.</p>
+    </li>
+    <li class="step">
+      <h3>Check the factory, then click Import</h3>
+      <p>The popup shows which factory the file is from <span class="m">1</span>. If the file name doesn't say, pick the factory. Click <b>Import</b> <span class="m">2</span>.</p>
+      <figure style="max-width:440px">
+        <a href="guide-img/2-check-import.webp" target="_blank" rel="noopener"><img src="guide-img/2-check-import.webp" width="440" height="262" loading="lazy" alt="The Check this import popup for a factory's returned quote. The Factory list is marked 1 and the Import button 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>See what came in</h3>
+      <p>Prices and MOQs fill in under that factory. The line under the grid says what changed <span class="m">1</span>. To type or change a price by hand, click its box.</p>
+      <figure>
+        <a href="guide-img/2-after-import.webp" target="_blank" rel="noopener"><img src="guide-img/2-after-import.webp" width="1060" height="546" loading="lazy" alt="The grid after an import. Sample Factory B now has every price and MOQ. A message under the grid, marked 1, says what was filled in."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check Factory status</h3>
+      <p><b>Sent Status</b> shows the date it went out <span class="m">1</span>. <b>Price Received</b> counts the priced styles <span class="m">2</span>, and ticks itself when all are in.</p>
+      <p><b>Follow up</b> is set to the day after the last step <span class="m">3</span>. Change the date if you agree a new one. It says <b>overdue</b> when the date has passed.</p>
+      <figure>
+        <a href="guide-img/2-status.webp" target="_blank" rel="noopener"><img src="guide-img/2-status.webp" width="1060" height="364" loading="lazy" alt="Factory status with three sample factories. A Sent Status tick dated 11/4/2026 is marked 1, a Price Received count of 2 of 4 is marked 2, and a Follow up date of 11/05/2026 is marked 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Make the comparison</h3>
+      <p>A comparison is one Excel file showing each factory's prices side by side. Click <b>Export comparison</b> at the top of <b>Styles on this quote</b>. Choose the factories, columns and styles. Click <b>Export</b>, and an Excel file downloads.</p>
+      <figure style="max-width:440px">
+        <a href="guide-img/2-export-compare.webp" target="_blank" rel="noopener"><img src="guide-img/2-export-compare.webp" width="440" height="420" loading="lazy" alt="The Export comparison popup, with Summarized or Full, and ticked lists of factories, columns and styles."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Upload the M1S comparison</h3>
+      <p>The sheet shows <b>M1S comparison missing</b> until this is done <span class="m">1</span>. Click <b>Attachments</b> to open it. Click <b>⬆ Upload</b> <span class="m">2</span> and pick the comparison file from step 6. You can also drop the file on that row.</p>
+      <figure>
+        <a href="guide-img/2-attachments.webp" target="_blank" rel="noopener"><img src="guide-img/2-attachments.webp" width="1070" height="220" loading="lazy" alt="Attachments open on a sheet. The M1S comparison missing tag is marked 1 and the Upload button 2. Files and Pictures are listed below."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h2 id="award">Award each style</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Pick the winner in Awarded</h3>
+      <p>Open the <b>Awarded</b> list on the style's row <span class="m">1</span>. Pick the factory. Its prices for that style turn green.</p>
+      <p>Pick <b>Hold</b> if it's not decided yet. Pick <b>N/A</b> if the style is out. N/A styles are left out of factory emails and counts.</p>
+      <figure>
+        <a href="guide-img/2-award.webp" target="_blank" rel="noopener"><img src="guide-img/2-award.webp" width="1060" height="521" loading="lazy" alt="The grid with one style awarded and shown in green, one on Hold, and a closed Awarded list marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Close out a factory that won nothing</h3>
+      <p>Click <b>Close out</b> in its row under <b>Factory status</b>. It stops getting follow-up dates. <b>Reopen</b> puts it back.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Good to know.</b> When you award one variant of an item, such as <b>-A</b>, the other variants go grey and say <b>Other option chosen</b>. They no longer count as waiting for an award.</div>
+
+  <h2 id="samples">Request and track samples</h2>
+  <div class="warn"><b>Careful.</b> Your first sample request also marks <b>Factory Sample Requested</b> and every step before it as done. Taking the request back doesn't clear that, and no button does. The factory leaves <b>Need to send to</b> and <b>Pending pricing</b>, and its line for sending, pricing or requesting samples leaves <b>📋 Due</b>. So request samples after that factory's prices are in.</div>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the factory's row</h3>
+      <p>Under <b>Factory status</b>, click the factory's name <span class="m">1</span>. Its styles open underneath.</p>
+      <figure>
+        <a href="guide-img/2-samples.webp" target="_blank" rel="noopener"><img src="guide-img/2-samples.webp" width="1069" height="338" loading="lazy" alt="A factory's row opened to show its styles. The factory's name is marked 1, the Request all samples button 2, and an empty Tracking number box 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Request all samples</h3>
+      <p>It's above the list of styles <span class="m">2</span>. An email popup opens.</p>
+      <p>To ask for just one style, tick its box under <b>Sample req</b> instead. Then click <b>✉ Email sample request</b>. If a style needs no sample, click its <b>⊘ Not needed</b>. If the factory needs to send none, click <b>Samples not needed</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Set the quantity and send</h3>
+      <p>Set <b>Sample qty per style</b> <span class="m">1</span>. Click <b>Send to 1 factory</b> <span class="m">2</span>. A ✓ line shows in the popup when it has gone. A ✗ line gives the reason it didn't. Fix that and click <b>Send to 1 factory</b> again.</p>
+      <p>After the ✓, <b>Cancel (undo requests)</b> <span class="m">3</span> keeps its name but only closes the popup. Click it to finish.</p>
+      <p>Changed your mind before sending? The same button takes the requests back. The <b>Factory status</b> ticks stay, as the warning above says.</p>
+      <figure>
+        <a href="guide-img/2-sample-email.webp" target="_blank" rel="noopener"><img src="guide-img/2-sample-email.webp" width="760" height="505" loading="lazy" alt="The Email sample request popup listing two styles. Sample qty per style is marked 1, the Send button 2 and the Cancel (undo requests) button 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add the tracking number</h3>
+      <p>When the factory ships, paste the number in <b>Tracking #</b>. It's the box marked <span class="m">3</span> in the picture in step 1. The tool fills in <b>Carrier</b> for most numbers. <b>Track</b> opens the carrier's page.</p>
+    </li>
+    <li class="step">
+      <h3>Tick Received</h3>
+      <p>When the sample arrives, tick the box in the <b>Received</b> column. It stays locked until the row has a tracking number. <b>Factory Sample Requested</b> and <b>Factory Sample Received</b> tick themselves from these boxes.</p>
+    </li>
+  </ol>
+
+  <h2 id="due">See what's due and assign steps</h2>
+  <p>Use the one you need. These don't go in order.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click 📋 Due</h3>
+      <p>It's at the top of the <b>Quote Sheets</b> page. You'll see your open tasks under <b>Overdue</b>, <b>Today</b>, <b>Coming up</b> and <b>No date</b>. Click a line to open that sheet. If it says you're not on the team list, ask Saul to add you. Admins do this under <a href="#team">Add or remove someone on the team</a>.</p>
+      <figure>
+        <a href="guide-img/2-due.webp" target="_blank" rel="noopener"><img src="guide-img/2-due.webp" width="1060" height="584" loading="lazy" alt="The Due page for a sample person, with tasks grouped under Overdue and Today. Each line shows the sheet, the task, the people and the date."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Give a step to one person</h3>
+      <p>On a sheet, click <b>👤 Assign</b>, in the row of buttons at the top. Pick a person for a step. Left on <b>By role</b>, the step goes to everyone with a role that covers it. Click <b>Save</b>.</p>
+      <figure style="max-width:440px">
+        <a href="guide-img/2-assign.webp" target="_blank" rel="noopener"><img src="guide-img/2-assign.webp" width="440" height="428" loading="lazy" alt="The Assign this sheet popup, with one list for each of six steps."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h2 id="finish">Finish or change a sheet</h2>
+  <p>Use the one you need. These don't go in order.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Archive a finished sheet</h3>
+      <p>When every factory is finished or closed out, the row says <b>Complete</b> and an <b>Archive</b> button appears <span class="m">1</span>. Click it.</p>
+      <figure style="max-width:320px">
+        <a href="guide-img/2-complete.webp" target="_blank" rel="noopener"><img src="guide-img/2-complete.webp" width="320" height="92" loading="lazy" alt="The end of a row on the Quote Sheets page: 1/1 received, 1/1 awarded, the word Complete, and an Archive button marked 1."></a>
+      </figure>
+      <p>To archive several, click <b>Select</b> at the top <span class="m">1</span>, click the rows <span class="m">2</span>, then click <b>Archive</b> in the blue bar <span class="m">3</span>. While you select, the top button says <b>Done selecting</b>.</p>
+      <figure>
+        <a href="guide-img/2-select.webp" target="_blank" rel="noopener"><img src="guide-img/2-select.webp" width="1100" height="682" loading="lazy" alt="Select mode on the Quote Sheets page. The Done selecting button is marked 1, a picked sheet is marked 2 and the Archive button in the blue bar is marked 3."></a>
+      </figure>
+      <p>Find them later under <b>Archived</b> <span class="m">1</span>, by year and month.</p>
+      <figure>
+        <a href="guide-img/2-archived.webp" target="_blank" rel="noopener"><img src="guide-img/2-archived.webp" width="1100" height="514" loading="lazy" alt="The Archived view of the Quote Sheets page, opened to show sheets by year and month. The Archived button is marked 1."></a>
+      </figure>
+      <p>On an open sheet, the button at the top says <b>Archive</b>, or <b>Unarchive</b> to bring it back.</p>
+    </li>
+    <li class="step">
+      <h3>Rename a sheet</h3>
+      <p>Click the ✎ beside its name <span class="m">1</span>. Type the new name. Press <b>Enter</b>. To change the description, click it and type.</p>
+      <figure style="max-width:616px">
+        <a href="guide-img/2-header.webp" target="_blank" rel="noopener"><img src="guide-img/2-header.webp" width="616" height="192" loading="lazy" alt="The top of a sheet. The pencil beside the name is marked 1 and the Delete button 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Ask to delete a sheet</h3>
+      <p>Click <b>🗑 Delete</b> <span class="m">2</span> in the picture above. Click <b>Yes, email Saul</b> <span class="m">1</span>. Saul gets an email from you, and the sheet's row says <b>Delete req.</b> until he deletes it. Microsoft may open a small window first. Sign in or accept there.</p>
+      <figure style="max-width:440px">
+        <a href="guide-img/2-delete-ask.webp" target="_blank" rel="noopener"><img src="guide-img/2-delete-ask.webp" width="440" height="153" loading="lazy" alt="A question asking if you want Saul to delete this sheet. The Yes, email Saul button is marked 1."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <div class="note"><b>Next in the Production flow:</b> <a href="Guide_4_Development_Tracker.html">Development &amp; Sample Tracking</a>, for samples and approvals. For the order itself, see <a href="Guide_3_Order_Placement.html">Order Placement</a>.</div>
+
+  <h2 id="factory">Add a factory or change its email</h2>
+  <p>We keep three factory lists. A factory added to one doesn't reach the others. Do the one you need. These don't go in order.</p>
+  <div class="scroll"><table>
+    <tr><th>List</th><th>What reads it</th><th>Where to change it</th></tr>
+    <tr><td class="k">The shared Factories list</td><td>The Quote Directory's <b>Add factory…</b> list, its email address and "Hi first name". The Quote Tracker's <b>Supplier</b> list. Fragrance Library.</td><td>Factory Emailer, <b>Manage</b></td></tr>
+    <tr><td class="k">The Order Tracker's list</td><td>The factory list on an Order Tracker item</td><td>Order Tracker, <b>⚙</b>, <b>Factories</b> tab</td></tr>
+    <tr><td class="k">Dev PLM's Factories page</td><td>The Dev Tracker's <b>Supplier</b> list</td><td><b>Factories</b> in Dev PLM's side menu. Admins only.</td></tr>
+  </table></div>
+
+  <h3>The shared Factories list</h3>
+  <a class="open-tool" href="https://saulb96.github.io/M1S_Tool-Hub/" target="_blank" rel="noopener">Open Tools Hub</a>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open Factory Emailer</h3>
+      <p>Click <b>Open Tools Hub</b> above, then the <b>Factory Emailer</b> tile. Sign in with your Metro1 Microsoft account if it asks. Click <b>Manage</b> at the top of <b>Factories</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Add the factory</h3>
+      <p>Type the <b>Factory name</b> <span class="m">1</span>, <b>First</b>, <b>Last</b> and <b>Email</b>. Click <b>Add factory</b> <span class="m">2</span>. The name and email are required.</p>
+      <figure>
+        <a href="guide-img/2-emailer-manage.webp" target="_blank" rel="noopener"><img src="guide-img/2-emailer-manage.webp" width="965" height="300" loading="lazy" alt="Factory Emailer in Manage. The Factory name box is marked 1, Add factory is marked 2 and the Save button on a row is marked 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Or change a factory that's there</h3>
+      <p>Type over its row and click <b>Save</b> on that row <span class="m">3</span>. Click <b>Done</b> at the top when you're finished.</p>
+    </li>
+    <li class="step">
+      <h3>Refresh the Quote Directory</h3>
+      <p>Go back to any Quote Directory or Quote Tracker page you have open and refresh it. An open page keeps the list it already read, so the new factory or email doesn't show until you do.</p>
+    </li>
+  </ol>
+
+  <h3>The Order Tracker's list</h3>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/orders" target="_blank" rel="noopener">Open Order Tracker</a>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the Factories tab</h3>
+      <p>Click <b>Open Order Tracker</b> above, then <b>⚙</b> at the top right. Click the <b>Factories</b> tab.</p>
+    </li>
+    <li class="step">
+      <h3>Add the factory</h3>
+      <p>Type its name in <b>New factory</b> <span class="m">1</span>. Click <b>Add</b> <span class="m">2</span>. To rename one, type over its name. This needs Edit on the Order Tracker.</p>
+      <figure class="small">
+        <a href="guide-img/3-settings-factories.webp" target="_blank" rel="noopener"><img src="guide-img/3-settings-factories.webp" width="748" height="354" loading="lazy" alt="The Factories tab of the Order Tracker settings. The New factory box is marked 1 and Add is marked 2."></a>
+      </figure>
+    </li>
+  </ol>
+
+  <h3>Dev PLM's Factories page (admins)</h3>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/samples" target="_blank" rel="noopener">Open Dev Tracker</a>
+  <p>The Factories page is in Preview, so only admins can open it. Not an admin? Ask Saul.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Factories in the side menu</h3>
+      <p>Click <b>Open Dev Tracker</b> above to open Dev PLM. In the side menu, <b>Factories</b> is under <b>Masters</b>. Then click <b>+ Factory</b> <span class="m">1</span>. A popup opens.</p>
+      <figure>
+        <a href="guide-img/2-plm-factories.webp" target="_blank" rel="noopener"><img src="guide-img/2-plm-factories.webp" width="1093" height="286" loading="lazy" alt="The Factories page in Dev PLM, with three sample factories. The + Factory button is marked 1."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Fill in the popup</h3>
+      <p>Type the <b>Name</b> <span class="m">1</span>, which is required. Add the <b>City</b>, <b>Contact</b> and <b>Email</b> <span class="m">2</span>. Click <b>Add factory</b> <span class="m">3</span>. It goes on every Dev Tracker factory dropdown at once.</p>
+      <figure style="max-width:548px">
+        <a href="guide-img/2-plm-add-factory.webp" target="_blank" rel="noopener"><img src="guide-img/2-plm-add-factory.webp" width="548" height="368" loading="lazy" alt="The Add a factory popup. The Name box is marked 1, Email is marked 2 and the Add factory button is marked 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Tick who sees it</h3>
+      <p>Only admins and people on <b>Factories: all</b> see its Dev Tracker rows until you tick people. Tick them on the <b>Factories</b> tab of <b>Users &amp; permissions</b>. See <a href="Guide_16_New_Hire.html#devplm">Give access in Dev PLM</a>.</p>
+    </li>
+  </ol>
+
+  <h2 id="team">Add or remove someone on the team (admins)</h2>
+  <p>The team list decides who gets tasks in <b>📋 Due</b> and who you can pick in <b>👤 Assign</b>. Only admins see <b>👥 Team</b>. Not an admin? Ask Saul.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click 👥 Team</h3>
+      <p>It's at the top of the <b>Quote Sheets</b> page, beside <b>📋 Due</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Search for the person</h3>
+      <p>Type 2 or more letters in <b>Search the company directory to add someone…</b> <span class="m">1</span>. Click their name <span class="m">2</span>. Their row joins the list under <b>People</b>.</p>
+      <figure>
+        <a href="guide-img/2-team.webp" target="_blank" rel="noopener"><img src="guide-img/2-team.webp" width="1068" height="426" loading="lazy" alt="The Team and roles screen. The directory search box is marked 1, a name found is marked 2, Add role is marked 3 and the Save button is marked 4."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Tick their role</h3>
+      <p>Under <b>People</b>, tick the box in the role's column on their row.</p>
+    </li>
+    <li class="step">
+      <h3>Click Save</h3>
+      <p>It's at the top <span class="m">4</span>. Nothing changes until you do. It shows <b>Saving…</b> for a moment, then that word goes away. No other message shows. If it says <b>Couldn't save</b>, click <b>Save</b> again.</p>
+    </li>
+    <li class="step">
+      <h3>Remove someone</h3>
+      <p>Click <b>✕</b> at the end of their row, and answer the question. Click <b>Save</b>. The question says their sheet assignments go back to <b>By role</b>, but they don't do this by themselves. A step you gave only to them goes to no one. It shows <b>Unassigned</b> in <b>📋 Due</b> only when you pick <b>Everyone</b> in the list at the top. To fix it, open that sheet, click <b>👤 Assign</b> and click <b>Save</b>. The blank list goes back to <b>By role</b>.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Good to know.</b>
+    <ul class="plain">
+      <li><b>Roles:</b> each row is a role. Its ticks say which steps go to people with that role, and what they can do. <b>+ Add role</b> <span class="m">3</span> adds a row. An admin picks the name.</li>
+      <li><b>Enforce permissions:</b> while it's off, everyone keeps full access. Once it's on, people get only what their roles allow, and the rest see <b>View only</b>. Admins always have full access.</li>
+    </ul>
+  </div>
+
+  <h2 id="rules">Rules to remember</h2>
+  <ul class="plain">
+    <li>Every quote sheet is logged in the Quote Directory, and its name goes on the item's row in the Quote Tracker.</li>
+    <li>Leave <b>Price</b> blank on anything going to a factory. The factory fills it in.</li>
+    <li>Let the tool name the sheet. It checks the Quote Directory and the Quote Tracker, so numbers don't clash.</li>
+    <li>Import fills blanks only. It never overwrites. To change a value, type over it in its box.</li>
+    <li><b>Factory status</b> steps go in order, left to right. <b>Sent Status</b> is the only box you click, and you can untick it only until a later step is done. The other steps tick themselves.</li>
+    <li>If a red banner says someone else saved the sheet, click <b>Reload sheet</b>. Your unsaved edits on that sheet are dropped.</li>
+    <li>Changes save by themselves. The top right says <b>Saved</b> with the time. <b>View only</b> there means your changes aren't saved, so ask Saul for access.</li>
+    <li>If it says <b>Your last changes were not saved.</b>, click <b>Retry save</b>. Keep the page open until it says <b>Saved</b>.</li>
+    <li>Only Saul can delete a sheet.</li>
+  </ul>
+
+  <h2 id="reference">Reference</h2>
+  <details>
+    <summary>How a sheet gets its name</summary>
+    <p>Month code + two-digit year + Q + number. The number is the next one for that month. <b>N26Q06</b> is November 2026, quote 6. <b>MAY26Q08</b> is May 2026, quote 8.</p>
+    <div class="scroll"><table>
+      <tr><th>Code</th><th>Month</th><th>Code</th><th>Month</th></tr>
+      <tr><td class="k">JA</td><td>January</td><td class="k">JUL</td><td>July</td></tr>
+      <tr><td class="k">F</td><td>February</td><td class="k">AU</td><td>August</td></tr>
+      <tr><td class="k">MAR</td><td>March</td><td class="k">S</td><td>September</td></tr>
+      <tr><td class="k">AP</td><td>April</td><td class="k">O</td><td>October</td></tr>
+      <tr><td class="k">MAY</td><td>May</td><td class="k">N</td><td>November</td></tr>
+      <tr><td class="k">JUN</td><td>June</td><td class="k">D</td><td>December</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>File names</summary>
+    <div class="scroll"><table>
+      <tr><th>File</th><th>Name the tool gives it</th></tr>
+      <tr><td class="k">Blank template</td><td>N26Q06_<wbr>Sample_<wbr>Citrus_<wbr>Body_<wbr>Mists.xlsx</td></tr>
+      <tr><td class="k">Sheet for a factory</td><td>Quote_<wbr>N26Q06_<wbr>Sample_<wbr>Factory_<wbr>A.xlsx</td></tr>
+      <tr><td class="k">Comparison</td><td>Comparison_<wbr>N26Q06_<wbr>Sample_<wbr>Citrus_<wbr>Body_<wbr>Mists.xlsx</td></tr>
+      <tr><td class="k">Sample request</td><td>Sample_<wbr>Request_<wbr>N26Q06_<wbr>Sample_<wbr>Factory_<wbr>A.xlsx</td></tr>
+    </table></div>
+    <p>Files named by hand have followed this pattern: [MONTH][YR]Q[##]_<wbr>[customer]_<wbr>[product]_<wbr>Quote, such as MAY26Q08_<wbr>Ross_<wbr>Sample_<wbr>Rose_<wbr>Mist_<wbr>Quote. The tool reads the sheet's name from a file name like this when you import it.</p>
+  </details>
+  <details>
+    <summary>Quote sheet columns</summary>
+    <div class="scroll"><table>
+      <tr><th>Column</th><th>What goes in it</th></tr>
+      <tr><td class="k">Style #</td><td>The style code, such as MAY26Q08-01-A. -A and -B are pricing variants.</td></tr>
+      <tr><td class="k">Picture</td><td>The product photo.</td></tr>
+      <tr><td class="k">Description</td><td>The product. Put the name in bold.</td></tr>
+      <tr><td class="k">Package</td><td>The pack.</td></tr>
+      <tr><td class="k">Qty</td><td>The quantity.</td></tr>
+      <tr><td class="k">Option</td><td>What differs, such as the fragrance level. A <b>Concentrate</b> column in an imported file goes here too, such as 10% concentrate.</td></tr>
+      <tr><td class="k">Price</td><td>Left blank. The factory fills it in.</td></tr>
+      <tr><td class="k">MOQ</td><td>Minimum order quantity. Left blank. The factory fills it in.</td></tr>
+      <tr><td class="k">Notes</td><td>On the sheet a factory gets. For the factory's notes.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Factory status steps</summary>
+    <div class="scroll"><table>
+      <tr><th>Step</th><th>How it gets ticked</th></tr>
+      <tr><td class="k">Sent Status</td><td>By itself when you email the quote or import that factory's prices. Or click the box. A first sample request ticks it too.</td></tr>
+      <tr><td class="k">Price Received</td><td>By itself when every style has a price. N/A styles don't count. A first sample request marks it done too, even if the box still shows a count such as 2/4.</td></tr>
+      <tr><td class="k">Factory Sample Requested</td><td>By itself when the first sample is requested. It stays done if the request is taken back.</td></tr>
+      <tr><td class="k">Factory Sample Received</td><td>By itself when every requested sample is in.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>What the Quote Sheets page shows</summary>
+    <div class="scroll"><table>
+      <tr><th>Words</th><th>What they mean</th></tr>
+      <tr><td class="k">Quote not sent out</td><td>No factories on the sheet yet.</td></tr>
+      <tr><td class="k">Need to send to</td><td>These factories haven't been sent the quote.</td></tr>
+      <tr><td class="k">All sent</td><td>Every factory has been sent the quote.</td></tr>
+      <tr><td class="k">Pending pricing</td><td>Factories sent the quote, with prices still to come.</td></tr>
+      <tr><td class="k">Pending sample request</td><td>Factories priced, with samples not yet requested.</td></tr>
+      <tr><td class="k">Pending samples</td><td>Samples requested, not all in yet.</td></tr>
+      <tr><td class="k">Need tracking</td><td>Samples requested with no tracking number.</td></tr>
+      <tr><td class="k">Pending award</td><td>Styles with no winner yet.</td></tr>
+      <tr><td class="k">Open, Complete, Archived</td><td>The sheet's status. Complete means every factory is finished or closed out.</td></tr>
+      <tr><td class="k">Delete req.</td><td>Someone has asked Saul to delete the sheet.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Other buttons on a sheet</summary>
+    <div class="scroll"><table>
+      <tr><th>Button</th><th>What it does</th></tr>
+      <tr><td class="k">Export status</td><td>Downloads a report of each factory's steps and follow-up date.</td></tr>
+      <tr><td class="k">Export samples</td><td>Downloads a report of requested samples and tracking. Shows once a sample is requested.</td></tr>
+      <tr><td class="k">PDQ pricing</td><td>Gives each factory two prices: with <a href="Guide_8_Glossary.html#PDQ" target="_blank" rel="noopener">PDQ</a> and without. <b>Export sheet for factory…</b> then has both price columns. The emailed sheet has one <b>Price</b> column.</td></tr>
+      <tr><td class="k">Paper clip</td><td>Attaches any file to the sheet.</td></tr>
+      <tr><td class="k">+ in Quote image or Artwork</td><td>Adds a picture for that style. ↻ replaces it. Quote images are shared with the Quote Tracker when the Style # is the same.</td></tr>
+      <tr><td class="k">+ Scent</td><td>Shows when the same Style # is in the Quote Tracker with a fragrance Category. Picks the scent from the Fragrance Library. A style that has a scent shows its name instead.</td></tr>
+      <tr><td class="k">✕ at the end of a row</td><td>Shows when you point at the row. Removes that factory or style from the sheet, with its prices, notes and samples on this sheet. It asks first.</td></tr>
+      <tr><td class="k">⬆ Import sheet</td><td>Under the grid. Opens the same import as <b>⬆ Import factory or compare</b>.</td></tr>
+      <tr><td class="k">← All quotes</td><td>Goes back to the <b>Quote Sheets</b> page.</td></tr>
+    </table></div>
+    <p>Admins also see <b>👥 Team</b> on the <b>Quote Sheets</b> page. See <a href="#team">Add or remove someone on the team</a>.</p>
+  </details>
+  <details>
+    <summary>When the file looks different</summary>
+    <ul class="plain">
+      <li>If the tool can't find a price column, it asks which column holds the prices. <b>Styles only</b> brings in the styles and no prices.</li>
+      <li>A style # repeated in one file is lettered -A, -B and so on, and the row says so. Check these.</li>
+      <li>A comparison file with several factories brings in each factory's prices. The popup asks you to match any name that isn't in the Factories list.</li>
+      <li>If a workbook for this sheet is already in SharePoint, a blue bar says <b>In SharePoint, not imported yet</b>. Click the file's name to import it. The import popup lists the same files. If there are none, it says <b>No workbooks</b>, and you can ignore that line.</li>
+    </ul>
+  </details>
+  <details>
+    <summary>Checkpoints from the last version of this guide</summary>
+    <p>The Quote Directory doesn't show these. Saul to confirm if they're still used.</p>
+    <div class="scroll"><table>
+      <tr><th>Internal review</th><th>Factory side</th></tr>
+      <tr><td>Ready For Review</td><td>Sent</td></tr>
+      <tr><td>Reviewed by M1S</td><td>Suppliers Replied</td></tr>
+      <tr><td>Fixes Needed</td><td>M1S Replied Supplier</td></tr>
+      <tr><td>Fixes Corrected</td><td>Negotiation Complete</td></tr>
+    </table></div>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

@@ -1,22 +1,869 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Development &amp; Sample Tracking</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#f2734a,#f2734add);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;opacity:.9;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px}
-.hero p{font-size:13.5px;opacity:.92;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#8a94a3;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#f2734a;font-weight:700}
-ul li::marker{color:#f2734a}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#f2734a;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fdeee8}
-td.k{font-weight:600;white-space:nowrap}
-.foot{padding:18px 44px;color:#9aa5b3;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fdeee8;border-left:3px solid #f2734a;padding:11px 14px;border-radius:8px;font-size:13px;margin:4px 0}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · PROCESS FLOW</div><h1>Development &amp; Sample Tracking</h1><p>Dev Tracker in Dev PLM · tracker &amp; workflow reference</p></div><div class="body"><p class="lead">Tracks every item through sampling and all pre-production approvals, step by step, before mass production begins. From Tuesday, Oct 27, 2026, it lives in Dev PLM as the Dev Tracker. SF files are now SR, the PPS tab is now SC, and there's no Delayed SRD column. The 6:30 AM report emails are paused: open Work → Reports instead.</p><div class="note"><b>The workbook is read-only from 9:00 AM on Oct 27.</b> Anything typed in it after that isn't kept. If you have Edit, make changes in the Dev Tracker. If you see Read only, ask one of the people Saul has given Edit, or tell Saul.</div><h2>Where It Is And Who Edits</h2><ul><li><b>Open it:</b> Dev PLM, menu Development → Dev Tracker, at <a href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/samples">https://m1s-devplm-<wbr>ghe0g4cmcmdhdtg7.<wbr>northcentralus-01.<wbr>azurewebsites.net/<wbr>#/samples</a>. Sign in with your Metro1 Microsoft work account.</li><li><b>Edit:</b> the people Saul has given Edit, set per person. Everyone else with access views it: a Read only tag and no changes, but export works.</li><li><b>Rows:</b> you see only the rows of the factories ticked for you, or all of them. BF and FF files have no factory, so they need the "No factory" tick. Is a factory missing, or do you need to edit? Tell Saul.</li></ul><h2>The Tabs</h2><table><tr><th>Tab</th><th>What it holds</th></tr><tr><td class="k">Dev Tracker</td><td>The main tab: one row per style and sample, from artwork to Batch# Confirmed.</td></tr><tr><td class="k">SR</td><td>Sample Request files sent to factories. Replaces SF.</td></tr><tr><td class="k">SC</td><td>PPS Comments files sent to factories. Replaces the PPS tab.</td></tr><tr><td class="k">BS</td><td>Benchmark Sample files and their follow-up.</td></tr><tr><td class="k">BF</td><td>Bottle Find: bottle and component sourcing. No factory.</td></tr><tr><td class="k">FF</td><td>Fragrance Find: fragrance sourcing. No factory.</td></tr></table><h2>Columns And Rules</h2><ul><li><b>Frozen on the left:</b> Status (Open or Closed), Date Created, Supplier, Style #, Item Description. Then the workbook's columns in its order, PO# to Batch# Confirmed.</li><li><b>Sample Type:</b> Artwork Sample, Benchmark Sample, Factory Sample or Fragrance Scent. <b>PP Sample Status:</b> Updated Artwork Needed, Updated Sample Photo Needed, Revised Sample Needed, Revised Sample Sent, Pending M1S, Waiting for Buyer or Approved.</li><li><b>Dropdowns:</b> Sample Type, PP Sample Status, Carrier and the main tab's Customer take only their list's values. Supplier takes only your factories. Anything else typed or pasted is refused. Need a new customer, carrier or status? Tell Saul: admins add it in ⚙ Lists.</li><li><b>Numbers:</b> a new SR, SC, BS, BF or FF row gets the next number for its month, like O26SR19 (October 2026, SR, number 19). You can type over it. A number is never given twice.</li><li><b>Approve By:</b> Needs To Be Approved By Date is the Customer Ship Date minus 90 days. It follows the ship date unless someone typed a date.</li><li><b>Closing:</b> Approved plus Batch# Confirmed Yes closes the row. N/A doesn't count. One Undo reverses both. You can reopen a row by hand.</li><li><b>PPS:</b> Date PPS Received, Date PPS Comments Sent, PPS Comments # (its SC file) and PP Sample Status. In Open sample, the Received today button fills Date PPS Received and nothing else.</li><li><b>Links:</b> PO# opens its order in the Order Tracker, for people who can view it. A dimmer link means it matched on the first six digits. Tracking # opens the carrier's page. Quote# is plain text.</li></ul><h2>Everyday Use</h2><ul><li><b>Edit:</b> click a cell and type, or pick. It saves by itself: a pick at once, text a moment after you stop typing, numbers and dates on Enter, Tab or leaving the cell. Esc cancels. There's no Save button. If someone else saved the row first, your save is refused and the row shows theirs.</li><li><b>Open sample</b> (or click a card on the Kanban) shows one sample: its fields, Note, PPS comments and Changes (who changed what), with Received today, Comments sent today and Approve buttons. Note and PPS comments are only there, not in the grid.</li><li><b>Add:</b> + New Sample, or type in the blank rows at the bottom. A row saves once it has a Supplier (on BF and FF, once you type).</li><li><b>Undo:</b> ↶ Undo or Ctrl+Z takes back your last change, but not a row you added: delete that row instead.</li><li><b>Delete:</b> the Delete button (or Delete sample in Open sample) deletes rows. It asks first and warns it can't be undone: Undo can't bring the row back. An admin can restore it from Recently deleted for 90 days, so tell Saul. The Delete key only clears the selected cells, without asking. Undo brings those back.</li><li><b>Paste and fill</b> (Ctrl+V, Ctrl+D) are all or nothing: if one value doesn't fit, nothing changes.</li><li><b>Find:</b> search, Open / Closed / All, ▾ to filter a column, ▲▼ to sort, and the Filters pane. <b>Kanban</b> (main tab) shows a column per PP Sample Status. Editors drag cards.</li><li><b>Export</b> saves the ticked rows to Excel in the workbook's layout. <b>→ Order Tracker</b> sends ticked rows to its Pending list, with units. It needs Edit on the Order Tracker.</li></ul><h2>Reports</h2><ul><li><b>Work → Reports:</b> the Master Report (four tabs: Missing Artwork, SRD Report, Missing PPS Comments, PPS Pending), Open Samples in Transit, and Factory Sample SRD and Carrier. For now they replace the paused 6:30 AM emails.</li><li><b>Run</b> shows a report. <b>Download Excel</b> saves it in the same layout as the emailed reports. You see only your factories' rows.</li></ul><div class="note"><b>Coming later:</b> Artwork, PPS and Compliance screens. They aren't in Dev PLM yet.</div></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Development &amp; Sample Tracking</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#2f9bd6;--deep:#1b76ac;--tint:#eaf5fb">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · PRODUCTION</div>
+  <h1>Development &amp; Sample Tracking</h1>
+  <p>Follow every item through sampling and pre-production approvals in the Dev Tracker, before mass production begins.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Who does it</b><span>People with Edit on the Dev Tracker</span></div>
+    <div><b>When</b><span>From first sample to approval</span></div>
+    <div><b>Tool</b><span>Dev Tracker in Dev PLM</span></div>
+  </div>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/samples" target="_blank" rel="noopener">Open Dev Tracker</a>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/reports" target="_blank" rel="noopener">Open Reports</a>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/orders" target="_blank" rel="noopener">Open Order Tracker</a>
+  <a class="open-tool" href="https://saulb96.github.io/quote-tracker/" target="_blank" rel="noopener">Open Quote Tracker</a>
+
+  <div class="draft">
+    <details><summary><b>Draft.</b> Saul to confirm 6 things on this page</summary>
+    <ul class="plain">
+      <li>The steps in <a href="#order">The order of the work</a>. They come from the report rules, not from a written procedure.</li>
+      <li>How a Sample Request (SR) file, a PPS Comments (SC) file and the <b>PPS comments</b> get to the factory, and where a Benchmark Sample (BS) file comes from. The tools only download the file and record it.</li>
+      <li>When to pick each <b>PP Sample Status</b> and each <b>Sample Type</b>.</li>
+      <li>Where the factory's ingredients go in SharePoint.</li>
+      <li>When a row goes to the Order Tracker.</li>
+      <li>Which Report Runner reports are in use, and whether its Development Tracker reports still read the old workbook. Report Runner is a separate tool on the Tools Hub. These steps use <b>Reports</b> in Dev PLM.</li>
+    </ul>
+    </details>
+  </div>
+
+  <div class="warn"><b>The old workbook is read-only.</b> Anything typed in the Development Tracker workbook isn't kept. Make every change in the Dev Tracker.</div>
+
+  <h2 id="todo">What do you need to do?</h2>
+  <ul class="plain">
+    <li><a href="#open">Open the Dev Tracker</a> (start here the first time)</li>
+    <li><a href="#order">See the order of the work</a> for one sample</li>
+    <li><a href="#find">Find a sample</a></li>
+    <li><a href="#edit">Change a row</a></li>
+    <li><a href="#paste">Paste or fill many cells</a></li>
+    <li><a href="#pps">Track a PPS (pre-production sample) in Open sample</a></li>
+    <li><a href="#new">Add a new sample</a></li>
+    <li><a href="#typed">Add a row by typing</a></li>
+    <li><a href="#log">Add a Sample Request (SR), PPS Comments (SC) or Benchmark Sample (BS) file</a></li>
+    <li><a href="#close">Close or reopen a row</a></li>
+    <li><a href="#undo">Undo a change</a></li>
+    <li><a href="#delete">Delete a row</a></li>
+    <li><a href="#restore">Bring back something deleted</a> (admins)</li>
+    <li><a href="#kanban">Use the Kanban</a></li>
+    <li><a href="#export">Export rows to Excel</a></li>
+    <li><a href="#pending">Send rows to the Order Tracker</a></li>
+    <li><a href="#reports">Run a report</a></li>
+    <li><a href="#readonly">If you see Read only</a></li>
+    <li><a href="#lists">Change a dropdown list</a> (admins)</li>
+    <li><a href="#rules">Rules to remember</a> and <a href="#reference">Reference</a>: columns, dropdown values, where each status and type shows, numbering, approve-by rules</li>
+  </ul>
+
+  <h2 id="order">The order of the work</h2>
+  <p>These are the steps for one sample, from start to finish. Each line links to how to do it. This order is still a draft: see the yellow Draft note at the top.</p>
+  <ol class="plain">
+    <li><a href="#new">Add the sample</a>.</li>
+    <li>For an Artwork Sample, when the artwork goes out, <a href="#edit">enter <b>Date Artwork Sent to Factory</b></a>.</li>
+    <li>When the factory gives its date, <a href="#edit">enter <b>Estimated SRD</b></a>.</li>
+    <li>When the factory ships the sample, <a href="#pps">enter <b>Carrier</b> and <b>Tracking #</b></a>.</li>
+    <li>When the sample arrives, <a href="#pps">click <b>Received today</b></a>.</li>
+    <li><a href="#pps">Type <b>PPS comments</b></a>. <a href="#pps-send">Send your comments to the factory in the SC file</a>. Then click <b>Comments sent today</b> and enter the SC file's number in <b>PPS Comments #</b>.</li>
+    <li><a href="#pps">Set <b>PP Sample Status</b></a> as the sample moves along, until it reaches <b>Approved</b>. See <a href="#statuses">where each status shows</a>.</li>
+    <li>Once it's approved, ask the factory for its ingredients and add them to SharePoint. Then <a href="#edit">fill in <b>Ingredients Added To SharePoint</b></a>. For an Artwork Sample, the designer then <a href="Guide_12_Artwork.html#ingredients">puts the ingredients on the artwork</a>. When it has gone out, fill in <b>Artwork With Ingredients Sent To Factory</b>.</li>
+    <li><a href="#close">Set <b>Status</b> to <b>Closed</b></a>. <b>Approved</b> doesn't close a row.</li>
+  </ol>
+  <p>When a Sample Request (SR) or Benchmark Sample (BS) file goes to a factory, <a href="#log">record it</a> and put its number in <b>SR / BS #</b> on the main rows.</p>
+  <p>The <a href="#reports">reports</a> list the rows waiting on most of these steps.</p>
+
+  <h2 id="open">Open the Dev Tracker</h2>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Sign in</h3>
+      <p>Click <b>Open Dev Tracker</b> at the top of this page, then <b>Sign in with Microsoft</b>. Use your Metro1 Microsoft account. If the page says <b>Not added yet</b>, ask Saul or another admin.</p>
+    </li>
+    <li class="step">
+      <h3>Find Dev Tracker in the side menu</h3>
+      <p>The button takes you straight there. Next time, it's under <b>Development</b> <span class="m">1</span> in the side menu.</p>
+      <figure>
+        <a href="guide-img/4-menu.webp" target="_blank" rel="noopener"><img src="guide-img/4-menu.webp" width="704" height="262" loading="lazy" alt="The Dev PLM side menu, with Dev Tracker under Development marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick a tab</h3>
+      <p>The tabs <span class="m">1</span> sit above the grid (the table of rows). <b>Dev Tracker</b> is the main tab, with one row per style and sample. <b>SR</b> (Sample Request), <b>SC</b> (PPS Comments) and <b>BS</b> (Benchmark Sample) hold the files sent to factories.</p>
+      <p>The number on a tab counts all of that tab's rows you have access to, closed rows too. It doesn't change when you search or filter. The bar under the grid says how many are showing.</p>
+      <figure>
+        <a href="guide-img/4-tracker.webp" target="_blank" rel="noopener"><img src="guide-img/4-tracker.webp" width="1117" height="620" loading="lazy" alt="The Dev Tracker grid with rows, with the tabs marked 1, Filters marked 2 and the top line marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Find the rest of the screen</h3>
+      <p>In the picture above, <b>Filters</b> <span class="m">2</span> is on the left of the grid. The toolbar is the buttons above the tabs.</p>
+      <p>The top line <span class="m">3</span> says whose rows you see. It also counts, among the main tab's Open rows, <a href="Guide_8_Glossary.html#PPS" target="_blank" rel="noopener">PPS</a> (pre-production samples) in transit and samples awaiting approval. In transit means a <b>Tracking #</b> but no <b>Date PPS Received</b>. Awaiting approval means <b>Pending M1S</b> or <b>Waiting for Buyer</b>.</p>
+      <p>The grid opens at the bottom, on the newest rows. In the toolbar, click <b>⤒</b> to jump to the top and <b>⤓</b> to jump to the bottom.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="find">Find a sample</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Type in the search box</h3>
+      <p>Use <b>Search all columns…</b> <span class="m">1</span> in the toolbar (the buttons above the tabs). Only matching rows stay. Clear the box to see every row again. <b>Search this page…</b> at the very top narrows the rows too.</p>
+      <figure>
+        <a href="guide-img/4-search.webp" target="_blank" rel="noopener"><img src="guide-img/4-search.webp" width="844" height="350" loading="lazy" alt="The word Lip typed in the search box, marked 1, leaving three rows. The Open, Closed and All buttons are marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick Open, Closed or All</h3>
+      <p>These buttons <span class="m">2</span> are beside the search. The main tab starts on <b>Open</b>, so closed rows stay hidden until you pick <b>Closed</b> or <b>All</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Open the Filters pane</h3>
+      <p>Click <b>Filters</b> on the left of the grid. A pane opens. On a very wide screen it's already open.</p>
+    </li>
+    <li class="step">
+      <h3>Tick the values you want</h3>
+      <p>In the pane <span class="m">1</span> click a heading, such as <b>PP Sample Status</b>. Then tick the values <span class="m">2</span> you want. The rows change as you tick.</p>
+      <figure>
+        <a href="guide-img/4-filters.webp" target="_blank" rel="noopener"><img src="guide-img/4-filters.webp" width="844" height="586" loading="lazy" alt="The Filters pane marked 1, with Updated Artwork Needed ticked under PP Sample Status and marked 2, and Clear all filters marked 3. The grid shows two rows"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Clear the filters</h3>
+      <p>When you're done, click <b>Clear all filters</b> <span class="m">3</span> at the bottom of the pane.</p>
+    </li>
+    <li class="step">
+      <h3>Sort or filter one column</h3>
+      <p>Click <b>▲▼</b> <span class="m">1</span> beside a column name to sort. The first click sorts up and the next sorts down. On the main tab, the third click goes back to the sheet's own order, and so does clicking <b>#</b>. On <b>SR</b>, <b>SC</b> and <b>BS</b> the third click sorts up again. Click <b>▲▼</b> beside <b>Date</b> to go back to their usual order.</p>
+      <p>Click <b>▾</b> <span class="m">2</span> to filter that column. Tick values, then click <b>Done</b>.</p>
+      <figure>
+        <a href="guide-img/4-column-filter.webp" target="_blank" rel="noopener"><img src="guide-img/4-column-filter.webp" width="770" height="330" loading="lazy" alt="The column headers, with the sort arrows beside Date Created marked 1 and the filter arrow beside Supplier marked 2, its filter list open"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Use Find to jump from cell to cell</h3>
+      <p>Click <b>Find</b>, beside the search box, or press <b>Ctrl+F</b>. Type in the Find box <span class="m">1</span> and the selected cell jumps to the first match. Every match is marked. No rows hide. Press <b>Enter</b> for the next match and <b>Shift+Enter</b> for the one before. <b>Esc</b> closes Find.</p>
+      <figure>
+        <a href="guide-img/4-find.webp" target="_blank" rel="noopener"><img src="guide-img/4-find.webp" width="1117" height="390" loading="lazy" alt="The Find box marked 1 reading 1 of 9, with the matching Supplier cells colored in the grid"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click a Style # to see everything on that style</h3>
+      <p>A panel opens with the style's rows and its Order Tracker items. The items show only if you can view the Order Tracker. The grid behind shows only that style's rows. Close the panel with <b>✕</b> and every row comes back.</p>
+      <figure>
+        <a href="guide-img/4-style-panel.webp" target="_blank" rel="noopener"><img src="guide-img/4-style-panel.webp" width="780" height="354" loading="lazy" alt="The panel for one style, listing its Dev Tracker row and its Order Tracker item"></a>
+      </figure>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="edit">Change a row</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click the cell</h3>
+      <p>You need Edit for this. If you see <b>Read only</b>, go to <a href="#readonly">If you see Read only</a>. In a blue cell, click beside the blue text. A click on the text follows the link. The columns run far to the right, so scroll sideways. The first columns stay frozen.</p>
+    </li>
+    <li class="step">
+      <h3>Type the new value, or pick it from the list</h3>
+      <p>Typing replaces what's in the cell. To change part of it, double-click the cell or press <b>F2</b> first. To pick from a list, click <b>▾</b> in the cell <span class="m">1</span> or start typing to narrow the list. Then click a value.</p>
+      <figure>
+        <a href="guide-img/4-pick.webp" target="_blank" rel="noopener"><img src="guide-img/4-pick.webp" width="564" height="436" loading="lazy" alt="A PP Sample Status cell marked 1 with its dropdown list open, showing the seven status values"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Move on. It saves by itself</h3>
+      <p>There's no <b>Save</b> button. A pick saves at once. Text saves a moment after you stop typing. Numbers and dates save when you press <b>Enter</b> or <b>Tab</b>, or leave the cell.</p>
+      <p>The cell <span class="m">1</span> shows the new value. A message at the bottom says what changed, and its <b>Undo</b> <span class="m">2</span> takes it back. The bar under the grid says <b>✓ All changes saved</b>.</p>
+      <figure>
+        <a href="guide-img/4-saved.webp" target="_blank" rel="noopener"><img src="guide-img/4-saved.webp" width="768" height="198" loading="lazy" alt="A row showing Pending M1S in PP Sample Status, marked 1, and a message at the bottom with an Undo button, marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Press Esc to cancel</h3>
+      <p><b>Esc</b> cancels what hasn't saved yet. After that, use <a href="#undo">Undo</a>.</p>
+    </li>
+  </ol>
+  <div class="note"><b>If someone else saved first.</b> If they changed the same cell, your save is refused and the row shows theirs. If they changed a different cell of that row, yours still goes through. The screen checks for other people's changes every 30 seconds. <b>Reload</b>, in the toolbar, checks right away.</div>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="paste">Paste or fill many cells</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Select the cells</h3>
+      <p>Drag across them, or hold <b>Shift</b> and press the arrow keys. Click a number under <b>#</b> for a whole row, or a column letter for a whole column.</p>
+    </li>
+    <li class="step">
+      <h3>Press Ctrl+V to paste, or Ctrl+D to fill</h3>
+      <p><b>Ctrl+D</b> on one cell copies the cell above it. On a selection, it copies the top row down.</p>
+    </li>
+    <li class="step">
+      <h3>Check for the box</h3>
+      <p>Paste and fill are all or nothing. If one value doesn't fit, nothing changes and a box lists the cells. Fix them and try again.</p>
+      <figure>
+        <a href="guide-img/4-refused.webp" target="_blank" rel="noopener"><img src="guide-img/4-refused.webp" width="744" height="197" loading="lazy" alt="A box titled Nothing was pasted, saying one Customer value is not in the list"></a>
+      </figure>
+    </li>
+  </ol>
+  <div class="note"><b>The Delete key.</b> It clears the selected cells, without asking. <b>Undo</b> brings them back. It leaves <b>Status</b>, <b>Date Created</b>, <b>Supplier</b>, <b>Style #</b> and <b>Sample Type</b> alone.</div>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="pps">Track a PPS in Open sample</h2>
+  <p><b>Open sample</b> shows one sample: its fields, <b>PPS comments</b>, <b>Note</b> and <b>Changes</b>. A <a href="Guide_8_Glossary.html#PPS" target="_blank" rel="noopener">PPS</a> is a pre-production sample.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click a cell in the row</h3>
+      <p>Any cell <span class="m">1</span> works, but not a blue link. A link goes somewhere else.</p>
+    </li>
+    <li class="step">
+      <h3>Click Open sample</h3>
+      <p><b>Open sample</b> <span class="m">2</span> is in the toolbar. A panel opens on the right. On the Kanban, click a card instead.</p>
+      <figure>
+        <a href="guide-img/4-open-button.webp" target="_blank" rel="noopener"><img src="guide-img/4-open-button.webp" width="844" height="430" loading="lazy" alt="A cell selected in a row, marked 1, and the Open sample button marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Enter Carrier and Tracking # when the factory ships it</h3>
+      <p>Both are in the panel. Pick <b>Carrier</b> <span class="m">1</span> and type <b>Tracking #</b> <span class="m">2</span> there, or fill them in the grid. The panel then shows <b>In transit</b> at the top, and the grid's top line counts it, until the sample has a received date.</p>
+      <figure>
+        <a href="guide-img/4-drawer.webp" target="_blank" rel="noopener"><img src="guide-img/4-drawer.webp" width="780" height="692" loading="lazy" alt="The Open sample panel with its fields and an In transit tag at the top, with Carrier marked 1, Tracking # marked 2 and Received today marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Received today when the sample arrives</h3>
+      <p>In the picture above, <b>Received today</b> <span class="m">3</span> fills <b>Date PPS Received</b> with today's date, and nothing else. The button shows only while that date is blank. In the panel that date is called <b>Received</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Write what the factory must change</h3>
+      <p>Type in <b>PPS comments</b> <span class="m">3</span> and it saves by itself. <b>PPS comments</b> stay here. They don't reach the factory by themselves. Use <b>Note</b> <span class="m">4</span> for anything internal. Neither is in the grid or the Export. A Note also shows on its Kanban card.</p>
+      <p>The hint beside the box mentions a PPS Comments column. Type your comments here. The grid's <b>PPS Comments #</b> holds only the SC file's number.</p>
+      <figure>
+        <a href="guide-img/4-drawer-lower.webp" target="_blank" rel="noopener"><img src="guide-img/4-drawer-lower.webp" width="780" height="446" loading="lazy" alt="The lower part of the panel: Comments sent today marked 1, Approve marked 2, PPS comments marked 3, Note marked 4, and the list of Changes"></a>
+      </figure>
+    </li>
+    <li class="step" id="pps-send">
+      <h3>Make the SC file in the Quote Tracker</h3>
+      <p>The SC file is the PPS comments sheet. Click <b>Open Quote Tracker</b> at the top of this page. Tick the style's row <span class="m">1</span>, then click <b>PPS Sheet</b> <span class="m">2</span> in the top bar. An Excel file downloads. Type your comments in its blank <b>Sample Comments</b> column. For more, see <a href="Guide_1_Quoting_Tracker.html#files">Make files from ticked rows</a>.</p>
+      <figure>
+        <a href="guide-img/4-pps-sheet.webp" target="_blank" rel="noopener"><img src="guide-img/4-pps-sheet.webp" width="1100" height="516" loading="lazy" alt="The Quote Tracker with two rows ticked, the first tick box marked 1 and the PPS Sheet button marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Send the file to the factory</h3>
+      <p>The Quote Tracker only downloads the file. It doesn't send it. Saul to confirm how it gets to the factory: see the yellow Draft note at the top.</p>
+    </li>
+    <li class="step">
+      <h3>Click Comments sent today when the comments go out</h3>
+      <p>Back in the panel, <b>Comments sent today</b> is marked <span class="m">1</span> in the picture at step 5. It fills <b>Date PPS Comments Sent</b> with today's date. It only records the date. It sends nothing. The button shows once the sample has a received date, while this date is blank.</p>
+    </li>
+    <li class="step">
+      <h3>Set the status</h3>
+      <p>Pick <b>PPS status</b> in the panel, or <b>PP Sample Status</b> in the grid. In the picture at step 5, <b>Approve</b> <span class="m">2</span> sets it to <b>Approved</b>. The row stays <b>Open</b>. To close it, go to <a href="#close">Close or reopen a row</a>. To see where each status puts the row in the reports, go to <a href="#statuses">PP Sample Status: where each one shows</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Check Changes, then close the panel</h3>
+      <p><b>Changes</b> at the bottom lists who changed what and when. Close the panel with <b>✕</b> or <b>Esc</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Enter the SC file's number in the grid</h3>
+      <p>First record the file in <a href="#log">Add an SR, SC or BS file</a> to get its number. Then enter that number in the row's <b>PPS Comments #</b> cell.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="new">Add a new sample</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click + New Sample</h3>
+      <p>It's the blue button in the toolbar. Stay on the <b>Dev Tracker</b> tab. A popup opens.</p>
+      <figure>
+        <a href="guide-img/4-new-sample.webp" target="_blank" rel="noopener"><img src="guide-img/4-new-sample.webp" width="744" height="402" loading="lazy" alt="The New Sample popup filled in, with Needs To Be Approved By marked 1, Use it marked 2 and Add marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Fill in Style #, Supplier and Sample Type</h3>
+      <p><b>Style #</b> suggests styles you already have, and you can type a new one. <b>Supplier</b> lists only your factories. If you have just one, it's already filled in. <b>Sample Type</b> starts on <b>Artwork Sample</b>, so check it. The type decides which reports list the row: see <a href="#types">Sample Type: which reports list each one</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Enter the Customer Ship Date</h3>
+      <p><b>Needs To Be Approved By</b> <span class="m">1</span> fills itself in: the ship date minus 90 days. Type over it only if you have another date.</p>
+    </li>
+    <li class="step">
+      <h3>Enter the Estimated SRD, if you have it</h3>
+      <p><a href="Guide_8_Glossary.html#SRD" target="_blank" rel="noopener">SRD</a> is the Sample Ready Date. It starts blank. Type the factory's date. For an <b>Artwork Sample</b>, you can click <b>Use it</b> <span class="m">2</span> instead. That fills in today plus the factory's usual lead time. It's only an estimate until someone types the factory's date. See <a href="#srd">Needs To Be Approved By Date and Estimated SRD</a> in Reference.</p>
+    </li>
+    <li class="step">
+      <h3>Click Add</h3>
+      <p><b>Add</b> <span class="m">3</span> stays grey until the popup has a <b>Style #</b> and a <b>Supplier</b>, and while a date is only half typed. The new row goes to the bottom of the grid, with its <b>Style #</b> cell selected. If a search or filter hides it, the message says so.</p>
+    </li>
+    <li class="step">
+      <h3>Fill in the rest in the grid</h3>
+      <p>The popup doesn't ask for <b>Item Description</b>, <b>Customer</b> or the later columns. Click each cell and type or pick. <b>PP Sample Status</b> starts blank.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Admins see one more question.</b> On an <b>Artwork Sample</b> they're asked <b>Ingredients needed?</b> <b>Add</b> stays grey until they answer. <b>Needed</b> leaves <b>Ingredients Added To SharePoint</b> blank. <b>Not needed</b> sets it to N/A, for an item that isn't a cosmetic.</div>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="typed">Add a row by typing</h2>
+  <p>For one sample, <a href="#new">+ New Sample</a> asks for the main fields in one popup. Type or paste here when you have many rows, or need a row in the middle.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click a blank line under the rows, or click + Row</h3>
+      <p><b>+ Row</b>, beside <b>+ New Sample</b>, moves the selected cell to a new line at the bottom. A click alone makes no row.</p>
+    </li>
+    <li class="step">
+      <h3>Pick the Supplier first</h3>
+      <p>Until the row has a <b>Supplier</b>, it says <b>Not saved: pick a Supplier</b> <span class="m">1</span> and nothing is saved. Once you pick one, the row saves. If you have just one factory, it's filled in, and the row saves at the first value you type. <b>Esc</b> clears a row that isn't saved yet.</p>
+      <figure>
+        <a href="guide-img/4-blank-row.webp" target="_blank" rel="noopener"><img src="guide-img/4-blank-row.webp" width="564" height="220" loading="lazy" alt="A new row with a Style # typed, shaded, with Not saved: pick a Supplier in its Supplier cell, marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Right-click the row above, to put a row in the middle</h3>
+      <p>In the menu, pick <b>Insert row below</b> <span class="m">1</span> and a blank line opens right under that row. It saves there once it has a <b>Supplier</b>. This works on the main tab, in the sheet's own order. If a column is sorted, click <b>#</b> first.</p>
+      <figure>
+        <a href="guide-img/4-row-menu.webp" target="_blank" rel="noopener"><img src="guide-img/4-row-menu.webp" width="860" height="290" loading="lazy" alt="The right-click menu on a row, with Insert row below marked 1 and Cancel under it"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Paste on a blank line, to add many rows</h3>
+      <p>Click the blank cell in the column where your first copied column belongs, then press <b>Ctrl+V</b>. Your copied columns must be in the same order as the grid's. If your rows have every column, any cell on the line works.</p>
+      <p>Each pasted line with a <b>Supplier</b> becomes a row. A line with no <b>Supplier</b> isn't added, and the message says so. One bad value stops the whole paste. You can paste up to 500 rows at a time.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="log">Add an SR, SC or BS file</h2>
+  <p>This records a file sent to a factory and gives it its number. It doesn't make or send the file. The Quote Tracker makes Sample Request and PPS comments files: see <a href="Guide_1_Quoting_Tracker.html#files">Make files from ticked rows</a>. Saul to confirm where a BS file comes from.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click the tab</h3>
+      <p><b>SR</b> <span class="m">1</span> is for Sample Request files. <b>SC</b> is for PPS Comments files. <b>BS</b> is for Benchmark Sample files.</p>
+      <figure>
+        <a href="guide-img/4-sr-tab.webp" target="_blank" rel="noopener"><img src="guide-img/4-sr-tab.webp" width="844" height="370" loading="lazy" alt="The SR tab marked 1, the + New Sample button marked 2, and used by 2 rows beside a File Name marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click + New Sample</h3>
+      <p>The button <span class="m">2</span> has the same name on every tab. Here it opens <b>New SR log entry</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Fill in the popup</h3>
+      <p><b>Date</b> starts on today. Pick the <b>Factory</b>. <b>File Name</b> <span class="m">1</span> fills in with the next number for that month. You can type over it. Add the <b>Products</b>.</p>
+      <figure>
+        <a href="guide-img/4-new-sr.webp" target="_blank" rel="noopener"><img src="guide-img/4-new-sr.webp" width="744" height="400" loading="lazy" alt="The New SR log entry popup, with the File Name number marked 1 and Add marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Add</h3>
+      <p><b>Add</b> <span class="m">2</span> stays grey until the popup has a <b>Date</b> and a <b>Factory</b>. The number is given when the row is added.</p>
+      <p>The popup doesn't ask for <b>Customer</b>, <b>Carrier</b>, <b>Tracking #</b>, <b>Received</b> or <b>Tags</b>. Fill in the ones that tab has in the grid.</p>
+    </li>
+    <li class="step">
+      <h3>Put the number on the main rows</h3>
+      <p>On the <b>Dev Tracker</b> tab, enter it in <b>SR / BS #</b> (SR and BS files) or <b>PPS Comments #</b> (SC files). These cells take only numbers that already exist on those tabs.</p>
+      <p>Back on the file's tab, look at the picture at step 1. <b>used by 2 rows</b> <span class="m">3</span> shows how many of your main rows use the number. Click it to list them.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="close">Close or reopen a row</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click the row's Status cell, then ▾</h3>
+      <p><b>Status</b> is the first column. A list opens.</p>
+    </li>
+    <li class="step">
+      <h3>Pick Closed</h3>
+      <p>In the list, pick <b>Closed</b> <span class="m">1</span> to close the row. Rows close only this way. Setting <b>Approved</b> doesn't close a row.</p>
+      <p>The row stays on screen, showing <b>Closed</b>. Click another row, then click <b>Reload</b> or change tab, and it leaves the <b>Open</b> view.</p>
+      <figure>
+        <a href="guide-img/4-close-row.webp" target="_blank" rel="noopener"><img src="guide-img/4-close-row.webp" width="770" height="310" loading="lazy" alt="A Status cell with its list open, with Closed marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick Open to reopen a row</h3>
+      <p>Click <b>Closed</b> or <b>All</b> at the top to see the row. Then set its <b>Status</b> to <b>Open</b>.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="undo">Undo a change</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click ↶ Undo or press Ctrl+Z</h3>
+      <p><b>↶ Undo</b> <span class="m">1</span> is in the toolbar. You can also click <b>Undo</b> on the message at the bottom. It takes back your last change only. A paste, a fill or a clear counts as one change.</p>
+      <figure>
+        <a href="guide-img/4-undo.webp" target="_blank" rel="noopener"><img src="guide-img/4-undo.webp" width="844" height="190" loading="lazy" alt="The toolbar, with the Undo button marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Answer the question, if you just added a row</h3>
+      <p><b>Undo</b> asks first. Click <b>OK</b> to move the row to <b>Recently deleted</b>. An admin can <a href="#restore">restore it from there</a> for 90 days.</p>
+    </li>
+  </ol>
+  <div class="note"><b>If someone changed it since.</b> <b>Undo</b> says so and changes nothing.</div>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="delete">Delete a row</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Tick the row</h3>
+      <p>Tick the box <span class="m">1</span> at the left of the row. Or click a cell in the row. If any rows are ticked, <b>Delete</b> takes those.</p>
+      <figure>
+        <a href="guide-img/4-undo-delete.webp" target="_blank" rel="noopener"><img src="guide-img/4-undo-delete.webp" width="1117" height="370" loading="lazy" alt="A row ticked, marked 1, with the Delete button marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Delete</h3>
+      <p><b>Delete</b> <span class="m">2</span> is in the toolbar. In <b>Open sample</b>, the same button is <b>Delete sample</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Read the question, then click Delete</h3>
+      <p>It warns you that this can't be undone.</p>
+      <figure>
+        <a href="guide-img/4-delete.webp" target="_blank" rel="noopener"><img src="guide-img/4-delete.webp" width="704" height="162" loading="lazy" alt="A box titled Are you sure, saying this cannot be undone, with Cancel and Delete buttons"></a>
+      </figure>
+    </li>
+  </ol>
+  <div class="warn"><b>Undo can't bring a deleted row back.</b> An admin can restore it from <b>Recently deleted</b> for 90 days, so ask Saul or another admin. See <a href="#restore">Bring back something deleted</a>. The <b>Delete</b> key on your keyboard is different: it only clears the selected cells.</div>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="restore">Bring back something deleted (admins)</h2>
+  <p><b>Recently deleted</b> keeps deleted Dev Tracker rows, orders, items and Pending rows for 90 days. Only admins can open it. Not an admin? Ask Saul or another admin.</p>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/recycle" target="_blank" rel="noopener">Open Recently deleted</a>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open Recently deleted</h3>
+      <p>Click <b>Open Recently deleted</b> above. In the side menu it's under <b>Work</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Set the filter to the tool</h3>
+      <p>Pick <b>Dev Tracker</b> or <b>Order Tracker</b> in <b>Filter</b> <span class="m">1</span>.</p>
+      <figure>
+        <a href="guide-img/4-recently-deleted.webp" target="_blank" rel="noopener"><img src="guide-img/4-recently-deleted.webp" width="1093" height="492" loading="lazy" alt="The Recently deleted page, filtered to the Dev Tracker. The filter is marked 1 and the Restore button on the first row is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Restore on the row</h3>
+      <p>Click <b>Restore</b> <span class="m">2</span>. It puts the row back exactly as it was.</p>
+    </li>
+    <li class="step">
+      <h3>Read the message</h3>
+      <p>A message at the bottom says what happened. A restore can be refused, for example if its number is used again or its order is gone. The message then says why, and the row stays in the list.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="kanban">Use the Kanban</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Kanban</h3>
+      <p>In the toolbar, <b>Kanban</b> <span class="m">1</span> shows the main tab as cards in columns. Each column is a <b>PP Sample Status</b>, with <b>No status</b> first. Scroll sideways for the others.</p>
+      <p><b>Open</b>, <b>Closed</b>, <b>All</b> and the search still work. On the Kanban the search looks only at <b>Style #</b>, <b>Item Description</b> and <b>Supplier</b>. <b>Find</b> is grey here, because it works on the grid. Click <b>Grid</b> to go back.</p>
+      <figure>
+        <a href="guide-img/4-kanban.webp" target="_blank" rel="noopener"><img src="guide-img/4-kanban.webp" width="806" height="540" loading="lazy" alt="The Kanban view: Kanban marked 1, a card marked 2 and the blue in-transit dot on another card marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click a card to open the sample</h3>
+      <p>A card <span class="m">2</span> opens the same panel as <b>Open sample</b>. A blue dot <span class="m">3</span> means the sample is in transit. A card also shows its <b>Note</b>, if it has one.</p>
+    </li>
+    <li class="step">
+      <h3>Drag a card to change its status</h3>
+      <p>People with Edit can drag a card to another column. That sets its <b>PP Sample Status</b>. Dropping on <b>Approved</b> leaves the row <b>Open</b>.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="export">Export rows to Excel</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Tick the rows</h3>
+      <p>Tick each row's box <span class="m">1</span> at the left. The box at the top of that column ticks every row shown. The top line counts them.</p>
+      <figure>
+        <a href="guide-img/4-export.webp" target="_blank" rel="noopener"><img src="guide-img/4-export.webp" width="844" height="440" loading="lazy" alt="Three rows ticked, the first marked 1, with the Export button marked 2 and the Order Tracker button marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Export</h3>
+      <p>In the toolbar, <b>Export</b> <span class="m">2</span> stays grey until a row is ticked. An Excel file downloads. The main tab's file has the order and columns shown on screen. An SR, SC or BS file has the workbook's layout. It works with <b>Read only</b> too.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="pending">Send rows to the Order Tracker</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Tick the rows on the Dev Tracker tab</h3>
+      <p>This works from the main tab only, and needs Edit on the Order Tracker. A ticked row with no <b>Style #</b> stays behind.</p>
+    </li>
+    <li class="step">
+      <h3>Click → Order Tracker</h3>
+      <p><b>→ Order Tracker</b> <span class="m">3</span> is beside <b>Export</b>. It stays grey until a row is ticked. A popup opens.</p>
+      <figure>
+        <a href="guide-img/4-export.webp" target="_blank" rel="noopener"><img src="guide-img/4-export.webp" width="844" height="440" loading="lazy" alt="Three rows ticked, with the Order Tracker button marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Type the units for each style</h3>
+      <p>Each style gets one line <span class="m">1</span> even if you ticked several of its rows. Type a whole number above 0.</p>
+      <figure>
+        <a href="guide-img/4-to-pending.webp" target="_blank" rel="noopener"><img src="guide-img/4-to-pending.webp" width="744" height="318" loading="lazy" alt="The Send to the Order Tracker popup, with a units box marked 1 and Add to Pending marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Add to Pending</h3>
+      <p><b>Add to Pending</b> <span class="m">2</span> sends the styles to the Order Tracker's Pending list, marked <b>From Dev Tracker</b>. Next, see <a href="Guide_3_Order_Placement.html#form">Turn Pending items into an order form</a>.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="reports">Run a report</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Reports in the side menu</h3>
+      <p>It's under <b>Work</b>. The cards say how many rows each report has now. The <b>Read only</b> tag on this page is normal. You can still run and download.</p>
+    </li>
+    <li class="step">
+      <h3>Click Run on a report</h3>
+      <p><b>Run</b> <span class="m">1</span> opens the report in a panel. The <b>Master Report</b> holds four reports in one. The others are one report each.</p>
+      <figure>
+        <a href="guide-img/4-reports.webp" target="_blank" rel="noopener"><img src="guide-img/4-reports.webp" width="1117" height="602" loading="lazy" alt="The Reports page with seven report cards, with Run on the Master Report marked 1"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick a tab, if the report has them</h3>
+      <p>The tabs <span class="m">2</span> of the <b>Master Report</b> are <b>Missing Artwork Report</b>, <b>SRD Report</b>, <b>Missing PPS Comments</b> and <b>PPS Pending</b>. You see only your factories' rows.</p>
+      <figure>
+        <a href="guide-img/4-report-run.webp" target="_blank" rel="noopener"><img src="guide-img/4-report-run.webp" width="1101" height="640" loading="lazy" alt="The Master Report open, with Download Excel marked 1 and its four tabs marked 2"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Download Excel</h3>
+      <p><b>Download Excel</b> <span class="m">1</span> saves the whole report, in the same layout as the emailed reports. <b>Re-run</b> runs it again. Close the panel with <b>✕</b>.</p>
+    </li>
+  </ol>
+  <div class="note"><b>The 6:30 AM report emails are paused.</b> Run the reports here instead. <a href="#reportlist">What each report lists</a> is in Reference.</div>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="readonly">If you see Read only</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Look for the tag</h3>
+      <p>Beside the title <span class="m">1</span> and under the grid <span class="m">2</span> you see <b>Read only</b>. It means you can look but not change. You can still search, filter, use <b>Find</b> and click <b>Open sample</b>. <b>Export</b> works too, once you tick a row. It's grey until then, as it is for everyone. The buttons that change things stay grey.</p>
+      <figure>
+        <a href="guide-img/4-read-only.webp" target="_blank" rel="noopener"><img src="guide-img/4-read-only.webp" width="1117" height="624" loading="lazy" alt="The Dev Tracker for a person with view rights: the Read only tag beside the title marked 1 and in the bar under the grid marked 2, with New Sample, Row, Delete, Undo, Export and Order Tracker greyed out"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Ask for the change</h3>
+      <p>Ask one of the people Saul has given Edit. If you need Edit yourself, ask Saul or another admin. If a factory is missing, see <a href="Guide_2_Quote_Sheets.html#factory">Add a factory or change its email</a>.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="lists">Change a dropdown list (admins)</h2>
+  <p>Need a new customer, carrier or status, and you aren't an admin? Ask Saul or another admin.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click ⚙ Lists</h3>
+      <p>It's in the toolbar, for admins only. Pick a list at the top of the popup: <b>Sample Type</b>, <b>PP Sample Status</b>, <b>Carrier</b> or <b>Customer</b>.</p>
+      <figure>
+        <a href="guide-img/4-lists.webp" target="_blank" rel="noopener"><img src="guide-img/4-lists.webp" width="744" height="544" loading="lazy" alt="The Lists popup on PP Sample Status, with New value marked 1, a retire button marked 2 and a value's name marked 3"></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add, rename or retire a value</h3>
+      <p><b>To add:</b> type in <b>New value</b> <span class="m">1</span> and click <b>Add</b>.</p>
+      <p><b>To rename:</b> type over the name <span class="m">3</span> and press <b>Enter</b>. This rewrites every row that holds it.</p>
+      <p><b>To retire:</b> click <b>×</b> <span class="m">2</span> at the right of the value. The value leaves the dropdowns but stays on its rows. <b>Bring back</b> returns it.</p>
+      <p>Retiring always asks first. Renaming asks first only for a value marked <b>used by rules</b>. Rules and reports follow a rename.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <div class="note"><b>Next in the Production flow:</b> <a href="Guide_5_Production_PO.html">Production &amp; PO Tracking</a>.</div>
+
+  <h2 id="rules">Rules to remember</h2>
+  <ul class="plain">
+    <li>Make every change in the Dev Tracker. The old workbook is read-only.</li>
+    <li>There's no <b>Save</b> button. Changes save by themselves. <b>Not saved</b> in the top bar means that change didn't go in. Hold your mouse on it for the reason, then do it again.</li>
+    <li>Dropdown cells take only their list's values. <b>Supplier</b> takes only your factories. Anything else typed or pasted is refused.</li>
+    <li><b>Supplier</b> decides who sees the row, so it can't be blank.</li>
+    <li><b>Approved</b> doesn't close a row. Set <b>Status</b> to <b>Closed</b> by hand.</li>
+    <li>Paste and fill are all or nothing.</li>
+    <li>The <b>Delete</b> button asks first and can't be undone. The <b>Delete</b> key only clears cells.</li>
+    <li>A grey, slanted <b>Estimated SRD</b> is only an estimate. Type the factory's date when it arrives.</li>
+    <li><b>Note</b> and <b>PPS comments</b> aren't in the grid or the Export. Edit them in <b>Open sample</b>. A Note also shows on its Kanban card.</li>
+    <li>The Dev Tracker sends nothing to a factory. <b>PPS comments</b> and <b>Comments sent today</b> only record. Your comments go out in the SC file.</li>
+  </ul>
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+  <h2 id="reference">Reference</h2>
+
+  <details>
+    <summary>Who sees and edits what</summary>
+    <div><ul class="plain">
+      <li><b>Edit:</b> the people Saul has given Edit, set per person.</li>
+      <li><b>View:</b> everyone else with access. They see a <b>Read only</b> tag and can't change anything, but <b>Export</b> works.</li>
+      <li><b>Rows:</b> Saul sets which factories you see, some or all. You see only their rows. A few rows have no factory. If you see only some factories, those rows show only if Saul turns on <b>No factory</b> for you.</li>
+      <li><b>No rows?</b> The page says no factories are assigned to you yet. Ask Saul or another admin. Do the same if you need to edit. Is a factory missing? See <a href="Guide_2_Quote_Sheets.html#factory">Add a factory or change its email</a>.</li>
+      <li><b>Reports:</b> need access to the Dev Tracker too.</li>
+      <li><b>→ Order Tracker:</b> needs Edit on the Order Tracker. The <b>PO#</b> link and a style's Order Tracker items need view on the Order Tracker.</li>
+      <li><b>⚙ Lists:</b> admins only.</li>
+    </ul></div>
+  </details>
+
+  <details>
+    <summary>The tabs</summary>
+    <div class="scroll"><table>
+      <tr><th>Tab</th><th>What it holds</th></tr>
+      <tr><td class="k">Dev Tracker</td><td>The main tab: one row per style and sample, from artwork to approval and ingredients.</td></tr>
+      <tr><td class="k">SR</td><td>Sample Request files sent to factories. These used to be called SF.</td></tr>
+      <tr><td class="k">SC</td><td>PPS Comments files sent to factories. This used to be the PPS tab.</td></tr>
+      <tr><td class="k">BS</td><td>Benchmark Sample files and their follow-up.</td></tr>
+    </table></div>
+    <p><b>BF</b> (Bottle Find: bottle and component sourcing) and <b>FF</b> (Fragrance Find: fragrance sourcing) have no factory. They came off the Dev Tracker on Nov 2, 2026. Their rows are in <b>Recently deleted</b>, and nothing new can be added or numbered there. An admin can restore a row for 90 days. Its tab then shows again, read only, to people who see all factories or have <b>No factory</b> turned on. The row can be exported or deleted, not changed.</p>
+  </details>
+
+  <details>
+    <summary>Main tab columns, in order</summary>
+    <div class="scroll"><table>
+      <tr><th>Col</th><th>Column</th><th>What it takes</th></tr>
+      <tr><td>A</td><td class="k">Status</td><td>Open or Closed. Can't be blank.</td></tr>
+      <tr><td>B</td><td class="k">Date Created</td><td>A date. Can't be blank.</td></tr>
+      <tr><td>C</td><td class="k">Supplier</td><td>One of your factories. Can't be blank.</td></tr>
+      <tr><td>D</td><td class="k">Style #</td><td>Text. Click it to open the style's panel.</td></tr>
+      <tr><td>E</td><td class="k">Item Description</td><td>Text.</td></tr>
+      <tr><td>F</td><td class="k">SR / BS #</td><td>Only SR or BS file numbers of your factories.</td></tr>
+      <tr><td>G</td><td class="k">PPS Comments #</td><td>Only SC file numbers of your factories.</td></tr>
+      <tr><td>H</td><td class="k">PO#</td><td>As typed. Links to its order.</td></tr>
+      <tr><td>I</td><td class="k">Quote#</td><td>As typed. A quote sheet's name links to the Quote Directory.</td></tr>
+      <tr><td>J</td><td class="k">Sample Type</td><td>From its list. Can't be cleared once set.</td></tr>
+      <tr><td>K</td><td class="k">Customer</td><td>From its list.</td></tr>
+      <tr><td>L</td><td class="k">Customer Ship Date</td><td>A date.</td></tr>
+      <tr><td>M</td><td class="k">Needs To Be Approved By Date</td><td>A date. Follows the ship date, minus 90 days.</td></tr>
+      <tr><td>N</td><td class="k">Date Artwork Sent to Factory</td><td>A date.</td></tr>
+      <tr><td>O</td><td class="k">Estimated SRD</td><td>A date. Grey and slanted means only an estimate.</td></tr>
+      <tr><td>P</td><td class="k">Carrier</td><td>From its list.</td></tr>
+      <tr><td>Q</td><td class="k">Tracking #</td><td>Text. Links to the carrier's page.</td></tr>
+      <tr><td>R</td><td class="k">Date PPS Received</td><td>A date.</td></tr>
+      <tr><td>S</td><td class="k">Date PPS Comments Sent</td><td>A date.</td></tr>
+      <tr><td>T</td><td class="k">PP Sample Status</td><td>From its list, or blank.</td></tr>
+      <tr><td>U</td><td class="k">Ingredients Added To SharePoint</td><td>Yes, N/A or blank.</td></tr>
+      <tr><td>V</td><td class="k">Artwork With Ingredients Sent To Factory</td><td>Yes, N/A or blank.</td></tr>
+    </table></div>
+    <p>The first columns stay frozen as you scroll: Status, Date Created and Supplier, plus Style # and Item Description when the window is wide enough. There is no Delayed SRD column and no Batch# Confirmed column.</p>
+  </details>
+
+  <details>
+    <summary>Names in Open sample and in the grid</summary>
+    <div class="scroll"><table>
+      <tr><th>In Open sample</th><th>In the grid</th></tr>
+      <tr><td class="k">Style</td><td>Style #</td></tr>
+      <tr><td class="k">Factory</td><td>Supplier</td></tr>
+      <tr><td class="k">Sample type</td><td>Sample Type</td></tr>
+      <tr><td class="k">PPS status</td><td>PP Sample Status</td></tr>
+      <tr><td class="k">Requested / sent</td><td>Date Artwork Sent to Factory</td></tr>
+      <tr><td class="k">Received</td><td>Date PPS Received</td></tr>
+      <tr><td class="k">Comments sent</td><td>Date PPS Comments Sent</td></tr>
+      <tr><td class="k">Needs approval by</td><td>Needs To Be Approved By Date</td></tr>
+      <tr><td class="k">PPS comments, Changes</td><td>Only in Open sample</td></tr>
+      <tr><td class="k">Note</td><td>Open sample, and its Kanban card</td></tr>
+    </table></div>
+  </details>
+
+  <details>
+    <summary>Dropdown values</summary>
+    <div class="scroll" id="dropdowns"><table>
+      <tr><th>Column</th><th>Values</th></tr>
+      <tr><td class="k">Status</td><td>Open, Closed</td></tr>
+      <tr><td class="k">Sample Type</td><td>Artwork Sample, Benchmark Sample, Factory Sample, Fragrance Scent</td></tr>
+      <tr><td class="k">PP Sample Status</td><td>Updated Artwork Needed, Updated Sample Photo Needed, Revised Sample Needed, Revised Sample Sent, Pending M1S, Waiting for Buyer, Approved</td></tr>
+      <tr><td class="k">Carrier</td><td>DHL, FedEx, UPS</td></tr>
+      <tr><td class="k">Customer (main tab)</td><td>The list in ⚙ Lists. On the SR, SC and BS tabs, Customer is free text.</td></tr>
+      <tr><td class="k">Ingredients Added To SharePoint, Artwork With Ingredients Sent To Factory</td><td>Yes, N/A</td></tr>
+      <tr><td class="k">Received (SR and BS tabs)</td><td>Yes</td></tr>
+    </table></div>
+    <p>Sample Type, PP Sample Status, Carrier and the main tab's Customer take only their list's values. Supplier takes only your factories. Anything else typed or pasted is refused. Need a new customer, carrier or status? Ask Saul or another admin. They add it in ⚙ Lists.</p>
+  </details>
+
+  <details>
+    <summary>PP Sample Status: where each one shows</summary>
+    <p id="statuses">This is where each status puts an Open row in the <a href="#reports">reports</a>. Saul to confirm when to pick each one: see the yellow Draft note at the top.</p>
+    <div class="scroll"><table>
+      <tr><th>PP Sample Status</th><th>Report</th><th>Section</th></tr>
+      <tr><td class="k">Updated Artwork Needed</td><td>Missing Artwork Report</td><td>Updated Artwork Needed. Artwork Samples only.</td></tr>
+      <tr><td class="k">Updated Sample Photo Needed</td><td>PPS Pending</td><td>Waiting For Updated Sample Photo.</td></tr>
+      <tr><td class="k">Revised Sample Needed</td><td>PPS Pending</td><td>Waiting For Factory To Send Updated Samples.</td></tr>
+      <tr><td class="k">Revised Sample Sent</td><td>PPS Pending</td><td>Sample Approval Pending - Waiting to Receive Updated Sample.</td></tr>
+      <tr><td class="k">Pending M1S</td><td>Missing PPS Comments</td><td>Pending M1S. Counted as awaiting approval in the top line.</td></tr>
+      <tr><td class="k">Waiting for Buyer</td><td>Missing PPS Comments</td><td>Waiting For Buyer. Counted as awaiting approval in the top line.</td></tr>
+      <tr><td class="k">Approved</td><td>PPS Pending</td><td>Reach Out To Factory For Ingredients, if it has a Date PPS Received and Ingredients Added To SharePoint is blank. The row stays Open.</td></tr>
+    </table></div>
+    <div><ul class="plain">
+      <li><b>Pending M1S</b> is the placeholder you set while deciding whether to go ahead with mass production.</li>
+      <li><b>Updated Artwork Needed</b> also opens the Revision needed step on the <a href="Guide_12_Artwork.html">Artwork</a> screen. Artwork is in Preview: only admins see it.</li>
+      <li>Any status but <b>Approved</b>, or a blank one, also shows under Approaching Approval Date on PPS Pending, once Needs To Be Approved By Date is 10 days away or less, or past.</li>
+      <li>A row at <b>Pending M1S</b> or <b>Waiting for Buyer</b> stays off Need To Send PPS Comments, even if its comments haven't gone out.</li>
+    </ul></div>
+  </details>
+
+  <details>
+    <summary>Sample Type: which reports list each one</summary>
+    <p id="types">Some report sections list only certain types. A row of another type never shows there. Saul to confirm when to pick each type: see the yellow Draft note at the top.</p>
+    <div class="scroll"><table>
+      <tr><th>Sample Type</th><th>Sections for this type</th></tr>
+      <tr><td class="k">Artwork Sample</td><td>Missing Artwork Report: all three sections. Missing SRD and Carrier Report: the two Artwork Sample sections. Missing PPS Comments: Need To Send PPS Comments.</td></tr>
+      <tr><td class="k">Benchmark Sample</td><td>Missing SRD and Carrier Report: the two Benchmark Sample sections. Missing PPS Comments: Need To Send PPS Comments.</td></tr>
+      <tr><td class="k">Factory Sample</td><td>Factory Sample SRD and Carrier: both sections.</td></tr>
+      <tr><td class="k">Fragrance Scent</td><td>None.</td></tr>
+    </table></div>
+    <p>Every type can show in the other sections: Waiting For Buyer and Pending M1S on Missing PPS Comments, all of PPS Pending, and Open Samples in Transit. The full rules are in <a href="#reportlist">What each report lists</a>.</p>
+    <p>On <b>+ New Sample</b>, only an Artwork Sample gets <b>Use it</b>. Admins also get <b>Ingredients needed?</b> on it.</p>
+  </details>
+
+  <details>
+    <summary>Columns on the SR, SC and BS tabs</summary>
+    <div class="scroll"><table>
+      <tr><th>Tab</th><th>Columns</th></tr>
+      <tr><td class="k">SR</td><td>Date, Factory, File Name, Products, Customer, Carrier, Tracking #, Received</td></tr>
+      <tr><td class="k">SC</td><td>Date, Factory, File Name, Products, Customer</td></tr>
+      <tr><td class="k">BS</td><td>Date, Factory, File Name, Products, Customer, Tags, Carrier, Tracking #, Received</td></tr>
+    </table></div>
+    <p>These tabs sort by Date, oldest first. New rows go at the bottom. A new row saves once it has a Factory.</p>
+  </details>
+
+  <details>
+    <summary>File numbers</summary>
+    <p>A new SR, SC or BS row gets the next number for its month, like <b>O26SR19</b>: October 2026, SR, number 19.</p>
+    <div class="scroll"><table>
+      <tr><th>Part</th><th>Values</th></tr>
+      <tr><td class="k">Month</td><td>JA, F, MAR, AP, MAY, JUN, JUL, AU, S, O, N, D. It comes from the row's Date.</td></tr>
+      <tr><td class="k">Year</td><td>Two digits.</td></tr>
+      <tr><td class="k">Code</td><td>SR, SC or BS.</td></tr>
+      <tr><td class="k">Number</td><td>Restarts at 01 each month for each code.</td></tr>
+    </table></div>
+    <div><ul class="plain">
+      <li>You can type over the number. A number is never given twice, and numbers held in <b>Recently deleted</b> are skipped.</li>
+      <li>Each File Name is used once.</li>
+      <li>Old spellings stay as written and still count: M is March, AUG is August, SF is SR.</li>
+      <li>Renaming a File Name also renames it on the main rows that use it. If rows outside your factories use it, ask an admin.</li>
+      <li>You can't clear or delete a file while main rows use its number. Change those rows first.</li>
+    </ul></div>
+  </details>
+
+  <details>
+    <summary>Needs To Be Approved By Date and Estimated SRD</summary>
+    <figure id="srd">
+      <a href="guide-img/4-dates.webp" target="_blank" rel="noopener"><img src="guide-img/4-dates.webp" width="560" height="314" loading="lazy" alt="The date columns of the grid. On one row the Customer Ship Date is marked 1, Needs To Be Approved By Date 90 days earlier is marked 2, and a grey slanted Estimated SRD is marked 3"></a>
+    </figure>
+    <p><b>Needs To Be Approved By Date</b> <span class="m">2</span> is the <b>Customer Ship Date</b> <span class="m">1</span> minus 90 days. It follows the ship date unless someone typed a date. A typed date stays when the ship date changes.</p>
+    <p><b>Estimated SRD</b> <span class="m">3</span> works this way:</p>
+    <div><ul class="plain">
+      <li>On <b>+ New Sample</b> it starts blank. Type the factory's date.</li>
+      <li>For an Artwork Sample, the hint under the box shows the factory's lead time. It's the factory's average for Artwork Samples, or 21 days with no history. <b>Use it</b> fills in today plus that lead.</li>
+      <li>A date from <b>Use it</b> shows grey and slanted. It's only an estimate.</li>
+      <li>The row stays on the <b>Follow Up With Factory For SRD</b> report sections until someone types the factory's date, with a line in <b>Notes</b> saying it's an estimate.</li>
+      <li>Typing a date makes it the factory's date, even the same date. It then shows plain.</li>
+    </ul></div>
+  </details>
+
+  <details>
+    <summary>What links where</summary>
+    <figure>
+      <a href="guide-img/4-links.webp" target="_blank" rel="noopener"><img src="guide-img/4-links.webp" width="533" height="250" loading="lazy" alt="The grid with an SR / BS # link marked 1, a PO# link marked 2 and a Quote# link marked 3"></a>
+    </figure>
+    <div class="scroll"><table>
+      <tr><th>Column</th><th>A click does this</th></tr>
+      <tr><td class="k">Style #</td><td>Opens the style's panel, and the grid shows only its rows.</td></tr>
+      <tr><td class="k">PPS Comments #, SR / BS # <span class="m">1</span></td><td>Opens that file's row on its tab. A number whose file isn't one of your factories' is plain text.</td></tr>
+      <tr><td class="k">File Name</td><td><b>used by N rows</b> lists your main rows that use it.</td></tr>
+      <tr><td class="k">PO# <span class="m">2</span></td><td>Opens its order in the Order Tracker, for people who can view it. A dimmer link means it matched on the first six digits. If several orders match, it opens the row, which lists them.</td></tr>
+      <tr><td class="k">Quote# <span class="m">3</span></td><td>Opens that sheet in the Quote Directory, in a new tab, when it looks like a quote sheet's name.</td></tr>
+      <tr><td class="k">Tracking #</td><td>Opens the carrier's page when the Carrier is DHL, FedEx or UPS.</td></tr>
+    </table></div>
+    <p>Your browser's <b>Back</b> button returns you to the tab, filters and row you were on.</p>
+  </details>
+
+  <details>
+    <summary>Typing dates</summary>
+    <p>Type m/d/yyyy, m/d/yy, m/d (this year) or yyyy-mm-dd. Press <b>F2</b> or double-click the cell for the date picker. A pasted date needs its year. A date that can't be read is refused, and nothing is saved.</p>
+  </details>
+
+  <details>
+    <summary>Keys</summary>
+    <div class="scroll"><table>
+      <tr><th>Key</th><th>What it does</th></tr>
+      <tr><td class="k">Arrow keys</td><td>Move the selected cell. With Shift, select more cells.</td></tr>
+      <tr><td class="k">Typing</td><td>Replaces what's in the cell.</td></tr>
+      <tr><td class="k">F2, double-click</td><td>Edit what's in the cell.</td></tr>
+      <tr><td class="k">Enter, Tab</td><td>Save the cell, then move down or right.</td></tr>
+      <tr><td class="k">Esc</td><td>Cancel what hasn't saved. Clear a new row that isn't saved.</td></tr>
+      <tr><td class="k">Ctrl+C, Ctrl+V</td><td>Copy and paste.</td></tr>
+      <tr><td class="k">Ctrl+D</td><td>Fill from the cell or row above. On a new line, click a cell in the line, then the empty box under # to copy the whole row. With one cell selected it copies only that cell, and the row saves at once if that cell is the Supplier.</td></tr>
+      <tr><td class="k">Delete</td><td>Clear the selected cells.</td></tr>
+      <tr><td class="k">Ctrl+Z</td><td>Undo your last change.</td></tr>
+      <tr><td class="k">Ctrl+F</td><td>Find on the sheet.</td></tr>
+      <tr><td class="k">Right-click, Shift+F10</td><td>The row menu, with Insert row below.</td></tr>
+    </table></div>
+  </details>
+
+  <details>
+    <summary>Row size, column widths and full screen</summary>
+    <div><ul class="plain">
+      <li><b>S, M, L, XL</b> set the row height.</li>
+      <li>Drag a column header's right edge to change its width. Double-click the edge to fit. <b>Reset widths</b> puts them back. Widths are kept in this browser.</li>
+      <li><b>⛶ Full screen</b>, at the top left, makes the tool fill the window. <b>Esc</b> or <b>Exit full screen</b> <span class="m">2</span> comes back.</li>
+      <li>In full screen, <b>More ▾</b> <span class="m">1</span> holds <b>Find</b>, the row sizes, <b>Reset widths</b>, <b>⚙ Lists</b> (admins only), <b>Export</b>, <b>→ Order Tracker</b> and <b>Reload</b>.</li>
+    </ul></div>
+    <figure>
+      <a href="guide-img/4-full-screen.webp" target="_blank" rel="noopener"><img src="guide-img/4-full-screen.webp" width="1120" height="340" loading="lazy" alt="The Dev Tracker in full screen, with the More menu open and marked 1, and Exit full screen marked 2"></a>
+    </figure>
+  </details>
+
+  <details>
+    <summary>What each report lists</summary>
+    <p id="reportlist">Every report lists Open main-tab rows of your factories only. The <b>Master Report</b> is the first four below, as four tabs. On its tabs, the second one is called <b>SRD Report</b>.</p>
+    <div class="scroll"><table>
+      <tr><th>Report</th><th>Section</th><th>Rows it lists</th></tr>
+      <tr><td class="k">Missing Artwork Report</td><td>Send Artwork To Factory</td><td>Artwork Samples with no Date Artwork Sent to Factory.</td></tr>
+      <tr><td></td><td>Send Ingredient Artwork To Factory</td><td>Artwork Samples with Ingredients Added To SharePoint at Yes and Artwork With Ingredients Sent To Factory blank.</td></tr>
+      <tr><td></td><td>Updated Artwork Needed</td><td>Artwork Samples at that status.</td></tr>
+      <tr><td class="k">Missing SRD and Carrier Report</td><td>Follow Up With Factory For SRD - Artwork Sample</td><td>No Estimated SRD, or only the estimate. Artwork was sent 2 or more days ago.</td></tr>
+      <tr><td></td><td>Follow Up With Factory For SRD - Benchmark Sample</td><td>No Estimated SRD, or only the estimate. Created 10 or more days ago.</td></tr>
+      <tr><td></td><td>Follow Up for Missing Tracking Info - Artwork Sample, and - Benchmark Sample</td><td>Estimated SRD has passed, from the day after it. Carrier or Tracking # is blank.</td></tr>
+      <tr><td class="k">Missing PPS Comments</td><td>Need To Send PPS Comments</td><td>Artwork or Benchmark Samples with a Date PPS Received and no Date PPS Comments Sent, not at Pending M1S or Waiting for Buyer. PPS Comments Due Date is 3 days after Date PPS Received.</td></tr>
+      <tr><td></td><td>Waiting For Buyer</td><td>Rows at that status.</td></tr>
+      <tr><td></td><td>Pending M1S</td><td>Rows at that status.</td></tr>
+      <tr><td class="k">PPS Pending</td><td>Approaching Approval Date</td><td>Not Approved. Needs To Be Approved By Date is 10 days away or less, or past.</td></tr>
+      <tr><td></td><td>Reach Out To Factory For Ingredients</td><td>Approved, with a Date PPS Received and Ingredients Added To SharePoint blank.</td></tr>
+      <tr><td></td><td>Waiting For Updated Sample Photo</td><td>Updated Sample Photo Needed.</td></tr>
+      <tr><td></td><td>Waiting For Factory To Send Updated Samples</td><td>Revised Sample Needed.</td></tr>
+      <tr><td></td><td>Sample Approval Pending - Waiting to Receive Updated Sample</td><td>Revised Sample Sent.</td></tr>
+      <tr><td class="k">Open Samples in Transit</td><td>Open Samples in Transit</td><td>A Tracking # and no Date PPS Received.</td></tr>
+      <tr><td class="k">Factory Sample SRD and Carrier</td><td>Follow Up With Factory For SRD - Factory Sample</td><td>Factory Samples with no Estimated SRD, or only the estimate.</td></tr>
+      <tr><td></td><td>Follow Up With Factory For Carrier Info - Factory Sample</td><td>Factory Samples with an Estimated SRD 2 or more days ago and no Carrier.</td></tr>
+    </table></div>
+  </details>
+
+  <details>
+    <summary>Screens not open to the team yet</summary>
+    <p>Artwork is in Preview: only admins see it. See <a href="Guide_12_Artwork.html">Artwork</a>. PPS and Compliance screens aren't in Dev PLM yet.</p>
+  </details>
+
+  <p class="sample-note"><a href="#todo">Back to the list</a></p>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

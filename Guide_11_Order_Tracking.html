@@ -1,26 +1,795 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Order Tracking</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#96690c,#e0a92e);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
-.hero p{font-size:13.5px;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#96690c;font-weight:700}
-ul li::marker{color:#96690c}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#96690c;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#fdf6e6}
-td.k{font-weight:600;white-space:nowrap}
-.glance td{background:#fff !important}
-.glance td.k{width:110px;color:#6b7686;font-weight:600}
-.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#fdf6e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
-.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
-@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · SALES</div><h1>Order Tracking</h1><p>Following open orders through to delivery</p></div><div class="body"><p class="lead">Late &amp; Short is the main daily view of orders at risk. It shows what is late, short or tight, and what you still need to tell the buyer. PO Book and the Order Tracker hold the order records behind it.</p><div class="draft"><b>Draft, not yet confirmed.</b> Saul to confirm who runs each tool and how often. The screen names in Order Tracker, now inside Dev PLM, still need checking.</div><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Tools</td><td>Late &amp; Short, PO Book, Order Tracker in Dev PLM, TJX Tracker</td></tr><tr><td class="k">When</td><td>Regularly while orders are open</td></tr><tr><td class="k">You end with</td><td>Every at-risk line reviewed, and buyers told</td></tr></table><h2>Steps: review orders at risk</h2><ol><li>Open <b>Late &amp; Short</b>, on the <b>Action board</b> tab.</li><li>Use the counters as filters. Start with <b>Not reviewed</b>, then <b>Past cancel</b>, <b>Late</b> and <b>Short</b>.</li><li>Check each line and click <b>Mark reviewed</b>.</li><li>Use <b>Copy for buyer</b> or <b>Export Excel</b> to send the update, then click <b>Mark sent</b>.</li><li>Check <b>Changed since sent</b> and re-send those lines.</li></ol><h2>Which tool for what</h2><table><tr><th>Tool</th><th>Use it to</th></tr><tr><td class="k">Late &amp; Short</td><td>Find late, short and at-risk lines, and update buyers</td></tr><tr><td class="k">PO Book</td><td>See Open and Shipped POs. Mark shipped, set up a backorder, or clear an issue.</td></tr><tr><td class="k">Order Tracker</td><td>Follow an order’s items by status. It now lives in Dev PLM.</td></tr><tr><td class="k">TJX Tracker</td><td>Import the weekly TJX report and check open orders and reorders</td></tr></table><h2>Rules</h2><ul><li>Container status runs: Not shipped, On the water, At port, Available, Picked up, Delivered, Landed.</li><li>Buyers see Delivered or Landed as <b>In our warehouse</b>, and a passed date on goods not yet here as <b>TBD</b>.</li><li>In PO Book, a backorder needs its own PO #, quantity and Factory CRD.</li><li>In Order Tracker, an order is Complete only when all its items reach the last status.</li></ul></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Order Tracking</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#e0a92e;--deep:#96690c;--tint:#fdf6e6">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · SALES</div>
+  <h1>Order Tracking</h1>
+  <p>Follow open orders through to delivery: find what's late or short, tell the buyer, and look up any PO, order or TJX style.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Tools</b><span>Late &amp; Short, PO Book, Order Tracker, TJX Tracker</span></div>
+    <div><b>When</b><span>Regularly while orders are open</span></div>
+    <div><b>You end with</b><span>Every at-risk line reviewed, and buyers told</span></div>
+  </div>
+  <a class="open-tool" href="https://saulb96.github.io/late-short/" target="_blank" rel="noopener">Open Late &amp; Short</a>
+  <a class="open-tool" href="https://saulb96.github.io/po-book/" target="_blank" rel="noopener">Open PO Book</a>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/orders" target="_blank" rel="noopener">Open Order Tracker</a>
+  <a class="open-tool" href="https://saulb96.github.io/tjx-tracker/" target="_blank" rel="noopener">Open TJX Tracker</a>
+
+  <div class="draft">
+    <p><b>Draft.</b> The screens and buttons below are checked against the tools.</p>
+    <details><summary>Saul to confirm 7 things</summary>
+    <ul class="plain">
+      <li>Who runs each tool, and how often.</li>
+      <li>Who gets the morning email, and which file goes to buyers: the <b>Copy for buyer</b> table, <b>Download report</b>, or an export.</li>
+      <li>Which mailbox buyer emails go from.</li>
+      <li>Who gets a pickup booked when a container is near its last free day.</li>
+      <li>Who closes or cancels past cancel lines in the ERP, and how, and who updates the ERP when a buyer extends or cancels.</li>
+      <li>Where the weekly TJX report and the stock file come from, and who drops them in.</li>
+      <li>The real names of the Order Tracker's 3 item statuses. The pictures show sample names.</li>
+    </ul>
+    </details>
+  </div>
+
+  <h2 id="which">Which tool answers your question</h2>
+  <p>Start with Late &amp; Short. It's the main daily view of orders at risk.</p>
+  <div class="scroll"><table>
+    <tr><th>Your question</th><th>Tool</th><th>Go to</th></tr>
+    <tr><td>What's late, short or tight?</td><td class="k">Late &amp; Short</td><td><a href="#review">Review orders at risk</a></td></tr>
+    <tr><td>What do I tell the buyer?</td><td class="k">Late &amp; Short</td><td><a href="#buyer">Tell the buyer</a></td></tr>
+    <tr><td>Where's today's Excel report?</td><td class="k">Late &amp; Short</td><td><a href="#report">Download the Excel report</a></td></tr>
+    <tr><td>What changed since I told the buyer?</td><td class="k">Late &amp; Short</td><td><a href="#resend">Re-send what changed</a></td></tr>
+    <tr><td>The cancel date has passed. Now what?</td><td class="k">Late &amp; Short</td><td><a href="#past">Handle past cancel lines</a></td></tr>
+    <tr><td>Which containers are near their last free day?</td><td class="k">Late &amp; Short</td><td><a href="#lfd">Check the last free day</a></td></tr>
+    <tr><td>Where's one line? What changed on it?</td><td class="k">Late &amp; Short</td><td><a href="#all">Look up any line</a>, <a href="#changes">See what changed</a></td></tr>
+    <tr><td>Why does a line look wrong?</td><td class="k">Late &amp; Short</td><td><a href="#issues">Check tracker issues</a></td></tr>
+    <tr><td>Is this PO still open? When is it ready? Has it shipped?</td><td class="k">PO Book</td><td><a href="#po">Find a PO</a></td></tr>
+    <tr><td>What status are this order's items at?</td><td class="k">Order Tracker</td><td><a href="#order">Check an order's status</a></td></tr>
+    <tr><td>I have a new weekly TJX report.</td><td class="k">TJX Tracker</td><td><a href="#tjx-import">Import the weekly TJX report</a></td></tr>
+    <tr><td>What does TJX have open? What needs a reorder?</td><td class="k">TJX Tracker</td><td><a href="#tjx-check">Check TJX open orders and reorders</a></td></tr>
+    <tr><td>A TJX style has no description or picture.</td><td class="k">TJX Tracker</td><td><a href="#tjx-details">Fill in a style's missing details</a></td></tr>
+  </table></div>
+  <div class="note"><b>Good to know.</b> Each tool has its own source. A tick in one tool doesn't show in another.
+    <ul class="plain">
+      <li><b>Late &amp; Short</b> reads the ERP export, the <a href="Guide_7_Container_Logistics.html">Container Tracking Sheet</a> (Late &amp; Short calls it the tracker), the forwarder's report (from the company moving the shipment) and the drayage report (trucking from the port). The <a href="Guide_8_Glossary.html#ERP" target="_blank" rel="noopener">ERP</a> is the company's stock and order system.</li>
+      <li><b>The PO Book</b> reads the PO Status Tracker and Master Sheet Live.</li>
+      <li><b>The Order Tracker</b> holds the orders entered in Dev PLM.</li>
+      <li><b>The TJX Tracker</b> holds the files you import.</li>
+    </ul>
+  </div>
+
+  <h2 id="review">Review orders at risk</h2>
+  <p class="sample-note">Screenshots use made-up sample data, including the Order Tracker's status names. Click any picture to see it larger.</p>
+  <a class="open-tool" href="https://saulb96.github.io/late-short/" target="_blank" rel="noopener">Open Late &amp; Short</a>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open Late &amp; Short</h3>
+      <p>Click <b>Open Late &amp; Short</b> above. Sign in with your Metro1 Microsoft account if it asks. You land on the <b>Action board</b> tab <span class="m">1</span>.</p>
+      <figure>
+        <a href="guide-img/11-ls-top.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-top.webp" width="1068" height="128" loading="lazy" alt="The top of Late and Short. The Action board tab is marked 1, the As of date 2 and the Refresh button 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check the date at the top</h3>
+      <p><b>As of</b> <span class="m">2</span> says when the tool last read its reports. It reads them by itself every weekday morning. Each read is called a run.</p>
+      <p>To read them again now, click <b>Refresh</b> <span class="m">3</span>. The button counts the seconds while it works. If a run started in the last 3 minutes, it asks you to wait.</p>
+      <p>Red words beside the date mean something wasn't read. See <a href="#warnings">Red words at the top</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Click a card</h3>
+      <p>Each card counts what's waiting. A ✓ means nothing is. The page opens on the first card with something in it. Start with <b>Not reviewed</b> <span class="m">1</span>, then <b>Past cancel</b>. The list under the cards changes to match. Then use the <b>Late</b> and <b>Short</b> counters on <a href="#all">All lines</a>, because a line that's only short isn't on <b>Not reviewed</b>.</p>
+      <figure>
+        <a href="guide-img/11-ls-cards.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-cards.webp" width="1110" height="173" loading="lazy" alt="The five cards on the Action board, with Not reviewed marked 1. A line of totals runs under them."></a>
+      </figure>
+      <div class="scroll"><table>
+        <tr><th>Card</th><th>What it lists</th></tr>
+        <tr><td class="k">New since last report</td><td>New problems since the report before the latest one, if they still apply. On a Monday, that's since Friday. <b>Why it is here</b> says what changed. Changes such as an ETA moved earlier or a container status move show only on the <a href="#changes">Changes</a> tab.</td></tr>
+        <tr><td class="k">Last free day at risk</td><td>Containers at port, close to their last free day, with no pickup booked in time. It counts containers, not lines.</td></tr>
+        <tr><td class="k">Not reviewed</td><td>Lines nobody has reviewed, or that changed since someone did, if they're late, tight, or flagged <b>LFD risk</b>, <b>Not released</b>, <b>Reports disagree</b>, <b>Not in reports</b> or <b>PO not found</b>. Past cancel lines have their own card. Lines that are only <b>Short</b>, <b>No supply</b>, <b>No ETA</b>, <b>Ambiguous</b>, <b>Future</b> or <b>Landed</b> aren't here, unless a short line was noted good and has changed since. Use the counters on <a href="#all">All lines</a> for those.</td></tr>
+        <tr><td class="k">Past cancel</td><td>Open lines whose cancel date has passed, waiting for a review.</td></tr>
+        <tr><td class="k">Re-send to buyer</td><td>Lines marked sent that have changed since.</td></tr>
+      </table></div>
+    </li>
+    <li class="step">
+      <h3>Read why each line is here</h3>
+      <p>A line is one style on one customer order. Lines are grouped by customer, most urgent first. <b>Why it is here</b> <span class="m">1</span> gives the reason in words.</p>
+      <figure>
+        <a href="guide-img/11-ls-lines.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-lines.webp" width="1076" height="492" loading="lazy" alt="The Not reviewed list, with lines grouped under DDs and Ross. The Why it is here column is marked 1. On one line, the top tick box is marked 2 and the note box 3."></a>
+      </figure>
+      <ul>
+        <li>A red edge at the left means <b>late</b>: the goods reach our warehouse after the cancel date.</li>
+        <li>A gold edge means <b>tight</b>: they get there inside the window, but 5 days or less before the cancel date.</li>
+        <li><b>PO</b> is the customer's PO. <b>import</b> is our PO to the factory.</li>
+        <li><b>Window</b> is the customer's start and cancel dates. Units short show under it.</li>
+        <li><b>In whse</b> is when the goods should reach our warehouse. The <a href="Guide_8_Glossary.html#ETA" target="_blank" rel="noopener">ETA</a> under it is the port date. <a href="#dates">Reference</a> explains how each date is worked out.</li>
+      </ul>
+    </li>
+    <li class="step">
+      <h3>Type a note if it helps</h3>
+      <p>Click <b>Add a note…</b> on the row, marked <span class="m">3</span> in the picture above. Press <b>Enter</b> or click away to save. A message at the bottom says <b>Note saved</b>. <b>Esc</b> puts the saved note back. A purple border means the note isn't saved yet.</p>
+      <p>Everyone sees your note. It also goes on the Excel report. Its words can move the line there, and can take a short line out of <b>Short</b>. See <a href="#note-words">How a note changes the report</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Tick Reviewed</h3>
+      <p>Each row has two boxes under <b>Rev · Sent</b>. The top box is Reviewed, marked <span class="m">2</span> in the picture above. Tick it once you've looked at the line. Today's date shows beside it.</p>
+      <p>On <b>Not reviewed</b>, the line stays in place until you change card or the data reloads. Then it leaves the list. If the buyer needs to hear about it, follow <a href="#buyer">Tell the buyer</a> before you change card.</p>
+      <p>The word <b>again</b> in red beside the box means the line changed after someone reviewed it. The tick came off by itself. Look at the line and tick it again.</p>
+      <p>There are other ways to do this under <a href="#shortcuts">Shortcuts when you review</a>.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="shortcuts">Shortcuts when you review</h2>
+  <p>These aren't steps in order. Use one when it helps.</p>
+
+  <h3>Start the note with good if the line is fine</h3>
+  <p>Type <b>good</b>, alone or with a space and more words, such as <b>good - pickup booked</b> <span class="m">1</span>. When the note saves, Reviewed ticks itself <span class="m">2</span> and the message says <b>Note saved · marked reviewed</b>.</p>
+  <figure>
+    <a href="guide-img/11-ls-good-note.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-good-note.webp" width="1076" height="419" loading="lazy" alt="Burlington's lines. The note good - pickup booked is marked 1 and the Reviewed tick with today's date 2. A dark message at the bottom says Note saved, marked reviewed."></a>
+  </figure>
+  <p>The line also stays off the Excel report. If something on it changes later, the tick comes off and the line comes back.</p>
+
+  <h3>Open the side panel for the full story</h3>
+  <p>Click an empty part of a row. A panel opens at the right with the order, supply and container details, and the line's history. Click <b>✕</b> or press <b>Esc</b> to close it.</p>
+  <p>The same jobs are here too: <b>Notes</b> <span class="m">1</span>, <b>Mark reviewed</b> <span class="m">2</span> and <b>Mark sent</b> <span class="m">3</span>. A note in this box saves when you click away.</p>
+  <p><b>History</b> shows the last 14 days until you open the <b>Changes</b> tab. Then it shows up to 90.</p>
+  <figure style="max-width:360px">
+    <a href="guide-img/11-ls-panel.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-panel.webp" width="460" height="1098" loading="lazy" alt="The side panel for one line, with its order, supply and container details. The Notes box is marked 1, Mark reviewed 2 and Mark sent 3. The history is at the bottom."></a>
+  </figure>
+
+  <h3>Mark a whole customer reviewed</h3>
+  <p>Use this only after you've looked at every line under that heading. Click the button at the right of the customer's heading, such as <b>Mark 3 reviewed</b>, as in the picture in step 4 of <a href="#review">Review orders at risk</a>. The number is how many lines under that heading still need it. A popup asks first.</p>
+  <p>A dark message then offers <b>Undo</b> for 10 seconds.</p>
+  <figure style="max-width:280px">
+    <a href="guide-img/11-ls-undo.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-undo.webp" width="280" height="46" loading="lazy" alt="A dark message: Marked 3 lines reviewed for Ross, with an Undo button."></a>
+  </figure>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="buyer">Tell the buyer</h2>
+  <p>Do this on the card you're reviewing, before you change card. Lines you ticked Reviewed leave <b>Not reviewed</b> and <b>Past cancel</b> once you change card or the data reloads. <b>All lines</b> and <b>Last free day at risk</b> have no <b>Copy for buyer</b>.</p>
+  <p><b>Copy for buyer</b> can't reach a line that's on no card, such as one that's only short, or a line that's only on <b>Last free day at risk</b>. For those:</p>
+  <ol class="plain">
+    <li>Click its counter on <a href="#all">All lines</a>, such as <b>Short</b>, and pick the name under <b>Customer</b>.</li>
+    <li>Type the line into your email, or use <b>Export Excel</b>. Read the note below the steps first.</li>
+    <li>After you send it, tick <b>Buyer</b> on its row <span class="m">1</span>. That's the Sent tick. Today's date shows beside it.</li>
+  </ol>
+  <figure>
+    <a href="guide-img/11-ls-no-card.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-no-card.webp" width="718" height="90" loading="lazy" alt="One row on All lines: Dollar Tree, SAMPLE-1017, flagged only Short. Its Buyer box is ticked, with today's date beside it, and marked 1."></a>
+  </figure>
+  <p>Every other line follows these steps:</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Type a different ETA first, if you have one</h3>
+      <p><b>Copy for buyer</b> makes a table for your email, with the port date. To give the buyer a different date, type it in the line's note, such as <b>ETA 11/26</b>, and press <b>Enter</b>. Wait for the message <b>Note saved</b>. Your date then replaces the port date in the table.</p>
+      <p>Do this before you click <b>Copy for buyer</b>. A note doesn't change a table you've already copied or pasted, so click it again and paste again.</p>
+      <p>The typed date stays until you change the note. It beats the port date in every later copy and on the Excel report, even if the port date moves.</p>
+      <p>On the Excel report, a note that starts with ETA also puts the line under <b>Late</b>, as needs extension. A note gives a line one row only, so a short line with this note gets no <b>Short</b> row. The <b>Copy for buyer</b> table still shows the short quantity.</p>
+    </li>
+    <li class="step">
+      <h3>Click Copy for buyer</h3>
+      <p>It's in the customer's heading <span class="m">1</span>. It copies the lines under that heading, on the card you're on, as a table. A message says <b>Copied 3 lines for Ross</b>.</p>
+      <figure>
+        <a href="guide-img/11-ls-heading.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-heading.webp" width="1074" height="272" loading="lazy" alt="Ross's heading on the Not reviewed list, with three lines under it. Copy for buyer is marked 1, Mark 3 reviewed 2 and Mark 3 sent 3."></a>
+      </figure>
+      <p><b>Mark 3 reviewed</b> <span class="m">2</span> ticks Reviewed on the lines under the heading that still need it. <b>Mark 3 sent</b> <span class="m">3</span> is for step 5.</p>
+      <p>No headings on your list? Tick <b>Group by customer</b> above the list.</p>
+    </li>
+    <li class="step">
+      <h3>Paste it into your email</h3>
+      <p>Late &amp; Short sends nothing itself. Write the email and paste. This is what comes out for the three lines above:</p>
+      <figure>
+        <div class="sheet"><table>
+          <tr><th>PO</th><th>Style</th><th>Qty</th><th>Start</th><th>Cancel</th><th>ETA</th><th>Status</th><th>Comment</th></tr>
+          <tr><td>970201</td><td>SAMPLE-1005</td><td>2,880</td><td>11/3/26</td><td>11/12/26</td><td>11/7</td><td>On the water</td><td></td></tr>
+          <tr><td>970203</td><td>SAMPLE-1007</td><td>2,400</td><td>11/4/26</td><td>11/15/26</td><td>11/14</td><td>On the water</td><td style="white-space:normal">In our warehouse after cancel</td></tr>
+          <tr><td>970206</td><td>SAMPLE-1027</td><td>2,160</td><td>11/12/26</td><td>12/2/26</td><td>11/3</td><td>At port</td><td></td></tr>
+        </table></div>
+        <figcaption>Drawn layout with sample data, not a screenshot.</figcaption>
+      </figure>
+      <p>On a phone, swipe the table to see the rest. <a href="#buyer-words">Reference</a> lists the words the table uses.</p>
+    </li>
+    <li class="step">
+      <h3>Send the email</h3>
+      <p>Send it to the buyer.</p>
+    </li>
+    <li class="step">
+      <h3>Mark it sent</h3>
+      <p>Click the button in the heading, such as <b>Mark 3 sent</b>, marked <span class="m">3</span> in the picture in step 2. A popup asks first. A dark message then offers <b>Undo</b> for 10 seconds.</p>
+      <p>For one line, tick the bottom box under <b>Rev · Sent</b>. The date shows beside it. To take it back, click the box again.</p>
+      <p>If the ETA, CRD, late status or short quantity changes later, the line moves to <a href="#resend">Re-send to buyer</a>.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Sending a file instead?</b> <b>Export this list</b> and <b>Export Excel</b> save lines to Excel. Those files hold internal columns, such as <b>Import PO</b> and your notes. <b>Export Excel</b> also holds <b>Factory</b>. The <b>Copy for buyer</b> table holds none of these. A file also holds every customer on your list, so pick one customer first. The <b>Export Excel</b> file has the same name as the <b>Download report</b> file, so check which one you're sending.</div>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="report">Download the Excel report</h2>
+  <p>Each weekday morning, Late &amp; Short emails an Excel report. <b>Download report</b> gets the same report, with the notes as they are right now.</p>
+  <p>It isn't limited to the card or filter you're on. It looks at every open line, but a line with no note that isn't late, tight or short gets no row.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Download report</h3>
+      <p>It's above the list <span class="m">3</span>, on every card of the <b>Action board</b>. The button reads <b>Building report…</b> until the file is ready. It waits for notes and ticks still saving, and takes in the note you're typing.</p>
+      <figure>
+        <a href="guide-img/11-ls-bar.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-bar.webp" width="1076" height="72" loading="lazy" alt="The bar above the list. The search box is marked 1, All customers 2 and Download report 3. Export this list is at the far right."></a>
+      </figure>
+      <p>The file is named <b>Late and Short</b> and today's date. A message says <b>Report downloaded</b>. If it says a note isn't saved, find the box with the purple border, save it, and download again.</p>
+      <p>The search box <span class="m">1</span> and <b>All customers</b> <span class="m">2</span> narrow the list on the screen. They don't change the report.</p>
+    </li>
+    <li class="step">
+      <h3>Open the file and read its two tabs</h3>
+      <p>Both tabs are grouped by buyer. Lines of one PO with the same window and the same <b>Notes</b> share a row. The <b>tight</b> tab lists tight lines and lines with a pickup note. On a phone, swipe these tables to see the rest.</p>
+      <figure>
+        <div class="sheet"><table>
+          <tr><th>Customer</th><th>Cust PO</th><th>Start</th><th>Cancel</th><th>Style</th><th>Description</th><th>Notes</th></tr>
+          <tr><td colspan="7" style="background:#c6d9f0"><b>Burlington</b></td></tr>
+          <tr><td>Burlington</td><td>970103</td><td>11/2/2026</td><td>11/11/2026</td><td>SAMPLE-1004</td><td>Sample Shea Body Butter</td><td>p/u 11/7</td></tr>
+          <tr><td colspan="7" style="background:#c6d9f0"><b>DD's/Ross</b></td></tr>
+          <tr><td>Ross</td><td>970201</td><td>11/3/2026</td><td>11/12/2026</td><td>SAMPLE-1005</td><td>Sample Coconut Body Scrub</td><td>tight</td></tr>
+        </table></div>
+        <figcaption>Drawn layout with sample data, not a screenshot.</figcaption>
+      </figure>
+      <p>The <b>needs ext and short</b> tab holds late lines, short lines and lines with other notes, under <b>Late</b>, <b>Short</b> and <b>other</b>:</p>
+      <figure>
+        <div class="sheet"><table>
+          <tr><th>Customer</th><th>Cust PO</th><th>Start</th><th>Cancel</th><th>Style</th><th>Description</th><th>Notes</th></tr>
+          <tr><td colspan="7" style="background:#c6d9f0"><b>Burlington</b></td></tr>
+          <tr><td colspan="7" style="background:#fde9d9">Late</td></tr>
+          <tr><td>Burlington</td><td>970101</td><td>11/1/2026</td><td>11/14/2026</td><td style="white-space:normal">SAMPLE-1001, SAMPLE-1002</td><td style="white-space:normal">Sample Rose Body Mist, Sample Citrus Shower Gel</td><td style="white-space:normal">needs extension - ETA 11/15</td></tr>
+          <tr><td colspan="7" style="background:#fde9d9">Short</td></tr>
+          <tr><td>Burlington</td><td>970101</td><td>11/1/2026</td><td>11/14/2026</td><td>SAMPLE-1002</td><td style="white-space:normal">Sample Citrus Shower Gel</td><td style="white-space:normal">240ea short</td></tr>
+          <tr><td colspan="7" style="background:#c6d9f0"><b>DD's/Ross</b></td></tr>
+          <tr><td colspan="7" style="background:#fde9d9">Late</td></tr>
+          <tr><td>DDs</td><td>970301</td><td>11/3/2026</td><td>11/18/2026</td><td>SAMPLE-1008</td><td style="white-space:normal">Sample Cucumber Eye Gel</td><td style="white-space:normal">needs extension - ETA 11/26</td></tr>
+          <tr><td colspan="7" style="background:#fde9d9">other</td></tr>
+          <tr><td>DDs</td><td>970302</td><td>11/8/2026</td><td>11/26/2026</td><td>SAMPLE-1009</td><td style="white-space:normal">Sample Aloe Lip Balm</td><td style="white-space:normal">customs hold</td></tr>
+        </table></div>
+        <figcaption>Drawn layout with sample data, not a screenshot.</figcaption>
+      </figure>
+      <p>A line with no note can get two rows. SAMPLE-1002 has no note and is under both <b>Late</b> and <b>Short</b>. A line with a note gets one row at most. SAMPLE-1008 is 120 short too, but its note, <b>ETA 11/26</b>, gives it only a <b>Late</b> row.</p>
+    </li>
+    <li class="step">
+      <h3>Fix a row by changing its note</h3>
+      <p>The note decides where a line goes and what its row says. Change the note on the board, then download again. See <a href="#note-words">How a note changes the report</a>.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="resend">Re-send what changed</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Re-send to buyer</h3>
+      <p>It's the last card <span class="m">1</span>. It lists lines marked sent that have changed since.</p>
+      <figure>
+        <a href="guide-img/11-ls-resend.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-resend.webp" width="1110" height="614" loading="lazy" alt="The Re-send to buyer card, marked 1, and its three lines. On Ross's line, the words Changed since sent are marked 2 and the box reading re-send 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Read what changed</h3>
+      <p><b>Changed since sent</b> <span class="m">2</span> gives the date you sent it and what moved, such as <b>ETA 11/9 → 11/14</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Send the buyer the update</h3>
+      <p>Follow <a href="#buyer">Tell the buyer</a>. On this card, <b>Copy for buyer</b> copies only the lines waiting to be re-sent.</p>
+      <p>If the line's note holds an old ETA, change or clear it first, or the table keeps the old date. In the picture above, the DDs note says <b>ETA 11/26</b>, so its table reads 11/26, not the new port date of 11/24.</p>
+    </li>
+    <li class="step">
+      <h3>Click the ticked box that says re-send</h3>
+      <p>It's the bottom box <span class="m">3</span>. It's already ticked. Click it once anyway. It stays ticked. Today's date replaces the word <b>re-send</b>, and a message says <b>Marked re-sent to buyer</b>. A second click would clear the tick.</p>
+      <p>Or click the button in the heading, such as <b>Mark 1 sent</b>. A popup asks first. Either way, the count on the card goes down.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="past">Handle past cancel lines</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Past cancel</h3>
+      <p>Lines split in two, by how long ago the cancel date passed. <b>Ask the buyer to extend or cancel</b> <span class="m">1</span> holds the last 14 days. <b>Close or cancel in the ERP</b> <span class="m">2</span> holds the older ones.</p>
+      <figure>
+        <a href="guide-img/11-ls-past-cancel.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-past-cancel.webp" width="1084" height="372" loading="lazy" alt="The Past cancel list in two parts. Ask the buyer to extend or cancel is marked 1 and Close or cancel in the ERP is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Ask the buyer about the first group</h3>
+      <p>Use <a href="#buyer">Copy for buyer</a>. The table's <b>Comment</b> says <b>Cancel date passed</b>.</p>
+      <p>Late &amp; Short doesn't change the ERP when the buyer answers. Saul to confirm who updates it (see the yellow Draft note at the top). Until then, ask Saul.</p>
+    </li>
+    <li class="step">
+      <h3>Close or cancel the second group in the ERP</h3>
+      <p>This happens in the ERP, the company's stock and order system, not in Late &amp; Short. Saul to confirm who does it, and how (see the yellow Draft note at the top). Until then, ask Saul before you close or cancel anything.</p>
+      <p>Once a line is off the ERP report, it leaves Late &amp; Short at the next run, the tool's next read of its reports.</p>
+    </li>
+    <li class="step">
+      <h3>Tick Reviewed</h3>
+      <p>You can type what happened in the note first. A ticked line leaves this card once you change card or the data reloads.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="lfd">Check the last free day</h2>
+  <p>The last free day (LFD) is the last day a container can sit at port with no extra charge. For other checks at port, see <a href="Guide_7_Container_Logistics.html#port">Watch containers at port</a> in Container Planning &amp; Logistics.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Last free day at risk</h3>
+      <p>Click the card <span class="m">1</span>. Each heading is one container. It's at port, 2 business days or less from its last free day, with no pickup booked by then.</p>
+      <figure>
+        <a href="guide-img/11-ls-lfd.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-lfd.webp" width="1110" height="522" loading="lazy" alt="The Last free day at risk card, marked 1, and two containers with their lines. On the first, the last free day is marked 2, beside the words no pickup booked."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Read the heading</h3>
+      <p>It gives the last free day <span class="m">2</span>, the status and the pickup. Red words say why it's here: <b>no pickup booked</b>, or a pickup after the last free day.</p>
+    </li>
+    <li class="step">
+      <h3>Get the pickup booked</h3>
+      <p>Late &amp; Short books nothing. Saul to confirm who books it (see the yellow Draft note at the top). Until then, ask Saul.</p>
+    </li>
+    <li class="step">
+      <h3>Tick Reviewed on each line</h3>
+      <p>This card has no <b>Mark</b> buttons, so use the top box on each row.</p>
+      <p>The tick doesn't take the container off this card, and the count doesn't drop. The container stays until the reports show a pickup in time, or it has left the port.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="all">Look up any line</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click All lines</h3>
+      <p>It's the second tab. <b>See all lines →</b> under the cards goes there too. It lists every open line.</p>
+    </li>
+    <li class="step">
+      <h3>Click a counter</h3>
+      <p>Each counter <span class="m">1</span> is a filter. Click once for only those lines. Click again for everything except those. The label then starts with <b>not</b>. Click a third time to turn it off. You can use several at once.</p>
+      <figure>
+        <a href="guide-img/11-ls-all-lines.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-all-lines.webp" width="1032" height="612" loading="lazy" alt="The All lines tab with the Short counter on, marked 1, showing 5 of 28 lines. The Customer filter is marked 2 and Export Excel 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Narrow the list</h3>
+      <p>Type in <b>Search</b>, or use <b>Customer</b> <span class="m">2</span>, <b>Factory</b>, <b>Round</b>, <b>Container status</b> or <b>ETA source</b>. A <a href="Guide_8_Glossary.html#Round" target="_blank" rel="noopener">round</a> is one shipment. The count above the table says how many show. <b>Clear filters</b> resets everything.</p>
+    </li>
+    <li class="step">
+      <h3>Read the rows</h3>
+      <p>Scroll the table sideways to see every column. Click a column title to sort. Click a row to open its side panel. The first two columns, <b>Buyer</b> and <b>Reviewed</b>, are the same Sent and Reviewed ticks as on the board.</p>
+    </li>
+    <li class="step">
+      <h3>Save or share what you found</h3>
+      <p><b>Export Excel</b> <span class="m">3</span> saves the lines shown, with every column. <b>Copy link</b> copies a link that opens with the same filters.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="changes">See what changed</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Changes</h3>
+      <p>Click the tab <span class="m">1</span>. It lists up to 90 days of changes, newest date first. <a href="#change-types">Reference</a> says what each type means.</p>
+      <figure>
+        <a href="guide-img/11-ls-changes.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-changes.webp" width="1050" height="656" loading="lazy" alt="The Changes tab, marked 1, listing 13 changes for one day. The Change type filter is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Narrow the list</h3>
+      <p>Pick from <b>Change type</b> <span class="m">2</span>, or type a style, customer or import PO in <b>Search</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Click a row</h3>
+      <p>The line's side panel opens. Its <b>History</b> lists the same changes for that line.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="issues">Check tracker issues</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Click Tracker issues</h3>
+      <p>Click the tab <span class="m">1</span>. The number on it is how many issues the last good run found. A run is the tool's read of its reports. Each group says what's wrong and what to do.</p>
+      <figure>
+        <a href="guide-img/11-ls-issues.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-issues.webp" width="1012" height="473" loading="lazy" alt="The Tracker issues tab, marked 1, with four issues in groups: ERP link, Factory, Shipping and Tracker ETA."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Fix the cause</h3>
+      <p>Fix it on the Container Tracking Sheet or in the ERP. The tool calls the sheet the tracker. <a href="Guide_7_Container_Logistics.html#fix">Fix what the tools flag</a> covers the sheet.</p>
+    </li>
+    <li class="step">
+      <h3>Click Refresh</h3>
+      <p>The tool reads everything again and the list updates.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="po">Find a PO</h2>
+  <p>The PO Book shows what's on order with the factories. To mark shipped, set up a backorder or clear an issue, see <a href="Guide_5_Production_PO.html">Production &amp; PO Tracking</a>. To save POs to Excel, see <a href="Guide_5_Production_PO.html#export">Export to Excel</a>.</p>
+  <a class="open-tool" href="https://saulb96.github.io/po-book/" target="_blank" rel="noopener">Open PO Book</a>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the PO Book</h3>
+      <p>Click <b>Open PO Book</b> above. Sign in with your Metro1 Microsoft account if it asks. <b>Open</b> <span class="m">1</span> lists POs not yet shipped, one row per PO.</p>
+      <figure>
+        <a href="guide-img/11-po-open.webp" target="_blank" rel="noopener"><img src="guide-img/11-po-open.webp" width="1068" height="535" loading="lazy" alt="PO Book on the Open tab, marked 1, with eleven POs. The search box is marked 2 and All customers 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Search or filter</h3>
+      <p>Type in the search box <span class="m">2</span>. It finds a PO, style, description, customer PO, supplier or customer. Or pick a name from <b>All customers</b> <span class="m">3</span>. <b>Clear filters</b> resets them.</p>
+    </li>
+    <li class="step">
+      <h3>Read the row</h3>
+      <p>On a smaller screen, scroll the table sideways to see every column.</p>
+      <ul>
+        <li><b>Factory CRD</b> is when the factory says the goods are ready (<a href="Guide_8_Glossary.html#CRD" target="_blank" rel="noopener">CRD</a>). It turns red once the date passes and the PO is still open.</li>
+        <li><b>Customer PO#</b>, <b>Cust. Start</b> and <b>Cust. Cancel</b> are the customer's PO and ship window.</li>
+        <li><b>Buffer</b> is the days to spare: red below 0, amber up to 14 unless <b>Settings</b> says otherwise, green above that. <a href="Guide_5_Production_PO.html">Production &amp; PO Tracking</a> explains it in full.</li>
+        <li>A <b>BO</b> tag beside the PO # means a <a href="Guide_8_Glossary.html#Backorder" target="_blank" rel="noopener">backorder</a>, the part of a PO that hasn't shipped. <b>MSL only</b> means the line is on Master Sheet Live, the Excel workbook of each PO's lines, but not on the PO Status Tracker.</li>
+      </ul>
+    </li>
+    <li class="step">
+      <h3>Click a blue PO number to see its styles</h3>
+      <p>The table switches to <b>Styles</b> and lists that PO's styles. To see every style, click <b>PO 900103 ✕</b> <span class="m">1</span> in the row of filters. To go back to one row per PO, click <b>POs</b> <span class="m">2</span> at the top left of the table.</p>
+      <figure>
+        <a href="guide-img/11-po-styles.webp" target="_blank" rel="noopener"><img src="guide-img/11-po-styles.webp" width="1028" height="304" loading="lazy" alt="PO Book on Styles, listing the three styles of PO 900103. The chip PO 900103 with an X is marked 1 and the POs button at the top left 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click Shipped to see what has gone</h3>
+      <p>Click the tab <span class="m">1</span>. Read the <b>Shipped</b> column <span class="m">2</span>, at the end of the row. A date and a name mean someone marked it in the PO Book. <b>Round</b> means it counts as shipped because it sits above the last Round row on Master Sheet Live. A round is one shipment.</p>
+      <figure>
+        <a href="guide-img/11-po-shipped.webp" target="_blank" rel="noopener"><img src="guide-img/11-po-shipped.webp" width="1043" height="440" loading="lazy" alt="PO Book on the Shipped tab, marked 1, with eight POs. The Shipped column, marked 2, shows Round on six and a date with a name on two."></a>
+      </figure>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="order">Check an order's status</h2>
+  <p>The Order Tracker is in Dev PLM. To enter or change an order, see <a href="Guide_3_Order_Placement.html">Order Placement</a>.</p>
+  <a class="open-tool" href="https://m1s-devplm-ghe0g4cmcmdhdtg7.northcentralus-01.azurewebsites.net/#/orders" target="_blank" rel="noopener">Open Order Tracker</a>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the Order Tracker</h3>
+      <p>Click <b>Open Order Tracker</b> above. Sign in with your Metro1 Microsoft account if it asks. You land on the <b>Active</b> tab. If Dev PLM doesn't show the Order Tracker, ask Saul or another admin for view rights. Admins: see <a href="Guide_16_New_Hire.html#devplm">Give access in Dev PLM</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Search for the order</h3>
+      <p>Type in <b>Search this page…</b> at the top <span class="m">1</span>. It finds a PO number, customer, date or note, and anything on an item, such as a style, factory or status.</p>
+      <p>It looks only in the tab you're on. If it says <b>No orders found</b>, click <b>Archived</b> and look there.</p>
+      <figure>
+        <a href="guide-img/11-order-open.webp" target="_blank" rel="noopener"><img src="guide-img/11-order-open.webp" width="1100" height="566" loading="lazy" alt="The Order Tracker with one order open. The search box holds the PO number, marked 1. An item's status list is marked 2 and the order's Open badge 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click the card to open it</h3>
+      <p>Click an empty part of the card's top row, or the arrow at its left. Its items show under it.</p>
+    </li>
+    <li class="step">
+      <h3>Read each item's status</h3>
+      <p>It's the colored list on the item's row <span class="m">2</span>. The names in these pictures are samples.</p>
+    </li>
+    <li class="step">
+      <h3>Read the badge on the card</h3>
+      <p>It's at the top right, marked <span class="m">3</span> in the picture above. In the picture below, <b>Open</b> <span class="m">1</span> means an item hasn't reached the last status. <b>Complete</b> <span class="m">2</span> means they all have.</p>
+      <figure>
+        <a href="guide-img/11-order-complete.webp" target="_blank" rel="noopener"><img src="guide-img/11-order-complete.webp" width="857" height="250" loading="lazy" alt="Two closed order cards for Ross. The Open badge on the first is marked 1 and the Complete badge on the second is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Look on Pending for items with no order yet</h3>
+      <p>Items sent from the Dev Tracker or imported from a file wait on the <b>Pending</b> tab. <a href="Guide_3_Order_Placement.html#form">Turn Pending items into an order form</a> says what comes next.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="tjx-import">Import the weekly TJX report</h2>
+  <p>TJX is the company behind TJ Maxx. The weekly TJX report lists open sales orders and invoices. Saul to confirm where it comes from (see the yellow Draft note at the top). Until then, ask Saul.</p>
+  <a class="open-tool" href="https://saulb96.github.io/tjx-tracker/" target="_blank" rel="noopener">Open TJX Tracker</a>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the TJX Tracker</h3>
+      <p>Click <b>Open TJX Tracker</b> above. Click <b>Sign in with Microsoft</b> if it asks. If it says you don't have access, ask Saul.</p>
+    </li>
+    <li class="step">
+      <h3>Drop the report on the box</h3>
+      <p>Drag the file onto <b>Drop a file or click to choose</b> <span class="m">1</span>, or click the box and pick it.</p>
+      <figure>
+        <a href="guide-img/11-tjx-top.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-top.webp" width="1101" height="278" loading="lazy" alt="The top of TJX Tracker. The drop box is marked 1 and the Report list 2. Five boxes under them count shipped units, open orders, new orders, styles and reorders."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Check the line that appears</h3>
+      <p>Nothing is saved yet. <b>Report date</b> <span class="m">1</span> comes from the file name, or today if the name has no date. Change it if it's wrong.</p>
+      <figure>
+        <a href="guide-img/11-tjx-save.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-save.webp" width="1038" height="212" loading="lazy" alt="The line that appears after a file is dropped. Report date is marked 1 and Save report 2. The line counts open lines, shipped lines and styles."></a>
+      </figure>
+      <p>The line also counts what it read. It warns you if the file has no Shipped sheet, or if it replaces a report already saved for that date.</p>
+    </li>
+    <li class="step">
+      <h3>Click Save report</h3>
+      <p>Click <b>Save report</b> <span class="m">2</span>. <b>Discard</b> drops the file. A message says how many lines were saved and how many new styles were added.</p>
+    </li>
+    <li class="step">
+      <h3>Find it in Weekly reports</h3>
+      <p>It's the table at the bottom of the page, newest first. Click a date <span class="m">1</span> to look at that report. <b>Shipped since prior</b> and <b>New orders</b> compare each report to the one before it.</p>
+      <figure>
+        <a href="guide-img/11-tjx-reports.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-reports.webp" width="1056" height="252" loading="lazy" alt="The Weekly reports table with five reports. The date of the second one is marked 1."></a>
+      </figure>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="tjx-check">Check TJX open orders and reorders</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Pick the report</h3>
+      <p>The newest opens by itself. To see another, use the <b>Report</b> list at the top, marked <span class="m">2</span> in the picture under <a href="#tjx-import">Import the weekly TJX report</a>. The boxes under it count shipped units, open orders, new orders, styles and reorders. <a href="#tjx-words">Reference</a> explains them.</p>
+    </li>
+    <li class="step">
+      <h3>Pick a customer</h3>
+      <p>Click a name in the row of customers <span class="m">1</span>, or leave <b>All customers</b>.</p>
+      <figure>
+        <a href="guide-img/11-tjx-filter.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-filter.webp" width="1056" height="619" loading="lazy" alt="The TJX Tracker grid. The row of customers is marked 1, the list reading Has open orders 2, and one style number 3. Units show by quarter and by week."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick Has open orders</h3>
+      <p>Use the list that starts on <b>All styles</b> <span class="m">2</span>. Only styles with open orders stay. Rows show units by quarter and week.</p>
+    </li>
+    <li class="step">
+      <h3>Click a style number</h3>
+      <p>Click the blue style number, marked <span class="m">3</span> in the picture above. A panel opens at the right. Scroll down it.</p>
+      <p>In the picture below, <b>Wks cover</b> <span class="m">1</span>, under <b>Supply</b>, says how many weeks the stock should last. <b>Open orders</b> <span class="m">2</span> lists each PO with its dates and units.</p>
+      <figure style="max-width:400px">
+        <a href="guide-img/11-tjx-panel.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-panel.webp" width="460" height="568" loading="lazy" alt="Part of a style's side panel. Wks cover is marked 1 under Supply, and Open orders is marked 2, with five POs listed."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Pick Needs reorder to see reorders</h3>
+      <p>In the same list <span class="m">1</span>, pick <b>Needs reorder</b>, or <b>Reorder or low</b> to see both. Click <b>Quarters</b> to shrink the date columns, then scroll the grid to the right. The <b>Reorder</b> columns <span class="m">2</span> show the weeks of cover, the status and how many units to order.</p>
+      <figure>
+        <a href="guide-img/11-tjx-reorder.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-reorder.webp" width="1056" height="591" loading="lazy" alt="The TJX Tracker grid on Reorder or low, marked 1, scrolled right to the Supply and Reorder columns. The Reorder heading is marked 2. Six styles show Reorder or Low."></a>
+      </figure>
+      <p><b>On hand</b> and <b>Incoming</b> come from the last stock file, not the weekly report. Its date shows beside <b>Supply</b> in a style's panel. On a wide screen it also shows after <b>stock</b> in the <b>Needs reorder</b> box at the top. If it's old, drop the TJX info file or the ERP inventory export on <b>Drop a file or click to choose</b>.</p>
+    </li>
+    <li class="step">
+      <h3>Export the styles to reorder</h3>
+      <p>Type in <b>Add note</b> on each style you want. The <b>Reorder</b> button in the heading then shows how many, such as <b>Reorder (3)</b>. Click it. It exports every style with a note to Excel, then clears those notes.</p>
+    </li>
+  </ol>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2 id="tjx-details">Fill in a style's missing details</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Pick Missing details</h3>
+      <p>Use the list that starts on <b>All styles</b> <span class="m">1</span>. The grid shows only styles with no description or no picture. <b>Styles tracked</b>, at the top of the page, counts them.</p>
+      <figure>
+        <a href="guide-img/11-tjx-missing.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-missing.webp" width="1100" height="340" loading="lazy" alt="The TJX Tracker grid with Missing details picked in the list, marked 1. A blue style number with No description beside it is marked 2."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Click the blue style number</h3>
+      <p>Click it <span class="m">2</span>. A panel opens at the right.</p>
+    </li>
+    <li class="step">
+      <h3>Type in the attributes</h3>
+      <p>Click a box under <b>Attributes</b> <span class="m">2</span> and type, such as <b>Description</b>. They save by themselves.</p>
+      <figure style="max-width:400px">
+        <a href="guide-img/11-tjx-details.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-details.webp" width="460" height="715" loading="lazy" alt="The top of a style's panel. The box for a picture is marked 1, Attributes is marked 2 and the + Attribute button is marked 3."></a>
+      </figure>
+    </li>
+    <li class="step">
+      <h3>Add a picture</h3>
+      <p>Click <b>+</b> on the picture box <span class="m">1</span> and pick a file.</p>
+    </li>
+  </ol>
+  <div class="warn"><b>Careful.</b> <b>+ Attribute</b> <span class="m">3</span> adds a new field to every style, not just this one.</div>
+  <p class="sample-note"><a href="#which">Back to the question table</a></p>
+
+  <h2>Rules to remember</h2>
+  <ul class="plain">
+    <li>Late &amp; Short sends nothing to a buyer. Mark a line sent only after you've sent it.</li>
+    <li><b>Copy for buyer</b> and the <b>Mark</b> buttons act only on the lines under that heading, on the card you're on.</li>
+    <li>Your notes and ticks are shared. Everyone sees them. A tick also saves your name and the date.</li>
+    <li>While <b>updating…</b> shows beside the date, ticks wait. Try again in a moment.</li>
+    <li>A note must start with the word <b>good</b> to tick Reviewed. It keeps the line off the Excel report only until the line changes.</li>
+    <li>An ETA typed in a note stays until you change the note. It beats the port date in the <b>Copy for buyer</b> table and on the Excel report.</li>
+    <li>A note gives a line one row at most on the Excel report, so a short line with a note can lose its <b>Short</b> row.</li>
+    <li>A sent line goes to <b>Re-send to buyer</b> when its ETA, CRD or short quantity changes, or when it turns late or stops being late. A move between tight and on time doesn't count.</li>
+    <li>In the PO Book, a backorder needs its own PO #, quantity and Factory CRD.</li>
+    <li>In the Order Tracker, an order is <b>Complete</b> only when all its items reach the last status.</li>
+  </ul>
+
+  <h2>Reference</h2>
+  <details>
+    <summary>Flags on a line</summary>
+    <p>The tracker means the Container Tracking Sheet.</p>
+    <div class="scroll" id="flags"><table>
+      <tr><th>Flag</th><th>What it means</th></tr>
+      <tr><td class="k">Late</td><td>Reaches our warehouse after the cancel date</td></tr>
+      <tr><td class="k">Tight</td><td>Reaches our warehouse inside the window, 5 days or less before the cancel date</td></tr>
+      <tr><td class="k">Late · ERP, Tight · ERP</td><td>The same, but worked out from the ETA typed in the ERP, with no other date to go on</td></tr>
+      <tr><td class="k">Past cancel</td><td>The cancel date has passed and the line is still open</td></tr>
+      <tr><td class="k">LFD risk</td><td>A container at port is 2 business days or less from its last free day, with no pickup booked by then</td></tr>
+      <tr><td class="k">Not released</td><td>At port, and customs or freight isn't released</td></tr>
+      <tr><td class="k">Reports disagree</td><td>The forwarder's and drayage reports differ on this container</td></tr>
+      <tr><td class="k">Not in reports</td><td>A container on the tracker is on neither report</td></tr>
+      <tr><td class="k">No supply</td><td>The ERP line has no import PO</td></tr>
+      <tr><td class="k">PO not found</td><td>The import PO isn't on the tracker</td></tr>
+      <tr><td class="k">Short</td><td>The ERP shows units short</td></tr>
+      <tr><td class="k">No ETA</td><td>No date from any source</td></tr>
+      <tr><td class="k">Ambiguous</td><td>The tracker shows different ETAs for this PO. The tool uses the latest.</td></tr>
+      <tr><td class="k">Landed</td><td>Its round is on the Complete tab of the Container Tracking Sheet</td></tr>
+      <tr><td class="k">Future</td><td>The start date is more than 75 days away. The counter reads <b>Future (75d+)</b>.</td></tr>
+      <tr><td class="k">Changed since sent</td><td>Something the buyer was told has moved since it was marked sent</td></tr>
+      <tr><td class="k">Gone</td><td>No longer on the ERP report. Shows only with <b>Show lines gone from ERP</b>.</td></tr>
+    </table></div>
+    <p>The counters on <b>All lines</b> also include <b>Not reviewed</b>, <b>ERP ETA differs</b> (the ETA typed in the ERP isn't the one the tool uses), <b>Reviewed</b> and <b>Sent to buyer</b>. A counter at 0 hides.</p>
+  </details>
+  <details>
+    <summary>How each date is worked out</summary>
+    <div class="scroll" id="dates"><table>
+      <tr><th>Date</th><th>Where it comes from</th></tr>
+      <tr><td class="k">ETA</td><td>The port date. The drayage report first, then the forwarder's report, then the Container Tracking Sheet, then the ETA typed in the ERP.</td></tr>
+      <tr><td class="k">Tag beside the ETA</td><td><b>DRAY</b> drayage report · <b>FWD</b> forwarder's report · <b>TRK</b> tracker · <b>ERP</b> typed in the ERP</td></tr>
+      <tr><td class="k">In whse</td><td>The delivery date once booked. The pickup date once picked up. Otherwise the ETA plus 3 days, and never before tomorrow until the goods are picked up.</td></tr>
+      <tr><td class="k">Window</td><td>The start and cancel dates from the ERP report</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Words in the Copy for buyer table</summary>
+    <p>Container status runs: Not shipped, On the water, At port, Available, Picked up, Delivered, Landed.</p>
+    <div class="scroll" id="buyer-words"><table>
+      <tr><th>Column</th><th>What it shows</th></tr>
+      <tr><td class="k">PO, Style, Start, Cancel</td><td>From the line. Rows run by cancel date, then PO, then style.</td></tr>
+      <tr><td class="k">Qty</td><td>Units ordered, plus (short 240) when short</td></tr>
+      <tr><td class="k">ETA</td><td>The port date. An ETA typed in the note comes first. Delivered or Landed reads <b>Here now</b>. No date, or a passed date on goods not shipped or on the water, reads <b>TBD</b>.</td></tr>
+      <tr><td class="k">Comment</td><td><b>Cancel date passed</b> on past cancel lines. <b>In our warehouse after cancel</b> on late lines.</td></tr>
+    </table></div>
+    <div class="scroll"><table>
+      <tr><th>Status in Late &amp; Short</th><th>Status in the table</th></tr>
+      <tr><td class="k">Not shipped</td><td>Not shipped yet</td></tr>
+      <tr><td class="k">On the water</td><td>On the water</td></tr>
+      <tr><td class="k">At port, Available</td><td>At port</td></tr>
+      <tr><td class="k">Picked up</td><td>On the way to our warehouse</td></tr>
+      <tr><td class="k">Delivered, Landed</td><td>In our warehouse</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>How a note changes the report</summary>
+    <p id="note-words">The report checks each note from the top of this table down. The first match decides. A line with a note gets one row at most, even if it's late and short. Only a line with no note can get two rows. A good note counts as no note once the line changes.</p>
+    <div class="scroll"><table>
+      <tr><th>The note</th><th>Where the line goes</th><th>The row's Notes say</th></tr>
+      <tr><td class="k">Starts with good</td><td>Left off, until the line changes</td><td></td></tr>
+      <tr><td class="k">Has the word tight</td><td><b>tight</b> tab</td><td>tight</td></tr>
+      <tr><td class="k">Starts with p/u or pu</td><td><b>tight</b> tab</td><td>Your note</td></tr>
+      <tr><td class="k">Has ext or exten, starts with eta, or has here now</td><td><b>Late</b></td><td style="white-space:normal">needs extension - ETA 11/15</td></tr>
+      <tr><td class="k">Has a word starting with short</td><td><b>Short</b></td><td style="white-space:normal">240ea short</td></tr>
+      <tr><td class="k">Anything else, on a late line</td><td><b>Late</b></td><td>Your note and the ETA</td></tr>
+      <tr><td class="k">Anything else, or a note with the word allocation</td><td><b>other</b></td><td>Your note</td></tr>
+      <tr><td class="k">No note</td><td>Late lines under <b>Late</b>, tight lines on the <b>tight</b> tab, short lines under <b>Short</b>. Other lines with no note aren't on the report.</td><td>As above</td></tr>
+    </table></div>
+    <p>An ETA typed in a note, such as ETA 11/26, replaces the port date until you change the note. A row that holds several lines shows the latest of their ETAs. The row reads <b>here now</b> when all its goods are in. If the descriptions can't be read that day, the column title says <b>Description (not available today)</b>.</p>
+  </details>
+  <details>
+    <summary>Files you can save from Late &amp; Short</summary>
+    <div class="scroll"><table>
+      <tr><th>Button</th><th>Where</th><th>What you get</th></tr>
+      <tr><td class="k">Download report</td><td>Action board</td><td>The report from the morning email: late, tight and short lines and lines with a note, from all open lines. A note that starts with good leaves its line off.</td></tr>
+      <tr><td class="k">Export this list</td><td>Action board</td><td>The lines on this card, with the search and customer filter applied. Columns: Customer, Style, Cust PO, Order, Import PO, Start, Cancel, Days past cancel, Status, Container, ETA, ETA source, In warehouse, Why it is here, Reviewed, Sent to buyer, Notes.</td></tr>
+      <tr><td class="k">Export Excel</td><td>All lines</td><td>The lines shown, with every column. The file has the same name as the <b>Download report</b> file, so check which one you're sending.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>Columns on All lines</summary>
+    <p>Buyer, Reviewed, Flags, Customer, Cust PO, Style, Notes, Start, Cancel, Ord, Short, Factory, Import PO, Round, ERP status, CRD, ETD, Status, ETA, Whse, LFD, Pickup, Released, ERP ETA, Container, Changed.</p>
+    <p><b>Buyer</b> is the Sent tick. <b>Status</b> is the container status.</p>
+  </details>
+  <details>
+    <summary>Red words at the top</summary>
+    <div class="scroll" id="warnings"><table>
+      <tr><th>You see</th><th>What it means</th></tr>
+      <tr><td class="k">updating…</td><td>The page shows your browser's saved copy while it reads the latest. Ticks and notes wait until it's done.</td></tr>
+      <tr><td class="k">could not update</td><td>The latest data couldn't be read. Click <b>Refresh</b> to try again.</td></tr>
+      <tr><td class="k">Could not read the lists</td><td>The page couldn't load its data. The words after it say why.</td></tr>
+      <tr><td class="k">last run</td><td>The last run didn't finish. The <b>Runs</b> tab shows the error.</td></tr>
+      <tr><td class="k">a forwarder or drayage report was not read</td><td>Dates and flags may be from the day before. See <b>Tracker issues</b>.</td></tr>
+      <tr><td class="k">no run in … h</td><td>The last run is over 30 hours old, not counting weekends. The number shown does count them. Click <b>Refresh</b>.</td></tr>
+    </table></div>
+    <p>The words show beside the date <span class="m">1</span>:</p>
+    <figure>
+        <a href="guide-img/11-ls-asof.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-asof.webp" width="1110" height="125" loading="lazy" alt="The top of Late and Short. Red words beside the date, saying a forwarder or drayage report was not read, are marked 1."></a>
+      </figure>
+    <p>The <b>Runs</b> tab lists each run with its status <span class="m">1</span>, its report files, its counts and any error <span class="m">2</span>. <b>OK</b> means fine. <b>degraded</b> means a forwarder's or drayage report wasn't read. The message after <b>Refresh</b> can add a warning, such as a report 2 or more business days old.</p>
+    <figure>
+        <a href="guide-img/11-ls-runs.webp" target="_blank" rel="noopener"><img src="guide-img/11-ls-runs.webp" width="1208" height="411" loading="lazy" alt="The Runs tab with five sample runs. Status is marked 1 and Error is marked 2. One run says OK (degraded) and one says Error, with its message."></a>
+      </figure>
+  </details>
+  <details>
+    <summary>Change types</summary>
+    <div class="scroll" id="change-types"><table>
+      <tr><th>Type</th><th>What changed</th></tr>
+      <tr><td class="k">NewLate, NewTight</td><td>The line turned late, or tight</td></tr>
+      <tr><td class="k">NewPastCancel</td><td>It passed its cancel date</td></tr>
+      <tr><td class="k">ETASlipped, ETAMoved</td><td>The ETA moved later, or earlier</td></tr>
+      <tr><td class="k">ETAFound, NoETA</td><td>It now has an ETA, or no longer has one</td></tr>
+      <tr><td class="k">ETADiscrepancy</td><td>The ETA typed in the ERP differs from the ETA used</td></tr>
+      <tr><td class="k">NewLFDRisk</td><td>Last free day at risk</td></tr>
+      <tr><td class="k">NewNotReleased</td><td>Arrived, not released</td></tr>
+      <tr><td class="k">NewDisagree, NewNotInReports</td><td>The reports disagree, or a container is on neither report</td></tr>
+      <tr><td class="k">ChangedAfterSent</td><td>Changed since it was sent to the buyer</td></tr>
+      <tr><td class="k">ReviewCleared</td><td>Changed since it was reviewed. Needs another look.</td></tr>
+      <tr><td class="k">Improved</td><td>Its late or tight status eased, such as Late → Tight or Tight → OnTime. The <b>Detail</b> column shows the move.</td></tr>
+      <tr><td class="k">ShipStatus</td><td>The container status moved</td></tr>
+      <tr><td class="k">CRDPushed, CRDMoved</td><td>The CRD was pushed out, or moved earlier or cleared</td></tr>
+      <tr><td class="k">RoundChanged, LoadConfirmed, Landed</td><td>Moved to a different round, moved from Booking to Loaded, or its round is on Complete</td></tr>
+      <tr><td class="k">NewLine, LineGone, LineReturned</td><td>New on the ERP report, gone from it, or back on it</td></tr>
+      <tr><td class="k">StatusChanged, ImportPOChanged</td><td>The ERP status text changed, or the import PO was re-linked in the ERP</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>TJX Tracker: boxes, lists and buttons</summary>
+    <div class="scroll" id="tjx-words"><table>
+      <tr><th>On the screen</th><th>What it means</th></tr>
+      <tr><td class="k">Shipped 2026</td><td>Units shipped this year, and the rise since the report before</td></tr>
+      <tr><td class="k">Open orders</td><td>Open units, how many are allocated, and how many lines</td></tr>
+      <tr><td class="k">New orders this report</td><td>Units on PO lines that weren't in the report before</td></tr>
+      <tr><td class="k">Styles tracked</td><td>How many styles, how many are new, and how many have no description or picture</td></tr>
+      <tr><td class="k">Needs reorder</td><td>Styles at <b>Reorder</b>, and how many at <b>Low</b></td></tr>
+      <tr><td class="k">Start date, Ship date</td><td>Which date places shipped units in a week. Open orders always use the start date.</td></tr>
+      <tr><td class="k">Total, Shipped, Open</td><td>Which units the date columns show</td></tr>
+      <tr><td class="k">Weeks, Months, Quarters</td><td>How the date columns are split. Click a quarter or month title to open or close only that one.</td></tr>
+      <tr><td class="k">Export</td><td>Tick styles first. The button then reads <b>Export 2 selected</b>, and saves them to Excel with pictures.</td></tr>
+      <tr><td class="k">Grip and arrows on a row</td><td>Drag the grip to move a row. The arrows move it one place. Shift-click an arrow to send it to the top or bottom.</td></tr>
+      <tr><td class="k">Clear notes</td><td>Clears every note. It asks you to click again first.</td></tr>
+    </table></div>
+    <div class="scroll"><table>
+      <tr><th>In the list</th><th>Shows</th></tr>
+      <tr><td class="k">All styles</td><td>Every style</td></tr>
+      <tr><td class="k">With orders</td><td>Styles with units shipped or open this year</td></tr>
+      <tr><td class="k">Has open orders</td><td>Styles with open units</td></tr>
+      <tr><td class="k">New this report</td><td>Styles the report on screen added</td></tr>
+      <tr><td class="k">Missing details</td><td>Styles with no description or no picture</td></tr>
+      <tr><td class="k">Needs reorder</td><td>Styles at <b>Reorder</b></td></tr>
+      <tr><td class="k">Reorder or low</td><td>Styles at <b>Reorder</b> or <b>Low</b></td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>TJX Tracker: reorder rules and files</summary>
+    <p><b>Avg/wk</b> is the average of the last 12 weeks of TJX orders. <b>On hand</b> is already net of open orders. <b>Wks cover</b> is on hand plus incoming, divided by <b>Avg/wk</b>.</p>
+    <div class="scroll"><table>
+      <tr><th>Status</th><th>What it means</th></tr>
+      <tr><td class="k">Reorder</td><td>Under 12 weeks of cover</td></tr>
+      <tr><td class="k">Low</td><td>Under 18 weeks of cover</td></tr>
+      <tr><td class="k">OK</td><td>18 weeks or more</td></tr>
+      <tr><td class="k">No demand</td><td>No TJX orders in the last 12 weeks</td></tr>
+    </table></div>
+    <p><b>Reorder qty</b> is the units that bring cover up to the <b>Low</b> line. <b>Reorder rules</b> <span class="m">1</span>, above the grid, changes these numbers for everyone <span class="m">2</span>.</p>
+    <figure>
+        <a href="guide-img/11-tjx-rules.webp" target="_blank" rel="noopener"><img src="guide-img/11-tjx-rules.webp" width="1100" height="162" loading="lazy" alt="The Reorder rules box above the grid, with the weeks for Reorder and Low and the weeks of trend. The button is marked 1 and the box is marked 2."></a>
+      </figure>
+    <p>The drop box takes four kinds of file:</p>
+    <div class="scroll"><table>
+      <tr><th>File</th><th>What it does</th></tr>
+      <tr><td class="k">TJX weekly report</td><td>Adds a report. It needs a Style column, with QTYORD for open lines, or Ship Date and QTY for shipped lines.</td></tr>
+      <tr><td class="k">TJX info file</td><td>Updates on hand and incoming. Category and other details fill empty fields only.</td></tr>
+      <tr><td class="k">ERP inventory export</td><td>Updates on hand and incoming</td></tr>
+      <tr><td class="k">Style workbook</td><td>Fills empty details and missing pictures. It leaves what's already there.</td></tr>
+    </table></div>
+    <p>Only Saul sees <b>Delete</b> on a weekly report.</p>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>

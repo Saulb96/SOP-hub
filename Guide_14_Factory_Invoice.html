@@ -1,26 +1,185 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Factory Invoice</title><style>*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,'Segoe UI',system-ui,sans-serif;color:#1a2230;background:#f6f7f9;line-height:1.55}
-.wrap{max-width:820px;margin:0 auto;padding:0 0 60px}
-.hero{background:linear-gradient(135deg,#7a4cc0,#9466d6);color:#fff;padding:38px 44px 30px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;top:-40px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.13)}
-.kick{font-size:11px;font-weight:700;letter-spacing:.28em;margin-bottom:10px}
-.hero h1{font-size:32px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
-.hero p{font-size:13.5px;margin-top:6px}
-.body{padding:32px 44px}
-.lead{font-size:15px;color:#2a3444;margin-bottom:8px}
-h2{font-size:11px;font-weight:700;letter-spacing:.14em;color:#6b7686;text-transform:uppercase;margin:28px 0 12px}
-ol,ul{margin:0 0 4px 4px;padding-left:20px}
-li{margin-bottom:7px;font-size:14px}
-ol li::marker{color:#7a4cc0;font-weight:700}
-ul li::marker{color:#7a4cc0}
-table{width:100%;border-collapse:collapse;margin:2px 0 8px;font-size:13px}
-th{background:#7a4cc0;color:#fff;text-align:left;padding:9px 12px;font-size:11px;letter-spacing:.04em;font-weight:600}
-td{padding:9px 12px;border-bottom:1px solid #e8ecf1;vertical-align:top}
-tr:nth-child(even) td{background:#f4effb}
-td.k{font-weight:600;white-space:nowrap}
-.glance td{background:#fff !important}
-.glance td.k{width:110px;color:#6b7686;font-weight:600}
-.foot{padding:18px 44px;color:#7a8594;font-size:11px;border-top:1px solid #e8ecf1;margin-top:10px}
-.note{background:#f4effb;border-left:3px solid #7a4cc0;padding:11px 14px;border-radius:8px;font-size:13px;margin:12px 0 4px}
-.draft{background:#fff8e6;border-left:3px solid #96690c;padding:11px 14px;border-radius:8px;font-size:13px;margin:14px 0 4px}
-@media(max-width:600px){.hero{padding:30px 20px 24px}.hero h1{font-size:26px}.body{padding:24px 20px}.foot{padding:16px 20px}td.k{white-space:normal}}</style></head><body><div class="wrap"><div class="hero"><div class="kick">M1S SOP HUB · FINANCE</div><h1>Factory Invoice</h1><p>Receiving, matching and paying factory invoices</p></div><div class="body"><p class="lead">Check every factory invoice against what was ordered and what shipped before it is paid.</p><div class="draft"><b>Draft, not yet confirmed.</b> None of our tools covers this process, so these steps are general practice. The PI Status field is the only part from our tools. Saul to confirm who does each step and which system is used.</div><h2>At a glance</h2><table class="glance"><tr><td class="k">Owner</td><td>Saul Braha</td></tr><tr><td class="k">Related field</td><td>PI Status on the Production &amp; PO tracker</td></tr><tr><td class="k">When</td><td>When a factory invoice arrives</td></tr><tr><td class="k">You end with</td><td>Invoice checked, approved and paid, with the record kept</td></tr></table><h2>Steps</h2><ol><li>Check that the signed Proforma Invoice (PI) exists and its PI Status is Signed.</li><li>When the invoice arrives, note the factory, PO, amount and due date.</li><li>Match the invoice to the PO, the PI and the packing list: style, quantity and price.</li><li>Send any difference back to Production to settle with the factory. Don’t pay it until it is settled.</li><li>Get approval to pay.</li><li>Pay the invoice and record the date and reference.</li><li>Keep the invoice with its PO.</li></ol><h2>Good to know</h2><div class="note">A PI is signed before production. <b>Price Issue</b> in PI Status means the price isn’t settled yet.</div></div><div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Factory Invoice</title>
+<link rel="stylesheet" href="guide.css">
+</head>
+<body style="--main:#9466d6;--deep:#7a4cc0;--tint:#f4effb">
+<div class="wrap">
+<div class="hero">
+  <div class="kick">M1S SOP HUB · FINANCE</div>
+  <h1>Factory Invoice</h1>
+  <p>Check every factory invoice against what was ordered and what shipped, then get it approved and paid.</p>
+</div>
+<div class="body">
+
+  <div class="glance">
+    <div><b>Owner</b><span>Saul Braha</span></div>
+    <div><b>Who does it</b><span>Saul to confirm</span></div>
+    <div><b>When</b><span>When a factory invoice arrives</span></div>
+    <div><b>You end with</b><span>Invoice checked, approved and paid, with the record kept</span></div>
+  </div>
+  <a class="open-tool" href="https://saulb96.github.io/po-book/" target="_blank" rel="noopener">Open PO Book</a>
+
+  <div class="draft">
+    <p><b>Draft.</b> None of our tools covers this process, so these steps are general practice. Only <b>PI Status</b> and the look-ups in the PO Book come from our tools.</p>
+    <details><summary>Saul to confirm 5 things</summary>
+    <ul class="plain">
+      <li>Who does each step, and who approves a payment.</li>
+      <li>Which system records invoices and payments, and how a payment is made.</li>
+      <li>Where the signed PI, the packing list and the invoices are kept.</li>
+      <li>The full list of <b>PI Status</b> values, and what to do for each. Dev PLM's design demo lists Qty Issue, Price &amp; Qty Issue, Pending PPS and OK - Pending Other Styles For PI.</li>
+      <li>That Production is who to ask about a blank or unlisted <b>PI Status</b>.</li>
+    </ul>
+    </details>
+  </div>
+
+  <p class="sample-note"><b>Jump to:</b> <a href="#pi">Check the PI</a> · <a href="#match">Check the invoice</a> · <a href="#pay">Pay the invoice</a> · <a href="#rules">Rules</a></p>
+
+  <h2 id="pi">Check the PI</h2>
+  <p>Have the invoice in front of you. You need its PO number. A <a href="Guide_8_Glossary.html#PO" target="_blank" rel="noopener">PO</a> is a purchase order: our order with the factory.</p>
+  <p>A <a href="Guide_8_Glossary.html#PI" target="_blank" rel="noopener">PI</a> (Proforma Invoice) is the factory's first version of the bill for a PO. It lists the goods and prices. It's signed before production.</p>
+  <p class="sample-note">Screenshots use made-up sample data. Click any picture to see it larger.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Open the PO Book</h3>
+      <p>Click <b>Open PO Book</b> above. Sign in with your Metro1 Microsoft account if it asks.</p>
+    </li>
+    <li class="step">
+      <h3>Click the PO Status Tracker chip</h3>
+      <p>It's the small rounded label, or <a href="Guide_8_Glossary.html#Chip" target="_blank" rel="noopener">chip</a>, next to the <b>M1S · PO Book</b> title <span class="m">1</span>. <b>Master Sheet Live</b> <span class="m">2</span> is a different file.</p>
+      <figure style="max-width:655px">
+        <a href="guide-img/5-po-book-chips.webp" target="_blank" rel="noopener"><img src="guide-img/5-po-book-chips.webp" width="656" height="80" loading="lazy" alt="The top of the PO Book. The PO Status Tracker chip is marked 1 and the Master Sheet Live chip 2."></a>
+      </figure>
+      <p>The Excel file opens in a new tab. If another tab is showing, click the <b>PO Status Tracker</b> tab at the bottom. You're only reading here. Production keeps this sheet up to date.</p>
+    </li>
+    <li class="step">
+      <h3>Find the PO's rows</h3>
+      <p>Press Ctrl+F and type the PO number from the invoice. It's in the <b>PO#</b> column. Each row is one style on one PO, so a PO can have several rows.</p>
+    </li>
+    <li class="step">
+      <h3>Read PI Status</h3>
+      <p>Find <b>PI Status</b> in the sheet's top row. If you can't see it, scroll right, or press Ctrl+F and type PI Status. Read it on each of the PO's rows.</p>
+      <figure>
+        <div class="sheet"><table style="min-width:0">
+          <tr><th>PO#</th><th>Style #</th><th>PI Status</th></tr>
+          <tr><td>900120</td><td>SAMPLE-1031</td><td>Signed</td></tr>
+          <tr><td>900120</td><td>SAMPLE-1032</td><td>Signed</td></tr>
+          <tr><td>900120</td><td>SAMPLE-1033</td><td>Signed</td></tr>
+          <tr><td>900120</td><td>SAMPLE-1034</td><td>Signed</td></tr>
+          <tr><td>900120</td><td>SAMPLE-1035</td><td>Signed</td></tr>
+          <tr><td>900121</td><td>SAMPLE-1036</td><td>Price Issue</td></tr>
+          <tr><td>900122</td><td>SAMPLE-1037</td><td></td></tr>
+        </table></div>
+        <figcaption>Drawn layout with sample data, not a screenshot. Only 3 of the sheet's columns are drawn.</figcaption>
+      </figure>
+      <ul>
+        <li><b>Signed</b> on every row: the PI is signed. Go on to the next step.</li>
+        <li><b>Price Issue</b> on any row: the price isn't settled yet. Tell Production. They settle it with the factory. Don't pay until it's settled.</li>
+        <li>Blank or anything else: don't pay yet. Ask Production what it means.</li>
+      </ul>
+    </li>
+    <li class="step">
+      <h3>Check the signed PI exists</h3>
+      <p>Find the signed copy for this PO. You'll match the invoice against it below. Saul to confirm where signed copies are kept. Until then, ask Saul.</p>
+    </li>
+  </ol>
+
+  <h2 id="match">Check the invoice</h2>
+  <ol class="steps">
+    <li class="step">
+      <h3>Note the invoice details</h3>
+      <p>Note these four things from the invoice:</p>
+      <ul>
+        <li>The factory</li>
+        <li>The PO</li>
+        <li>The amount</li>
+        <li>The due date</li>
+      </ul>
+      <p>Saul to confirm where to note them. Until then, ask Saul.</p>
+    </li>
+    <li class="step">
+      <h3>Match the invoice to the PO</h3>
+      <p>Go back to the PO Book tab. Click <b>Styles</b> at the top left of the table <span class="m">1</span>. Type the PO number in the search box <span class="m">2</span>. Read <b>Style#</b>, then <b>PO Qty</b> and <b>Price</b> <span class="m">3</span>. If you see <b>Nothing matches these filters</b>, or a style is missing, click the <b>Shipped</b> tab.</p>
+      <figure>
+        <a href="guide-img/14-po-book-styles.webp" target="_blank" rel="noopener"><img src="guide-img/14-po-book-styles.webp" width="843" height="345" loading="lazy" alt="The PO Book with Styles marked 1, the PO number 900120 typed in the search box marked 2, and the PO Qty and Price columns marked 3. Five styles are listed."></a>
+        <figcaption>The table goes on to the right, with more columns.</figcaption>
+      </figure>
+      <p>Compare them with the style, quantity and price on the invoice. <a href="Guide_5_Production_PO.html#find">Find a PO in the PO Book</a> has more on this screen.</p>
+    </li>
+    <li class="step">
+      <h3>Match the invoice to the PI</h3>
+      <p>Compare the style, quantity and price on the invoice with the signed PI from <a href="#pi">Check the PI</a>.</p>
+    </li>
+    <li class="step">
+      <h3>Match the invoice to the packing list</h3>
+      <p>Compare the style, quantity and price on the invoice with the <a href="Guide_8_Glossary.html#Packing%20list" target="_blank" rel="noopener">packing list</a>. None of our tools holds the list itself. Saul to confirm where it is. Until then, ask Saul.</p>
+    </li>
+    <li class="step">
+      <h3>Tell Production about any difference</h3>
+      <p>They settle it with the factory. Don't pay it until it's settled.</p>
+    </li>
+  </ol>
+
+  <h2 id="pay">Pay the invoice</h2>
+  <p>Saul to confirm who approves, how you pay and where the record goes (see the yellow Draft note at the top). Ask Saul before you do these steps.</p>
+  <ol class="steps">
+    <li class="step">
+      <h3>Get approval to pay</h3>
+      <p>Don't pay until it's approved.</p>
+    </li>
+    <li class="step">
+      <h3>Pay the invoice</h3>
+      <p>Pay only when everything under <a href="#rules">Rules to remember</a> is true.</p>
+    </li>
+    <li class="step">
+      <h3>Record the date and the reference</h3>
+      <p>Write down the payment date and the payment's reference number.</p>
+    </li>
+    <li class="step">
+      <h3>Keep the invoice with its PO</h3>
+      <p>Saul to confirm where to keep it. Until then, ask Saul.</p>
+    </li>
+  </ol>
+  <div class="note"><b>Next in the Finance flow:</b> <a href="Guide_15_Customer_Invoice.html">Customer Invoice</a>.</div>
+
+  <h2 id="rules">Rules to remember</h2>
+  <p>Pay an invoice only when all of these are true:</p>
+  <ul class="plain">
+    <li><b>PI Status</b> says <b>Signed</b>.</li>
+    <li>The style, quantity and price match the PO, the PI and the packing list.</li>
+    <li>Any difference is settled.</li>
+    <li>The payment is approved.</li>
+  </ul>
+
+  <div class="note"><b>Good to know.</b> The PI is also one of the checks before goods can be <a href="Guide_7_Container_Logistics.html#plan">booked on a container</a>. See <a href="Guide_5_Production_PO.html">Production &amp; PO Tracking</a>.</div>
+
+  <h2>Reference</h2>
+  <details>
+    <summary>Where to look things up</summary>
+    <div class="scroll"><table>
+      <tr><th>You need</th><th>Where it is</th></tr>
+      <tr><td class="k">PI Status</td><td>The <b>PI Status</b> column on the PO Status Tracker. Open it from the chip at the top of the PO Book. <a href="Guide_5_Production_PO.html#tracker">Production &amp; PO Tracking</a> shows the sheet's other columns.</td></tr>
+      <tr><td class="k">A PO's styles, quantity and price</td><td>In the PO Book, click <b>Styles</b>. Then read <b>PO #</b>, <b>Style#</b>, <b>PO Qty</b> and <b>Price</b>. <a href="Guide_5_Production_PO.html#find">Find a PO</a> shows how.</td></tr>
+      <tr><td class="k">What has shipped from the factory</td><td>The <b>Shipped</b> tab of the PO Book. <a href="Guide_11_Order_Tracking.html#po">Order Tracking</a> explains how to read it.</td></tr>
+      <tr><td class="k">The packing list</td><td>None of our tools holds the file. The <b>P.L/ C.I.</b> column on the <a href="Guide_8_Glossary.html#Container%20Tracking%20Sheet" target="_blank" rel="noopener">Container Tracking Sheet</a> tracks it, with the <a href="Guide_8_Glossary.html#Commercial%20invoice" target="_blank" rel="noopener">commercial invoice</a>. It's on the <b>Open</b> tab, or <b>Complete</b> once the <a href="Guide_8_Glossary.html#Round" target="_blank" rel="noopener">round</a> has closed. Saul to confirm where the file is. See <a href="Guide_7_Container_Logistics.html#track">Track documents and clearance</a>.</td></tr>
+      <tr><td class="k">The signed PI, invoices and payment records</td><td>None of our tools holds these. Saul to confirm where they are.</td></tr>
+    </table></div>
+  </details>
+  <details>
+    <summary>PI Status values</summary>
+    <div class="scroll"><table>
+      <tr><th>Value</th><th>What it means</th></tr>
+      <tr><td class="k">Signed</td><td>The PI is signed.</td></tr>
+      <tr><td class="k">Price Issue</td><td>The price isn't settled yet.</td></tr>
+      <tr><td class="k">Blank or anything else</td><td>Don't pay yet, and ask Production what it means. The sheet has other values like these. Saul to confirm the full list.</td></tr>
+    </table></div>
+  </details>
+
+</div>
+<div class="foot">Metro1 Solutions · Product-to-Delivery Process Flow</div>
+</div>
+</body>
+</html>
